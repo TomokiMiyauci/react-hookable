@@ -1,0 +1,15 @@
+{
+  "testEnvironment": "jsdom",
+  "testMatch": ["<rootDir>/lib/**/*_test.[tj]s?(x)"],
+  "transform": {
+    "^.+\\.(t|j)sx?$": "@swc/jest"
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/lib/$1"
+  },
+  "clearMocks": true,
+  "collectCoverage": true,
+  "coverageDirectory": "coverage",
+  "coverageProvider": "v8",
+  "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"]
+}

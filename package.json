@@ -1,0 +1,91 @@
+{
+  "name": "react-hookable",
+  "description": "Collection of essential React Composition Utilities",
+  "version": "0.0.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js"
+    }
+  },
+  "sideEffects": false,
+  "license": "MIT",
+  "scripts": {
+    "commit": "cz",
+    "prepare": "husky install",
+    "lint": "run-p lint:*",
+    "lint:scripts": "eslint lib/**",
+    "test": "run-p test:*",
+    "test:unit": "jest",
+    "build": "run-p build:*",
+    "build:scripts": "node -r esbuild-register build.ts",
+    "build:types": "dts-bundle-generator --no-banner --external-imports=react --external-imports=react-dom -o dist/index.d.ts lib/index.ts",
+    "release": "semantic-release"
+  },
+  "peerDependencies": {
+    "react": "^16 | ^17"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.2.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@swc/core": "^1.2.92",
+    "@swc/jest": "^0.2.4",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.1",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.2",
+    "@types/react": "^17.0.26",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "commitizen": "^4.2.4",
+    "commitlint-config-gitmoji": "^2.2.5",
+    "cz-emoji": "^1.3.1",
+    "dts-bundle-generator": "^5.9.0",
+    "esbuild": "^0.13.3",
+    "esbuild-plugin-d.ts": "^1.0.6",
+    "esbuild-register": "^3.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.2",
+    "jest": "^27.2.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "semantic-release": "^18.0.0",
+    "semantic-release-gitmoji": "^1.3.4",
+    "typescript": "^4.4.3"
+  },
+  "author": {
+    "name": "TomokiMiyauci",
+    "email": "contact@miyauchi.dev",
+    "url": "https://miyauchi.dev/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TomokiMiyauci/react-hookable.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/TomokiMiyauci/react-hookable#readme",
+  "bugs": "https://github.com/TomokiMiyauci/react-hookable/issues",
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/tomoki_miyauci"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "hooks",
+    "use",
+    "collection",
+    "utility"
+  ]
+}

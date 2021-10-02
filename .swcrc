@@ -1,0 +1,21 @@
+{
+  "jsc": {
+    "target": "es2021",
+    "transform": {
+      "react": {
+        "pragma": "React.createElement",
+        "pragmaFrag": "React.Fragment",
+        "throwIfNamespace": true,
+        "development": true,
+        "useBuiltins": false,
+        "runtime": "automatic"
+      }
+    },
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": false
+    }
+  }
+}
