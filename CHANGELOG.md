@@ -1,3 +1,9 @@
+# [v1.0.0-beta.4](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2021-10-03)
+
+## ✨ New Features
+- [`dddfe45`](https://github.com/TomokiMiyauci/react-hookable/commit/dddfe45)   Add deps to &#x60;useEventListener&#x60; hooks 
+- [`48ba5ed`](https://github.com/TomokiMiyauci/react-hookable/commit/48ba5ed)   Add &#x60;useShortcut&#x60; hooks for &#x60;keydown&#x60; shortcut dispatcher
+
 # [v1.0.0-beta.3](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-10-03)
 
 ## ✨ New Features
