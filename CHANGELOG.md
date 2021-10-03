@@ -1,3 +1,8 @@
+# [v1.0.0-beta.3](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-10-03)
+
+## ✨ New Features
+- [`5e234cd`](https://github.com/TomokiMiyauci/react-hookable/commit/5e234cd)   Add &#x60;useEventListener&#x60; for remove automatically on unmount
+
 # [v1.0.0-beta.2](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2021-10-03)
 
 ## ✨ New Features
