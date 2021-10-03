@@ -11,7 +11,7 @@ const validateKeyMap = (
     ctrl,
     key: _key
   }: // eslint-disable-next-line @typescript-eslint/ban-types
-  Record<MetaKey, boolean> & Partial<{ key: Alphabet }>,
+  Record<MetaKey, boolean> & Partial<{ key: Keys }>,
   { altKey, shiftKey, metaKey, ctrlKey, key }: KeyboardEvent
 ): boolean => {
   if (
