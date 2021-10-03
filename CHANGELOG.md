@@ -1,3 +1,8 @@
+# [v1.0.0-beta.8](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2021-10-03)
+
+## ✨ New Features
+- [`b331818`](https://github.com/TomokiMiyauci/react-hookable/commit/b331818)   Add &#x60;useAsync&#x60; for asynchronous &#x60;useEffect&#x60;
+
 # [v1.0.0-beta.7](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2021-10-03)
 
 ## 🐛 Bug Fixes
