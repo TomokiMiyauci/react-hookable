@@ -1,3 +1,8 @@
+# [v1.0.0-beta.7](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2021-10-03)
+
+## 🐛 Bug Fixes
+- [`ff75b51`](https://github.com/TomokiMiyauci/react-hookable/commit/ff75b51)   Support SSR env
+
 # [v1.0.0-beta.6](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2021-10-03)
 
 ## 🐛 Bug Fixes
