@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { DependencyList } from 'react'
 import { useEffect } from 'react'
 
 type IsNever<T> = [T] extends [never] ? true : false
@@ -18,6 +19,7 @@ type EventMap<T> = T extends HTMLElement
  * @param type - Event type
  * @param listener - Call on fire event
  * @param options - EventListener options
+ * @param deps -  If present, effect will only activate if the values in the list change.
  */
 const useEventListener = <T extends EventTarget, K extends keyof EventMap<T>>(
   target: T,
@@ -26,14 +28,17 @@ const useEventListener = <T extends EventTarget, K extends keyof EventMap<T>>(
     this: T,
     ev: IsNever<EventMap<T>> extends true ? Event : EventMap<T>[K]
   ) => any,
-  options?: AddEventListenerOptions | boolean
+  options?: AddEventListenerOptions | boolean,
+  deps?: DependencyList
 ): void => {
   useEffect(() => {
     target.addEventListener(type as any, listener as any, options)
 
     return () =>
       target.removeEventListener(type as any, listener as any, options)
-  }, [target, type, listener, options])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, type, listener, options, ...(deps ?? [])])
 }
 
 export { useEventListener }
+export type { EventMap }
