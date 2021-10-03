@@ -35,6 +35,15 @@ type MetaKeyMap = {
 
 type MetaKey = keyof MetaKeyMap
 
+type Keys =
+  | Alphabet
+  | 'Escape'
+  | 'Enter'
+  | 'ArrowUp'
+  | 'ArrowDown'
+  | 'ArrowRight'
+  | 'ArrowLeft'
+
 /**
  * Hooks for `keydown` shortcut dispatcher
  * @param keyMap - Binding shortcut key
@@ -49,7 +58,7 @@ type MetaKey = keyof MetaKeyMap
  */
 const useShortcut = (
   // eslint-disable-next-line @typescript-eslint/ban-types
-  keyMap: Partial<Record<MetaKey, true> & { key: Alphabet }>,
+  keyMap: Partial<Record<MetaKey, true> & { key: Keys }>,
   onKeyDown: (ev: KeyboardEvent) => void,
   options?: {
     target?: Window | HTMLElement | Document
