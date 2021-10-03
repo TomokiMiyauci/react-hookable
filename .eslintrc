@@ -18,11 +18,13 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
   "rules": {
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   },
   "ignorePatterns": ["dist"]
 }

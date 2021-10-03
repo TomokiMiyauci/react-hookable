@@ -1,5 +1,6 @@
+import { act,renderHook } from '@testing-library/react-hooks'
+
 import { useToggle } from '@/useToggle'
-import { renderHook, act } from '@testing-library/react-hooks'
 
 describe('useToggle', () => {
   const table: [boolean | (() => boolean), boolean][] = [

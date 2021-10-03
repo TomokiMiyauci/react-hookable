@@ -1,5 +1,6 @@
+import { act,renderHook } from '@testing-library/react-hooks'
+
 import { useSwitch } from '@/useSwitch'
-import { renderHook, act } from '@testing-library/react-hooks'
 
 describe('useSwitch', () => {
   const table: [boolean | (() => boolean), boolean][] = [
