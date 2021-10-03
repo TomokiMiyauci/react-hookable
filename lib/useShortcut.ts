@@ -61,12 +61,16 @@ const useShortcut = (
   keyMap: Partial<Record<MetaKey, true> & { key: Keys }>,
   onKeyDown: (ev: KeyboardEvent) => void,
   options?: {
-    target?: Window | HTMLElement | Document
+    target?:
+      | Window
+      | Document
+      | HTMLElement
+      | (() => Window | Document | HTMLElement)
   } & AddEventListenerOptions,
   deps?: DependencyList
 ): void => {
   useEventListener(
-    options?.target ?? window,
+    options?.target ?? (() => window),
     'keydown',
     (ev) => {
       const {

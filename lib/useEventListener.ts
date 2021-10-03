@@ -22,7 +22,7 @@ type EventMap<T> = T extends HTMLElement
  * @param deps -  If present, effect will only activate if the values in the list change.
  */
 const useEventListener = <T extends EventTarget, K extends keyof EventMap<T>>(
-  target: T,
+  target: T | (() => T),
   type: IsNever<K> extends true ? string : K,
   listener: (
     this: T,
@@ -32,10 +32,11 @@ const useEventListener = <T extends EventTarget, K extends keyof EventMap<T>>(
   deps?: DependencyList
 ): void => {
   useEffect(() => {
-    target.addEventListener(type as any, listener as any, options)
+    const _target = typeof target === 'function' ? target() : target
+    _target.addEventListener(type as any, listener as any, options)
 
     return () =>
-      target.removeEventListener(type as any, listener as any, options)
+      _target.removeEventListener(type as any, listener as any, options)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target, type, listener, options, ...(deps ?? [])])
 }
