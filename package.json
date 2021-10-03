@@ -17,7 +17,7 @@
     "commit": "cz",
     "prepare": "husky install",
     "lint": "run-p lint:*",
-    "lint:scripts": "eslint lib/**",
+    "lint:scripts": "eslint --ignore-path .gitignore lib/**",
     "test": "run-p test:*",
     "test:unit": "jest",
     "build": "run-p build:*",
