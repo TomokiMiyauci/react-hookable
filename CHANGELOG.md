@@ -1,3 +1,8 @@
+# [v1.0.0-beta.5](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2021-10-03)
+
+## 🐛 Bug Fixes
+- [`79bc5c3`](https://github.com/TomokiMiyauci/react-hookable/commit/79bc5c3)   Export &#x60;useShortcut&#x60;
+
 # [v1.0.0-beta.4](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2021-10-03)
 
 ## ✨ New Features
