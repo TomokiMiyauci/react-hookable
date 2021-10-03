@@ -1,3 +1,4 @@
+export { useAsyncEffect } from '@/useAsyncEffect'
 export { useEventListener } from '@/useEventListener'
 export { useShortcut } from '@/useShortcut'
 export { useSwitch } from '@/useSwitch'
