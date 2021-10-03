@@ -1,3 +1,8 @@
+# [v1.0.0-beta.6](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2021-10-03)
+
+## 🐛 Bug Fixes
+- [`bfe0a93`](https://github.com/TomokiMiyauci/react-hookable/commit/bfe0a93)   Improve type definition of shortcut key code
+
 # [v1.0.0-beta.5](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2021-10-03)
 
 ## 🐛 Bug Fixes
