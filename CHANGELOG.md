@@ -1,3 +1,8 @@
+# [v1.0.0-beta.10](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2021-10-04)
+
+## 🐛 Bug Fixes
+- [`e70508f`](https://github.com/TomokiMiyauci/react-hookable/commit/e70508f)   Fix useEffect deps
+
 # [v1.0.0-beta.9](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2021-10-04)
 
 ## ✨ New Features
