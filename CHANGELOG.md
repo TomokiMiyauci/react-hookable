@@ -1,3 +1,8 @@
+# [v1.0.0-beta.9](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2021-10-04)
+
+## ✨ New Features
+- [`a65ca33`](https://github.com/TomokiMiyauci/react-hookable/commit/a65ca33)   Add &#x60;useUpdateEffect&#x60; fro effect on update dependency
+
 # [v1.0.0-beta.8](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2021-10-03)
 
 ## ✨ New Features
