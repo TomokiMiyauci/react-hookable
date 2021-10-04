@@ -38,7 +38,7 @@ const useEventListener = <T extends EventTarget, K extends keyof EventMap<T>>(
     return () =>
       _target.removeEventListener(type as any, listener as any, options)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target, type, listener, options, ...(deps ?? [])])
+  }, deps)
 }
 
 export { useEventListener }

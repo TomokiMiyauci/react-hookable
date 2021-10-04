@@ -33,7 +33,7 @@ const useAsyncEffect = (
       ref.current?.()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [effect, ...(deps ?? [])])
+  }, deps)
 }
 
 export { useAsyncEffect }

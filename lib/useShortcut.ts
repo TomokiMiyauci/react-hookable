@@ -97,7 +97,7 @@ const useShortcut = (
       }
     },
     options,
-    [keyMap, onKeyDown, options, ...(deps ?? [])]
+    deps
   )
 }
 
