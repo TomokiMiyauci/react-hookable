@@ -23,7 +23,7 @@ const config: CustomizedStorybookConfig = {
     '../stories/**/*.story.mdx',
     '../stories/**/*.story.@(js|jsx|ts|tsx)'
   ],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: [],
   core: {
     builder: 'storybook-builder-vite'
   },
