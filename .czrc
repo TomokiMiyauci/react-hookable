@@ -2,8 +2,8 @@
   "path": "cz-emoji",
   "config": {
     "cz-emoji": {
-      "skipQuestions": [
-        "scope"
+      "scopes": [
+        "docs"
       ],
       "types": [
         {
