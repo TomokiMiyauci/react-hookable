@@ -1,8 +1,12 @@
-import { StorybookConfig, CoreConfig, Options } from '@storybook/core-common'
-import { UserConfig } from 'vite'
-import { Weaken } from 'utilitypes'
-import { resolve } from 'path'
 import preact from '@preact/preset-vite'
+import type {
+  CoreConfig,
+  Options,
+  StorybookConfig
+} from '@storybook/core-common'
+import { resolve } from 'path'
+import type { Weaken } from 'utilitypes'
+import type { UserConfig } from 'vite'
 interface CustomizedCoreConfig extends Weaken<CoreConfig, 'builder'> {
   builder: CoreConfig['builder'] | 'storybook-builder-vite'
 }

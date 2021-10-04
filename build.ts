@@ -1,7 +1,8 @@
+import type { BuildOptions } from 'esbuild'
 import { build } from 'esbuild'
 import { resolve } from 'path'
-import { peerDependencies, main, module } from './package.json'
-import type { BuildOptions } from 'esbuild'
+
+import { main, module, peerDependencies } from './package.json'
 
 const sharedOptions: BuildOptions = {
   entryPoints: [resolve(__dirname, 'lib', 'index.ts')],

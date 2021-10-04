@@ -1,6 +1,7 @@
-import { Meta } from '@storybook/preact'
-import { useToggle } from '@/useToggle'
+import type { Meta } from '@storybook/preact'
 import type { FunctionComponent } from 'preact'
+
+import { useToggle } from '@/useToggle'
 
 const Demo: FunctionComponent = () => {
   const [state, toggle] = useToggle()
