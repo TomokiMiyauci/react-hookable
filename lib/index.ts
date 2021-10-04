@@ -1,6 +1,5 @@
 export { useAsyncEffect } from '@/useAsyncEffect'
+export { useBoolean } from '@/useBoolean'
 export { useEventListener } from '@/useEventListener'
 export { useShortcut } from '@/useShortcut'
-export { useSwitch } from '@/useSwitch'
-export { useToggle } from '@/useToggle'
 export { useUpdateEffect } from '@/useUpdateEffect'
