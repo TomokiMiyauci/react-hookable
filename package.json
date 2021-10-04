@@ -31,7 +31,10 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@chakra-ui/react": "^1.6.8",
     "@commitlint/cli": "^13.2.0",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@mdx-js/preact": "^1.6.22",
     "@preact/preset-vite": "^2.1.2",
     "@semantic-release/changelog": "^6.0.0",
@@ -61,6 +64,7 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "framer-motion": "^4",
     "husky": "^7.0.2",
     "jest": "^27.2.4",
     "npm-run-all": "^4.1.5",
@@ -69,7 +73,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "semantic-release": "^18.0.0",
-    "semantic-release-gitmoji": "^1.3.4",
+    "semantic-release-gitmoji": "1.4.0",
     "storybook-builder-vite": "^0.1.0",
     "typescript": "^4.4.3",
     "utilitypes": "^1.0.0-beta.4",
