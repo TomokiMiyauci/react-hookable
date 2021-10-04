@@ -18,8 +18,7 @@ const Demo: FunctionComponent = () => {
     </>
   )
 }
-
-import Docs from '../docs/useBoolean.mdx'
+import Docs from '@doc/useBoolean.mdx'
 
 const meta: Meta<typeof Demo> = {
   title: 'hooks/useBoolean',

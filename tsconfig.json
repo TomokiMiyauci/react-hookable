@@ -12,7 +12,8 @@
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./lib/*"]
+      "@/*": ["./lib/*"],
+      "@doc/*": ["./docs/*"]
     }
   },
   "include": [
@@ -20,6 +21,7 @@
     "lib/**/*.d.ts",
     "lib/**/*.tsx",
     "tests",
-    "stories"
+    "stories/**/*",
+    "mdx.d.ts"
   ]
 }

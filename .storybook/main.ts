@@ -1,6 +1,8 @@
 import type { StorybookConfig } from '@storybook/core-common'
 import { join } from 'path'
 
+const toPath = (path: string): string => join(process.cwd(), path)
+
 const config: StorybookConfig = {
   stories: [
     '../stories/**/*.story.mdx',
@@ -15,9 +17,10 @@ const config: StorybookConfig = {
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          '@': join(process.cwd(), 'lib/'),
-          '@emotion/core': join(process.cwd(), 'node_modules/@emotion/react'),
-          'emotion-theming': join(process.cwd(), 'node_modules/@emotion/react')
+          '@': toPath('lib'),
+          '@doc': toPath('docs'),
+          '@emotion/core': toPath('node_modules/@emotion/react'),
+          'emotion-theming': toPath('node_modules/@emotion/react')
         }
       }
     }
