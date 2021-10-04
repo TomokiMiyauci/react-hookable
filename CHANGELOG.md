@@ -1,3 +1,9 @@
+# [v1.0.0-beta.11](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2021-10-04)
+
+## 🐛 Bug Fixes
+- [`87df004`](https://github.com/TomokiMiyauci/react-hookable/commit/87df004)   Remove &#x60;useToggle&#x60;, rename to &#x60;useBoolean&#x60; 
+- [`2219692`](https://github.com/TomokiMiyauci/react-hookable/commit/2219692)   Merged &#x60;useBoolean&#x60; hooks from &#x60;useSwitch&#x60; and &#x60;useToggle&#x60;
+
 # [v1.0.0-beta.10](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2021-10-04)
 
 ## 🐛 Bug Fixes
