@@ -19,9 +19,16 @@ const Demo: FunctionComponent = () => {
   )
 }
 
+import Docs from '../docs/useBoolean.mdx'
+
 const meta: Meta<typeof Demo> = {
   title: 'hooks/useBoolean',
-  component: Demo
+  component: Demo,
+  parameters: {
+    docs: {
+      page: Docs
+    }
+  }
 }
 
 export default meta
