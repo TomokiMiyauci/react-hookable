@@ -16,6 +16,9 @@ type AsyncEffectCallback = () => Promise<void | VFn>
  *   const { run } = await import('any/module')
  *   run()
  * })
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/lifecyle-useasynceffect
+ * @beta
  * ```
  */
 const useAsyncEffect = (
