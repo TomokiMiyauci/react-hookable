@@ -1,2 +1,3 @@
 commitlint.config.js linguist-documentation
+.storybook/main.js linguist-documentation
 .husky/commit-msg linguist-documentation
