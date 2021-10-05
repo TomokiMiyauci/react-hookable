@@ -1,8 +1,9 @@
 import type { DependencyList, EffectCallback } from 'react'
 import { useEffect, useRef } from 'react'
 
-type AsyncEffectCallback = () => Promise<void | Noop>
-type Noop = () => void
+import type { VFn } from '@/utils/types'
+
+type AsyncEffectCallback = () => Promise<void | VFn>
 
 /**
  * Hooks for asynchronous `useEffect`
@@ -21,7 +22,7 @@ const useAsyncEffect = (
   effect: EffectCallback | AsyncEffectCallback,
   deps?: DependencyList | undefined
 ): void => {
-  const ref = useRef<Noop>()
+  const ref = useRef<VFn>()
 
   useEffect(() => {
     Promise.resolve(effect()).then((destructor) => {

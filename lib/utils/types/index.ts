@@ -1,6 +1,6 @@
 /**
- * Alias for noop
+ * Alias for `void` function
  */
-type Noop = () => void
+type VFn = () => void
 
-export type { Noop }
+export type { VFn }

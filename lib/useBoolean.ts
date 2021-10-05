@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import type { Noop } from '@/utils/types'
+import type { VFn } from '@/utils/types'
 /**
  * Hooks for switchable `boolean` function
  * @param initialState - default:`false`
@@ -21,12 +21,12 @@ import type { Noop } from '@/utils/types'
  */
 const useBoolean = (
   initialState: boolean | (() => boolean) = false
-): [boolean, { on: Noop; off: Noop; toggle: Noop }] => {
+): [boolean, { on: VFn; off: VFn; toggle: VFn }] => {
   const [state, setState] = useState<boolean>(initialState)
 
-  const on: Noop = () => setState(true)
-  const off: Noop = () => setState(false)
-  const toggle: Noop = () => setState(!state)
+  const on: VFn = () => setState(true)
+  const off: VFn = () => setState(false)
+  const toggle: VFn = () => setState(!state)
 
   return [state, { on, off, toggle }]
 }
