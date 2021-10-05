@@ -14,8 +14,8 @@ const useIsFirstMount = (): boolean => {
 
 /**
  * Hooks for effect on update dependency
- * @param effect — Imperative function that can return a cleanup function
- * @param deps —Effect will only activate if the values in the list change.
+ * @param effect - Imperative function that can return a cleanup function
+ * @param deps - Effect will only activate if the values in the list change.
  *
  * @example
  * ```ts
