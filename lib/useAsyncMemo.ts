@@ -19,7 +19,7 @@ import { useRef } from 'react'
  * }, [email])
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/hooks-useboolean
+ * @see https://react-hookable.vercel.app/?path=/story/lifecyle-useasyncmemo
  * @beta
  */
 const useAsyncMemo = <T, K = undefined>(

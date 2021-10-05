@@ -18,6 +18,9 @@ import type { VFn } from '@/utils/types'
  * toggle()
  * state // false
  * ```
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/utility-useboolean
+ * @beta
  */
 const useBoolean = (
   initialState: boolean | (() => boolean) = false
