@@ -5,3 +5,4 @@
 ## Lifecycle
 
 - [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean`
+- [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed.

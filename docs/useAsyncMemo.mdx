@@ -1,0 +1,16 @@
+# useAsyncMemo
+
+Only recompute the memoized `async` value when one of the deps has changed.
+
+## Usage
+
+```tsx
+const [email, setEmail] = useState<string>('')
+
+const isValid = useAsyncMemo(async () => {
+  if (!email) return
+  const { default: isEmail } = await import('is-email')
+
+  return isEmail(email)
+}, [email])
+```
