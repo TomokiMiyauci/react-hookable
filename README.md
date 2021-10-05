@@ -11,4 +11,5 @@
 ## Utility
 
 - [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean`
+- [`useDebounce`](docs/useDebounce.mdx) - Safe debounce function that can be executed anywhere
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter
