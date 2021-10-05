@@ -1,3 +1,9 @@
+# [v1.0.0-beta.14](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2021-10-05)
+
+## ✨ New Features
+- [`e6780ba`](https://github.com/TomokiMiyauci/react-hookable/commit/e6780ba)   Add &#x60;useDebounce&#x60; that safe debounce function 
+- [`2873d21`](https://github.com/TomokiMiyauci/react-hookable/commit/2873d21)   Add &#x60;useTimeout&#x60; that provide safe timeout clearing logic
+
 # [v1.0.0-beta.13](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2021-10-05)
 
 ## ✨ New Features
