@@ -1,4 +1,5 @@
 export { useAsyncEffect } from '@/useAsyncEffect'
+export { useAsyncMemo } from '@/useAsyncMemo'
 export { useBoolean } from '@/useBoolean'
 export { useEventListener } from '@/useEventListener'
 export { useShortcut } from '@/useShortcut'

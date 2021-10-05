@@ -20,6 +20,7 @@ import { useRef } from 'react'
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/hooks-useboolean
+ * @beta
  */
 const useAsyncMemo = <T, K = undefined>(
   factory: () => Promise<T>,
