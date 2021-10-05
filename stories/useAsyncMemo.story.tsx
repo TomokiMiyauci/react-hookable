@@ -40,7 +40,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'hooks/useAsyncMemo',
+  title: 'Lifecycle/useAsyncMemo',
   component: Demo,
   parameters: {
     docs: {

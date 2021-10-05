@@ -6,7 +6,7 @@
 
 - [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed.
 
-## Utilities
+## Utility
 
 - [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean`
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter
