@@ -1,0 +1,14 @@
+# useTimeout
+
+Safe timeout function that provides named timer setter and clearer, auto clear timer when unmounted
+
+## Usage
+
+```tsx
+const [, { add, clear }] = useTimeout()
+
+const handleClick = () => {
+  add(() => alert('timeout', 1000))
+  add(() => console.log('timeout', 2000))
+}
+```
