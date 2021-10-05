@@ -1,0 +1,14 @@
+# useUpdateEffect
+
+Hooks for effect on update dependency
+
+## Usage
+
+```tsx
+const [state, setState] = useState(false)
+
+useUpdateEffect(() => {
+  // Not call when first mount
+  // When deps update, then effect
+}, [state])
+```

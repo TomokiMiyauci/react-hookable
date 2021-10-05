@@ -20,14 +20,15 @@ const useIsFirstMount = (): boolean => {
  * @example
  * ```ts
  * const [state, setState] = useState(false)
- * const fn = () => console.log('called')
- * useUpdateEffect(fn, [state])
- * fn // not called
- * setState(true)
- * fn // 'called'
- * setState(false)
- * fn // 'called'
+ *
+ * useUpdateEffect(() => {
+ *   // Not call when first mount
+ *   // When deps update, then effect
+ * }, [state])
  * ```
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/lifecycle-useupdateeffect
+ * @beta
  */
 const useUpdateEffect: typeof useEffect = (effect, deps) => {
   const isFirstMount = useIsFirstMount()

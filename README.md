@@ -6,6 +6,7 @@
 
 - [`useAsyncEffect`](docs/useAsyncEffect.mdx) - Hooks for asynchronous `useEffect`
 - [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed
+- [`useUpdateEffect`](docs/useUpdateEffect.mdx) - Hooks for effect on update dependency
 
 ## Utility
 
