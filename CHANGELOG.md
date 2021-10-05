@@ -1,3 +1,8 @@
+# [v1.0.0-beta.13](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2021-10-05)
+
+## ✨ New Features
+- [`daea59e`](https://github.com/TomokiMiyauci/react-hookable/commit/daea59e)   Add &#x60;useNumber&#x60; for basic number counter
+
 # [v1.0.0-beta.12](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2021-10-05)
 
 ## ✨ New Features
