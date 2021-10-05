@@ -4,5 +4,9 @@
 
 ## Lifecycle
 
-- [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean`
 - [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed.
+
+## Utilities
+
+- [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean`
+- [`useNumber`](docs/useNumber.mdx) - Basic number counter

@@ -1,0 +1,22 @@
+# useNumber
+
+Basic number counter
+
+## Usage
+
+```tsx
+import { useNumber } from 'react-hookable'
+
+const [state, { inc, dec, set }] = useNumber()
+// state(default): 0
+inc()
+// state: 1
+inc(5)
+// state: 6
+dec()
+// state: 5
+dec(5)
+// state: 0
+set(100)
+// state: 100
+```
