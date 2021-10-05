@@ -1985,9 +1985,9 @@
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
 "@preact/preset-vite@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@preact/preset-vite/-/preset-vite-2.1.2.tgz#ebec44186eb44ce76fc72a0e45970c0bc5717fc7"
-  integrity sha512-nCrOe/eEG+Xa1f4AI5fyWi0BDeOl573yzl3e/z4N4Kt4y1c/+DtgV9c8HLykmvzYUVgtV8Lbyp1Ox0afQSt8MA==
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@preact/preset-vite/-/preset-vite-2.1.3.tgz#8a1b8b2d9a7fb3c4a50bbf05de9c4dee5951d437"
+  integrity sha512-rYy0wzpyW+sbup3ZiPp6hXsQFdIvF+wemQzLLj5VkrnCqNG6uonaQ19z2PX5pQUWhQU6g7uT+H5qU97KKKSOqA==
   dependencies:
     "@prefresh/vite" "^2.2.3"
     babel-plugin-transform-hook-names "^1.0.2"
