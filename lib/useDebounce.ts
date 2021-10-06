@@ -26,12 +26,13 @@ const useDebounceDefaultOptions = useTimeoutDefaultOptions
  */
 const useDebounce = (
   options: UseDebounceOptions = useDebounceDefaultOptions
-): typeof add => {
-  const [, { add, clear }] = useTimeout(options)
+): typeof set => {
+  const { set, clear } = useTimeout(options)
 
   return (invoke: AnyFn, ms: number): typeof clear => {
     clear()
-    return add(invoke, ms)
+    set(invoke, ms)
+    return clear
   }
 }
 

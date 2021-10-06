@@ -8,6 +8,9 @@ const useTimeoutDefaultOptions: UseTimeoutOptions = {
   clearAuto: true
 }
 
+/**
+ * Types of `useTimeout` first arg
+ */
 type UseTimeoutOptions = {
   /**
    * Whether to automatically clear the timeout timer when unmount
@@ -17,16 +20,36 @@ type UseTimeoutOptions = {
 }
 
 /**
+ * Types of `useTimeout` return values
+ */
+type UseTimeoutReturn = {
+  /**
+   * Invoke `setTimeout` universally
+   */
+  set: (invoke: AnyFn, ms: number) => void
+  /**
+   * Invoke `clearTimeout` safety
+   */
+  clear: VFn
+  /**
+   * Timers `ref`
+   *
+   * This is used for edge cases.
+   */
+  _ref: MutableRefObject<Timeout[]>
+}
+
+/**
  * Safe timeout function that provides named timer setter and clearer, auto clear timer when unmounted
  * @param options - Timeout options
- * @returns A stateful timers ref value, and a named `add` and `clear` function to use timeout
+ * @returns A stateful timers ref value, and a named `set` and `clear` function to use timeout
  *
  * @example
  * ```tsx
- * const [, { add, clear }] = useTimeout()
+ * const { set, clear } = useTimeout()
  * const handleClick = () => {
- *   add(() => alert('timeout', 1000))
- *   add(() => console.log('timeout', 2000))
+ *   set(() => alert('timeout', 1000))
+ *   clear(() => console.log('timeout', 2000))
  * }
  * ```
  *
@@ -35,15 +58,11 @@ type UseTimeoutOptions = {
  */
 const useTimeout = ({
   clearAuto
-}: UseTimeoutOptions = useTimeoutDefaultOptions): [
-  MutableRefObject<Timeout[]>,
-  { clear: VFn; add: (invoke: AnyFn, ms: number) => VFn }
-] => {
+}: UseTimeoutOptions = useTimeoutDefaultOptions): UseTimeoutReturn => {
   const timers = useRef<Timeout[]>([])
 
-  const add = (invoke: AnyFn, ms: number): typeof clear => {
+  const set = (invoke: AnyFn, ms: number): void => {
     timers.current.push(setTimeout(invoke, ms))
-    return clear
   }
   const clear: VFn = () => {
     timers.current.forEach((timer) => {
@@ -61,13 +80,11 @@ const useTimeout = ({
     [clearAuto]
   )
 
-  return [
-    timers,
-    {
-      add,
-      clear
-    }
-  ]
+  return {
+    set,
+    clear,
+    _ref: timers
+  }
 }
 
 export { useTimeout, useTimeoutDefaultOptions }

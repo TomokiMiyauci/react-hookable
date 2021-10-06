@@ -7,8 +7,8 @@ import { useNumber } from '@/useNumber'
 import { useTimeout } from '@/useTimeout'
 
 export const Demo: FunctionalComponent = () => {
-  const [timers, { add, clear }] = useTimeout()
-  const [count, { inc, set }] = useNumber()
+  const { set, clear, _ref: timers } = useTimeout()
+  const [count, { inc, set: setCount }] = useNumber()
 
   return (
     <>
@@ -17,7 +17,7 @@ export const Demo: FunctionalComponent = () => {
       <HStack my="1.5">
         <Button
           onClick={() => {
-            add(inc, 0)
+            set(inc, 0)
             console.info(timers.current)
           }}
         >
@@ -26,7 +26,7 @@ export const Demo: FunctionalComponent = () => {
         <Button
           onClick={() => {
             clear()
-            set(0)
+            setCount(0)
             console.info(timers.current)
           }}
         >

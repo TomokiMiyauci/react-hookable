@@ -5,10 +5,10 @@ Safe timeout function that provides named timer setter and clearer, auto clear t
 ## Usage
 
 ```tsx
-const [, { add, clear }] = useTimeout()
+const { set, clear } = useTimeout()
 
 const handleClick = () => {
-  add(() => alert('timeout', 1000))
-  add(() => console.log('timeout', 2000))
+  set(() => alert('timeout', 1000))
+  set(() => console.log('timeout', 2000))
 }
 ```
