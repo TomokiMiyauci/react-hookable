@@ -1,3 +1,8 @@
+# [v1.0.0-beta.15](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2021-10-06)
+
+## 🐛 Bug Fixes
+- [`adb6cb3`](https://github.com/TomokiMiyauci/react-hookable/commit/adb6cb3)   Change &#x60;useTimeout&#x60; interface
+
 # [v1.0.0-beta.14](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2021-10-05)
 
 ## ✨ New Features
