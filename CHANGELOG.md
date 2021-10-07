@@ -1,3 +1,11 @@
+# [v1.0.0-beta.16](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-10-07)
+
+## 🐛 Bug Fixes
+- [`69c267b`](https://github.com/TomokiMiyauci/react-hookable/commit/69c267b)   Change &#x60;useEventListener&#x60; interface 
+- [`e08af06`](https://github.com/TomokiMiyauci/react-hookable/commit/e08af06)   Fix &#x60;useEventListener&#x60; remove logic 
+- [`57110da`](https://github.com/TomokiMiyauci/react-hookable/commit/57110da)   Fix &#x60;useEventListener&#x60; interface 
+- [`95d499c`](https://github.com/TomokiMiyauci/react-hookable/commit/95d499c)   Change &#x60;useShortcut&#x60; interface, add docs and storybook
+
 # [v1.0.0-beta.15](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2021-10-06)
 
 ## 🐛 Bug Fixes
