@@ -159,4 +159,56 @@ describe('useEventListener', () => {
     target.dispatchEvent(ev)
     expect(fn).toHaveBeenCalledTimes(2)
   })
+
+  const eventListenerOptions: [
+    AddEventListenerOptions | boolean | undefined
+  ][] = [
+    [true],
+    [false],
+    [{}],
+    [
+      {
+        capture: true
+      }
+    ],
+    [
+      {
+        once: true,
+        capture: true
+      }
+    ],
+    [
+      {
+        passive: true,
+        capture: true
+      }
+    ]
+  ]
+  it.each(eventListenerOptions)(
+    'should clean up when pass addEventListener option',
+    (options) => {
+      const fn = jest.fn()
+      const type = 'keypress'
+      const {
+        result: {
+          current: { add }
+        },
+        unmount
+      } = renderHook(() => useEventListener())
+
+      const el = document.createElement('div')
+      act(() => {
+        add(el, type, fn, options)
+        add(document, type, fn, options)
+      })
+      const ev = new Event(type)
+      document.dispatchEvent(ev)
+      el.dispatchEvent(ev)
+      expect(fn).toHaveBeenCalledTimes(2)
+      unmount()
+      document.dispatchEvent(ev)
+      el.dispatchEvent(ev)
+      expect(fn).toHaveBeenCalledTimes(2)
+    }
+  )
 })

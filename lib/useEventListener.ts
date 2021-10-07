@@ -45,7 +45,12 @@ const useEventListener = (
   { cleanAuto }: UseEventListenerOptions = { cleanAuto: true }
 ) => {
   const ref = useRef<
-    [EventTarget, string, EventListenerOrEventListenerObject][]
+    [
+      EventTarget,
+      string,
+      EventListenerOrEventListenerObject,
+      AddEventListenerOptions | boolean | undefined
+    ][]
   >([])
 
   const add = <T extends EventTarget, K extends keyof EventMap<T>>(
@@ -60,7 +65,7 @@ const useEventListener = (
     const _target = typeof target === 'function' ? target() : target
 
     _target.addEventListener(type as any, listener as any, options)
-    ref.current.push([_target, type as string, listener as any])
+    ref.current.push([_target, type as string, listener as any, options])
   }
 
   useEffect(() => {
@@ -72,8 +77,8 @@ const useEventListener = (
   }, [cleanAuto])
 
   const remove: VFn = () => {
-    ref.current.forEach(([target, type, listener]) => {
-      target.removeEventListener(type as any, listener as any)
+    ref.current.forEach(([target, type, listener, options]) => {
+      target.removeEventListener(type as any, listener as any, options)
     })
     ref.current = []
   }
