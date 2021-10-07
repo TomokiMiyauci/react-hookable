@@ -14427,9 +14427,9 @@ vite-plugin-mdx@^3.5.6:
     unified "^9.2.1"
 
 vite@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.6.2.tgz#5bbb4afe1f69ed9d6482e51a0f761f8cfc230e22"
-  integrity sha512-HSIg9U15LOnbD3CUxX364Pdrm7DUjftuBljowGxvkFHgDZU/SKPqApg9t86MX/Qq1VCO7wS+mGJHlfuTF7c0Sg==
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.6.4.tgz#b932735f1ecdf69256ce6eaae0d41a7b15d77599"
+  integrity sha512-zNGZgjKGprdLKJ1g1taAvNt51JbGAdrAUU9hpLzgtlks+cXBxTZUsEAGEtLbF3UvlYOVAPXS8r9E9gxYAv6z+A==
   dependencies:
     esbuild "^0.13.2"
     postcss "^8.3.8"
