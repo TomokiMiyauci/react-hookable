@@ -12,5 +12,6 @@
 
 - [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean`
 - [`useDebounce`](docs/useDebounce.mdx) - Safe debounce function that can be executed anywhere
+- [`useEventListener`](docs/useEventListener.mdx) - Returns a set of event listeners `add` and `remove` functions that can be called anywhere. The event listeners will automatically be removed on unmount.
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter
 - [`useTimeout`](docs/useTimeout.mdx) - Safe timeout function that provides named timer setter and clearer, auto clear timer when unmounted

@@ -1,8 +1,10 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 
 import { useEventListener } from '@/useEventListener'
 
 describe('useEventListener', () => {
+  it('should be defined', () => expect(useEventListener).toBeDefined())
+
   const table: [EventTarget][] = [
     [window],
     [document],
@@ -14,60 +16,147 @@ describe('useEventListener', () => {
   it.each(table)('should not fire when nothing to do', (target) => {
     const fn = jest.fn()
 
-    renderHook(() => useEventListener(target, 'keydown', fn))
+    const { result } = renderHook(() => useEventListener())
+
+    act(() => {
+      result.current.add(target, 'keydown', fn)
+    })
 
     expect(fn).not.toHaveBeenCalled()
   })
 
-  it.each(table)('should fire any EventTarget', (target) => {
+  it.each(table)(
+    'should fire any EventTarget and clean up automatically',
+    (target) => {
+      const fn = jest.fn()
+      const type = 'mouseup'
+      const {
+        result: {
+          current: { add }
+        },
+        unmount
+      } = renderHook(() => useEventListener())
+
+      act(() => {
+        add(target, type, fn)
+      })
+      const ev = new Event(type)
+      target.dispatchEvent(ev)
+
+      expect(fn).toHaveBeenCalledTimes(1)
+      unmount()
+      expect(fn).toHaveBeenCalledTimes(1)
+    }
+  )
+
+  it.each(table)('should fire event twice', (target) => {
     const fn = jest.fn()
-    const type = 'mouseup'
-    renderHook(() => useEventListener(target, type, fn))
+    const type = 'keypress'
+    const {
+      result: {
+        current: { add }
+      }
+    } = renderHook(() => useEventListener())
+
+    act(() => {
+      add(target, type, fn)
+    })
 
     const ev = new Event(type)
     target.dispatchEvent(ev)
+    target.dispatchEvent(ev)
 
-    expect(fn).toHaveBeenCalled()
-  })
-
-  it('should fire event', () => {
-    const fn = jest.fn()
-    renderHook(() => useEventListener(window, 'keydown', fn))
-    const ev = new Event('keydown')
-    window.dispatchEvent(ev)
-
-    expect(fn).toHaveBeenCalled()
-    expect(fn).toHaveBeenCalledTimes(1)
-  })
-
-  it('should fire event twice', () => {
-    const fn = jest.fn()
-    renderHook(() => useEventListener(window, 'mousedown', fn))
-
-    const ev = new Event('mousedown')
-    window.dispatchEvent(ev)
-    window.dispatchEvent(ev)
-
-    expect(fn).toHaveBeenCalled()
     expect(fn).toHaveBeenCalledTimes(2)
   })
 
-  it('should not fire after on mount', () => {
+  it.each(table)(
+    'should remove event listener with remove function',
+    (target) => {
+      const fn = jest.fn()
+      const type = 'keypress'
+      const {
+        result: {
+          current: { add, remove, _ref }
+        }
+      } = renderHook(() => useEventListener())
+
+      act(() => {
+        add(target, type, fn)
+      })
+
+      const ev = new Event(type)
+      target.dispatchEvent(ev)
+      expect(fn).toHaveBeenCalledTimes(1)
+      expect(_ref.current).toHaveLength(1)
+      act(remove)
+      expect(_ref.current).toHaveLength(0)
+      target.dispatchEvent(ev)
+      expect(fn).toHaveBeenCalledTimes(1)
+    }
+  )
+
+  it('should can pass target as function', () => {
+    const {
+      result: {
+        current: { add }
+      }
+    } = renderHook(() => useEventListener())
+    const type = 'keypress'
+    const listener = jest.fn()
+
+    act(() => {
+      add(() => window, type, listener)
+    })
+
+    window.dispatchEvent(new Event(type))
+    expect(listener).toHaveBeenCalledTimes(1)
+  })
+
+  it('should remove all event listener with remove function', () => {
+    const listener1 = jest.fn()
+    const listener2 = jest.fn()
+    const type = 'keypress'
+    const {
+      result: {
+        current: { add, remove }
+      }
+    } = renderHook(() => useEventListener())
+
+    act(() => {
+      add(window, type, listener1)
+      add(document, type, listener2)
+    })
+
+    const ev = new Event(type)
+    window.dispatchEvent(ev)
+    document.dispatchEvent(ev)
+    expect(listener1).toHaveBeenCalledTimes(1)
+    expect(listener2).toHaveBeenCalledTimes(1)
+    act(remove)
+    window.dispatchEvent(ev)
+    document.dispatchEvent(ev)
+    expect(listener1).toHaveBeenCalledTimes(1)
+    expect(listener2).toHaveBeenCalledTimes(1)
+  })
+
+  it.each(table)('should not clean up when pass option', (target) => {
     const fn = jest.fn()
-    const { unmount } = renderHook(() =>
-      useEventListener(window, 'keydown', fn)
-    )
+    const type = 'keypress'
+    const {
+      result: {
+        current: { add }
+      },
+      unmount
+    } = renderHook(() => useEventListener({ cleanAuto: false }))
 
-    const ev = new Event('keydown')
-    window.dispatchEvent(ev)
-
-    expect(fn).toHaveBeenCalled()
+    act(() => {
+      add(target, type, fn)
+    })
+    const ev = new Event(type)
+    target.dispatchEvent(ev)
     expect(fn).toHaveBeenCalledTimes(1)
-
     unmount()
-
-    window.dispatchEvent(ev)
-
-    expect(fn).toHaveBeenCalledTimes(1)
+    target.dispatchEvent(ev)
+    expect(fn).toHaveBeenCalledTimes(2)
   })
 })

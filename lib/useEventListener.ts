@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DependencyList } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
+import type { VFn } from '@/utils/types'
 type IsNever<T> = [T] extends [never] ? true : false
 type EventMap<T> = T extends HTMLElement
   ? HTMLElementEventMap
@@ -13,33 +13,78 @@ type EventMap<T> = T extends HTMLElement
   ? WindowEventMap
   : never
 
-/**
- * Register using addEventListener on mount, and removeEventListener automatically on unmount.
- * @param target - Target of `addEventListener`
- * @param type - Event type
- * @param listener - Call on fire event
- * @param options - EventListener options
- * @param deps -  If present, effect will only activate if the values in the list change.
- */
-const useEventListener = <T extends EventTarget, K extends keyof EventMap<T>>(
-  target: T | (() => T),
-  type: IsNever<K> extends true ? string : K,
-  listener: (
-    this: T,
-    ev: IsNever<EventMap<T>> extends true ? Event : EventMap<T>[K]
-  ) => any,
-  options?: AddEventListenerOptions | boolean,
-  deps?: DependencyList
-): void => {
-  useEffect(() => {
-    const _target = typeof target === 'function' ? target() : target
-    _target.addEventListener(type as any, listener as any, options)
+type UseEventListenerOptions = {
+  cleanAuto: boolean
+}
 
-    return () =>
-      _target.removeEventListener(type as any, listener as any, options)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
+/**
+ * Returns a set of event listeners `add` and `remove` functions that can be called anywhere.
+ *
+ * The event listeners will automatically be removed on unmount.
+ * @param options - Hooks options
+ * @returns A set of event listener register and remover
+ *
+ * @example
+ * ```tsx
+ * const { add } = useEventListener()
+ * // Event listeners registered with the `add` function will be automatically removed when unmounted
+ * useEffect(() => {
+ *  add(window, 'mousemove', anyFn)
+ * }, [])
+ *
+ * const handleClick = () => {
+ *  add(document, 'resize', anyFn)
+ * }
+ * ```
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/utility-useeventlistener
+ * @beta
+ */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const useEventListener = (
+  { cleanAuto }: UseEventListenerOptions = { cleanAuto: true }
+) => {
+  const ref = useRef<
+    [EventTarget, string, EventListenerOrEventListenerObject][]
+  >([])
+
+  const add = <T extends EventTarget, K extends keyof EventMap<T>>(
+    target: T | (() => T),
+    type: IsNever<K> extends true ? string : K,
+    listener: (
+      this: T,
+      ev: IsNever<EventMap<T>> extends true ? Event : EventMap<T>[K]
+    ) => any,
+    options?: AddEventListenerOptions | boolean
+  ): void => {
+    const _target = typeof target === 'function' ? target() : target
+
+    _target.addEventListener(type as any, listener as any, options)
+    ref.current.push([_target, type as string, listener as any])
+  }
+
+  useEffect(() => {
+    return () => {
+      if (cleanAuto) {
+        remove()
+      }
+    }
+  }, [cleanAuto])
+
+  const remove: VFn = () => {
+    ref.current.forEach(([target, type, listener]) => {
+      target.removeEventListener(type as any, listener as any)
+    })
+    ref.current = []
+  }
+
+  return {
+    add,
+    remove,
+    _ref: ref
+  }
 }
 
 export { useEventListener }
+
 export type { EventMap }
