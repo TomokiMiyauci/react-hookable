@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 
 import type { MetaKey } from '@/useShortcut'
 import { useShortcut, validateKeyMap } from '@/useShortcut'
@@ -7,26 +7,32 @@ import type { Alphabet } from '@/utils/types/keyboard'
 describe('useShortcut', () => {
   it('should call multiple binding keys', () => {
     const fn = jest.fn()
-    renderHook(() =>
-      useShortcut(
+    const {
+      result: {
+        current: { bind }
+      }
+    } = renderHook(() => useShortcut())
+
+    expect(fn).not.toHaveBeenCalled()
+
+    act(() => {
+      bind(
         {
           shift: true,
-          key: 'K'
+          key: 'k'
         },
         fn
       )
-    )
+    })
 
-    expect(fn).not.toHaveBeenCalled()
     window.dispatchEvent(new KeyboardEvent('keydown'))
     expect(fn).not.toHaveBeenCalled()
     window.dispatchEvent(
       new KeyboardEvent('keydown', {
         shiftKey: true,
-        key: 'K'
+        key: 'k'
       })
     )
-    expect(fn).toHaveBeenCalled()
     expect(fn).toHaveBeenCalledTimes(1)
   })
 })
@@ -34,8 +40,16 @@ describe('useShortcut', () => {
 it('should bind target with document', () => {
   const fn = jest.fn()
 
-  renderHook(() =>
-    useShortcut(
+  const {
+    result: {
+      current: { bind }
+    }
+  } = renderHook(() => useShortcut())
+
+  expect(fn).not.toHaveBeenCalled()
+
+  act(() => {
+    bind(
       {
         shift: true,
         key: 'K'
@@ -43,9 +57,7 @@ it('should bind target with document', () => {
       fn,
       { target: document }
     )
-  )
-
-  expect(fn).not.toHaveBeenCalled()
+  })
   window.dispatchEvent(
     new KeyboardEvent('keydown', {
       shiftKey: true,
@@ -62,49 +74,140 @@ it('should bind target with document', () => {
   expect(fn).toHaveBeenCalled()
 })
 
-it('should re-register addEventListener when handler changed', () => {
-  const fn = jest.fn()
+it('should bind multiple shortcut', () => {
+  const onKeyDown = jest.fn()
+  const onKeyDown2 = jest.fn()
 
-  const { rerender } = renderHook(
-    ({ fn }) =>
-      useShortcut(
-        {
-          shift: true,
-          key: 'K',
-          cmd: true
-        },
-        fn
-      ),
-    {
-      initialProps: {
-        fn
-      }
+  const {
+    result: {
+      current: { bind }
     }
-  )
+  } = renderHook(() => useShortcut())
 
-  expect(fn).not.toHaveBeenCalled()
-  window.dispatchEvent(
-    new KeyboardEvent('keydown', {
-      shiftKey: true,
+  expect(onKeyDown).not.toHaveBeenCalled()
+
+  act(() => {
+    const keyMap = {
+      shift: true,
       key: 'K',
-      metaKey: true
-    })
-  )
-  expect(fn).toHaveBeenCalled()
-  const fn2 = jest.fn()
-  rerender({ fn: fn2 })
-  expect(fn).toHaveBeenCalledTimes(1)
-  expect(fn2).not.toHaveBeenCalled()
-  window.dispatchEvent(
-    new KeyboardEvent('keydown', {
-      shiftKey: true,
+      cmd: true
+    } as const
+    bind(keyMap, onKeyDown)
+    bind(keyMap, onKeyDown2, { target: document })
+  })
+  const keyboardEvent = new KeyboardEvent('keydown', {
+    shiftKey: true,
+    key: 'K',
+    metaKey: true
+  })
+  window.dispatchEvent(keyboardEvent)
+  document.dispatchEvent(keyboardEvent)
+  expect(onKeyDown).toHaveBeenCalledTimes(1)
+  expect(onKeyDown2).toHaveBeenCalledTimes(1)
+})
+
+it('should unbind when call unbind', () => {
+  const onKeyDown = jest.fn()
+
+  const {
+    result: {
+      current: { bind, unbind, _ref }
+    }
+  } = renderHook(() => useShortcut())
+
+  expect(onKeyDown).not.toHaveBeenCalled()
+  expect(_ref.current).toHaveLength(0)
+  act(() => {
+    const keyMap = {
+      shift: true,
       key: 'K',
-      metaKey: true
-    })
-  )
-  expect(fn).toHaveBeenCalledTimes(1)
-  expect(fn2).toHaveBeenCalled()
-  expect(fn2).toHaveBeenCalledTimes(1)
+      cmd: true
+    } as const
+    bind(keyMap, onKeyDown)
+  })
+  const keyboardEvent = new KeyboardEvent('keydown', {
+    shiftKey: true,
+    key: 'K',
+    metaKey: true
+  })
+  window.dispatchEvent(keyboardEvent)
+  expect(onKeyDown).toHaveBeenCalledTimes(1)
+  expect(_ref.current).toHaveLength(1)
+
+  act(unbind)
+  window.dispatchEvent(keyboardEvent)
+  expect(onKeyDown).toHaveBeenCalledTimes(1)
+  expect(_ref.current).toHaveLength(0)
+})
+
+it('should unbind all shortcut when call unbind', () => {
+  const onKeyDown = jest.fn()
+
+  const {
+    result: {
+      current: { bind, unbind, _ref }
+    }
+  } = renderHook(() => useShortcut())
+
+  expect(onKeyDown).not.toHaveBeenCalled()
+  expect(_ref.current).toHaveLength(0)
+  act(() => {
+    const keyMap = {
+      shift: true,
+      key: 'K',
+      cmd: true
+    } as const
+    bind(keyMap, onKeyDown)
+    bind(keyMap, onKeyDown, { target: document })
+  })
+  const keyboardEvent = new KeyboardEvent('keydown', {
+    shiftKey: true,
+    key: 'K',
+    metaKey: true
+  })
+  window.dispatchEvent(keyboardEvent)
+  document.dispatchEvent(keyboardEvent)
+  expect(onKeyDown).toHaveBeenCalledTimes(2)
+  expect(_ref.current).toHaveLength(2)
+
+  act(unbind)
+  window.dispatchEvent(keyboardEvent)
+  document.dispatchEvent(keyboardEvent)
+
+  expect(onKeyDown).toHaveBeenCalledTimes(2)
+  expect(_ref.current).toHaveLength(0)
+})
+
+it('should not unbind when pass clear option is false', () => {
+  const onKeyDown = jest.fn()
+
+  const {
+    result: {
+      current: { bind }
+    },
+    unmount
+  } = renderHook(() => useShortcut({ clearAuto: false }))
+
+  expect(onKeyDown).not.toHaveBeenCalled()
+
+  act(() => {
+    const keyMap = {
+      shift: true,
+      key: 'K',
+      cmd: true
+    } as const
+    bind(keyMap, onKeyDown)
+  })
+  const keyboardEvent = new KeyboardEvent('keydown', {
+    shiftKey: true,
+    key: 'K',
+    metaKey: true
+  })
+  window.dispatchEvent(keyboardEvent)
+  expect(onKeyDown).toHaveBeenCalledTimes(1)
+  unmount()
+  window.dispatchEvent(keyboardEvent)
+  expect(onKeyDown).toHaveBeenCalledTimes(2)
 })
 
 describe('validateKeyMap', () => {
