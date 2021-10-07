@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from 'react'
 
-import type { VFn } from '@/utils/types'
-type IsNever<T> = [T] extends [never] ? true : false
-type EventMap<T> = T extends HTMLElement
+import { DEFAULT_CLEAR_OPTIONS } from '@/utils/constants'
+import type { ClearOptions } from '@/utils/types'
+import type { IsNever, VFn } from '@/utils/types'
+
+type EventMap<T extends EventTarget> = T extends HTMLElement
   ? HTMLElementEventMap
   : T extends Element
   ? ElementEventMap
@@ -12,10 +14,6 @@ type EventMap<T> = T extends HTMLElement
   : T extends Window
   ? WindowEventMap
   : never
-
-type UseEventListenerOptions = {
-  cleanAuto: boolean
-}
 
 /**
  * Returns a set of event listeners `add` and `remove` functions that can be called anywhere.
@@ -41,9 +39,9 @@ type UseEventListenerOptions = {
  * @beta
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const useEventListener = (
-  { cleanAuto }: UseEventListenerOptions = { cleanAuto: true }
-) => {
+const useEventListener = ({
+  clearAuto
+}: ClearOptions = DEFAULT_CLEAR_OPTIONS) => {
   const ref = useRef<
     [
       EventTarget,
@@ -70,11 +68,11 @@ const useEventListener = (
 
   useEffect(() => {
     return () => {
-      if (cleanAuto) {
+      if (clearAuto) {
         remove()
       }
     }
-  }, [cleanAuto])
+  }, [clearAuto])
 
   const remove: VFn = () => {
     ref.current.forEach(([target, type, listener, options]) => {

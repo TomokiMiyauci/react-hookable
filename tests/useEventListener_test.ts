@@ -147,7 +147,7 @@ describe('useEventListener', () => {
         current: { add }
       },
       unmount
-    } = renderHook(() => useEventListener({ cleanAuto: false }))
+    } = renderHook(() => useEventListener({ clearAuto: false }))
 
     act(() => {
       add(target, type, fn)
