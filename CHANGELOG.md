@@ -1,3 +1,9 @@
+# [v1.0.0-beta.17](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2021-10-08)
+
+## ✨ New Features
+- [`7f8d31a`](https://github.com/TomokiMiyauci/react-hookable/commit/7f8d31a)   Add &#x60;useHash&#x60; for tracking location hash value 
+- [`73fceb1`](https://github.com/TomokiMiyauci/react-hookable/commit/73fceb1)   Support SSR with &#x60;useHash&#x60;
+
 # [v1.0.0-beta.16](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-10-07)
 
 ## 🐛 Bug Fixes
