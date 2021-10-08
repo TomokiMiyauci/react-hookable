@@ -7,6 +7,7 @@
 Set of stateful value, and a function to update it. All functions are interfaces of `[state, dispatcher]`, like `useState`. However, a `dispatcher` may be an object with multiple update functions.
 
 - [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean`
+- [`useHash`](docs/useHash.mdx) - Tracks location hash value
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter
 
 ## Lifecycle

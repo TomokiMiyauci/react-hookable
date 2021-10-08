@@ -1,0 +1,37 @@
+# useHash
+
+Tracks location hash value
+
+## Usage
+
+```tsx
+import { useHash } from 'react-hookable'
+
+const [hash, setHash] = useHash()
+
+setHash('searching')
+// URL: http*/#searching
+// hash: #searching
+```
+
+### initialState
+
+```tsx
+import { useHash } from 'react-hookable'
+
+const [hash, setHash] = useHash('calling')
+// URL: http*/#calling
+// hash: #calling
+```
+
+### trimHash
+
+```tsx
+import { useHash } from 'react-hookable'
+
+const [hash, setHash] = useHash(undefined, { trimHash: true })
+
+setHash('searching')
+// URL: http*/#searching
+// hash: searching
+```
