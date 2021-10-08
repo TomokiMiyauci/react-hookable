@@ -53,7 +53,7 @@ type UseTimeoutReturn = {
  * }
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/utility-usetimeout
+ * @see https://react-hookable.vercel.app/?path=/story/stateless-usetimeout
  * @beta
  */
 const useTimeout = ({

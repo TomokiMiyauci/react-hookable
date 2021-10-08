@@ -47,7 +47,7 @@ export const Demo: FunctionalComponent = () => {
   )
 }
 export default {
-  title: 'utility/useShortcut',
+  title: 'stateless/useShortcut',
   component: Demo,
   parameters: {
     docs: {

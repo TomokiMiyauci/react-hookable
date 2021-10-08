@@ -21,7 +21,7 @@ const useDebounceDefaultOptions = useTimeoutDefaultOptions
  * }, [input])
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/utility-usedebounce
+ * @see https://react-hookable.vercel.app/?path=/story/stateless-usedebounce
  * @beta
  */
 const useDebounce = (

@@ -40,7 +40,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'utility/useTimeout',
+  title: 'stateless/useTimeout',
   component: Demo,
   parameters: {
     docs: {
