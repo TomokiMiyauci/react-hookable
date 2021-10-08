@@ -9,8 +9,8 @@ describe('useHash', () => {
   })
   it('should be defined', () => expect(useHash).toBeDefined())
 
-  it('should change window hash and state when call setHash', async () => {
-    const { result, waitForValueToChange } = renderHook(() => useHash())
+  it('should change window hash and state when call setHash', () => {
+    const { result } = renderHook(() => useHash())
 
     expect(window.location.hash).toBe('')
     expect(result.current[0]).toBe('')
@@ -19,7 +19,6 @@ describe('useHash', () => {
       result.current[1]('test')
     })
 
-    await waitForValueToChange(() => result.current[0])
     expect(window.location.hash).toBe('#test')
     expect(result.current[0]).toBe('#test')
   })
@@ -32,8 +31,7 @@ describe('useHash', () => {
     ['-', '#-'],
     [undefined, ''],
     [() => '', ''],
-    [() => 'test', '#test'],
-    [() => 'あ', '#%E3%81%82']
+    [() => 'test', '#test']
   ]
 
   it.each(table)('should change init hash with hash', (initState, expected) => {
@@ -43,10 +41,8 @@ describe('useHash', () => {
     expect(result.current[0]).toBe(decodeURI(expected))
   })
 
-  it('should return hash without hash tag when trimHash is true', async () => {
-    const { result, waitForValueToChange } = renderHook(() =>
-      useHash(undefined, { trimHash: true })
-    )
+  it('should clear hash when pass empty string or undefined', () => {
+    const { result } = renderHook(() => useHash(undefined, { hashMark: false }))
 
     expect(window.location.hash).toBe('')
     expect(result.current[0]).toBe('')
@@ -55,7 +51,19 @@ describe('useHash', () => {
       result.current[1]('test')
     })
 
-    await waitForValueToChange(() => result.current[0])
+    expect(window.location.hash).toBe('#test')
+    expect(result.current[0]).toBe('test')
+  })
+
+  it('should return hash without hash tag when hashMark is false', () => {
+    const { result } = renderHook(() => useHash(undefined, { hashMark: false }))
+
+    expect(window.location.hash).toBe('')
+    expect(result.current[0]).toBe('')
+
+    act(() => {
+      result.current[1]('test')
+    })
 
     expect(window.location.hash).toBe('#test')
     expect(result.current[0]).toBe('test')
@@ -67,17 +75,18 @@ describe('useHash', () => {
     act(() => {
       window.location.hash = '#test'
     })
+
     await waitForValueToChange(() => result.current[0])
 
     expect(result.current[0]).toBe('#test')
   })
 
-  it('should change hash when trimHash changed', async () => {
-    const { result, rerender, waitForValueToChange } = renderHook(
-      ({ trimHash }) => useHash(undefined, { trimHash }),
+  it('should change hash when hashMark changed', () => {
+    const { result, rerender } = renderHook(
+      ({ hashMark }) => useHash(undefined, { hashMark }),
       {
         initialProps: {
-          trimHash: false
+          hashMark: true
         }
       }
     )
@@ -87,26 +96,24 @@ describe('useHash', () => {
     })
 
     expect(window.location.hash).toBe('#test')
-    await waitForValueToChange(() => result.current[0])
 
     expect(result.current[0]).toBe('#test')
 
     rerender({
-      trimHash: true
+      hashMark: false
     })
 
     expect(window.location.hash).toBe('#test')
     expect(result.current[0]).toBe('test')
   })
 
-  it('should not do anything when hash is same', async () => {
-    const { result, waitForValueToChange } = renderHook(() => useHash())
+  it('should not do anything when hash is same', () => {
+    const { result } = renderHook(() => useHash())
     expect(result.current[0]).toBe('')
     act(() => {
       result.current[1]('test')
     })
     expect(window.location.hash).toBe('#test')
-    await waitForValueToChange(() => result.current[0])
 
     expect(result.current[0]).toBe('#test')
     act(() => {
@@ -117,16 +124,13 @@ describe('useHash', () => {
     expect(result.current[0]).toBe('#test')
   })
 
-  it('should not fire hashchange after unmounted', async () => {
-    const { result, unmount, waitForValueToChange } = renderHook(() =>
-      useHash()
-    )
+  it('should not fire hashchange after unmounted', () => {
+    const { result, unmount } = renderHook(() => useHash())
     expect(result.current[0]).toBe('')
     act(() => {
       result.current[1]('test')
     })
     expect(window.location.hash).toBe('#test')
-    await waitForValueToChange(() => result.current[0])
 
     expect(result.current[0]).toBe('#test')
     unmount()
@@ -137,16 +141,13 @@ describe('useHash', () => {
     expect(result.current[0]).toBe('#test')
   })
 
-  it('should not fire hashchange after unmounted', async () => {
-    const { result, unmount, waitForValueToChange } = renderHook(() =>
-      useHash()
-    )
+  it('should not fire hashchange after unmounted', () => {
+    const { result, unmount } = renderHook(() => useHash())
     expect(result.current[0]).toBe('')
     act(() => {
       result.current[1]('test')
     })
     expect(window.location.hash).toBe('#test')
-    await waitForValueToChange(() => result.current[0])
 
     expect(result.current[0]).toBe('#test')
     unmount()
@@ -155,12 +156,102 @@ describe('useHash', () => {
     })
     expect(window.location.hash).toBe('#abc')
     expect(result.current[0]).toBe('#test')
+  })
+
+  describe('more detail', () => {
+    beforeEach(() => {
+      window.location.hash = ''
+      window.location.hash = 'test'
+    })
+
+    it('should clean hash when initialState is empty string', () => {
+      const { result } = renderHook(() => useHash())
+
+      expect(window.location.hash).toBe('#test')
+      expect(result.current[0]).toBe('#test')
+
+      act(() => {
+        result.current[1]('')
+      })
+
+      expect(window.location.hash).toBe('')
+      expect(result.current[0]).toBe('')
+    })
+
+    const table: [Maybe<string> | (() => string), string][] = [
+      ['#test', '#test'],
+      ['', ''],
+      [' ', ''], // hash: #
+      ['test', '#test'],
+      ['###', '###'],
+      ['-', '#-'],
+      [undefined, '#test'],
+      [() => '', ''],
+      [() => 'test', '#test']
+    ]
+
+    it.each(table)(
+      'should change init hash with hash',
+      (initState, expected) => {
+        const { result } = renderHook(() => useHash(initState))
+
+        expect(window.location.hash).toBe(expected)
+        expect(result.current[0]).toBe(expected)
+      }
+    )
+
+    it('should not change hash when pass same hash', () => {
+      const { result } = renderHook(() => useHash())
+
+      expect(window.location.hash).toBe('#test')
+      expect(result.current[0]).toBe('#test')
+
+      act(() => {
+        result.current[1]('test')
+      })
+
+      expect(window.location.hash).toBe('#test')
+      expect(result.current[0]).toBe('#test')
+    })
+
+    it('should only change trimmed hash when when pass same hash and hashMark is false', () => {
+      const { result } = renderHook(() =>
+        useHash(undefined, { hashMark: false })
+      )
+
+      expect(window.location.hash).toBe('#test')
+      expect(result.current[0]).toBe('test')
+
+      act(() => {
+        result.current[1]('test')
+      })
+
+      expect(window.location.hash).toBe('#test')
+      expect(result.current[0]).toBe('test')
+    })
+
+    it('should return hash without hash tag when hashMark is false', () => {
+      const { result } = renderHook(() =>
+        useHash(undefined, { hashMark: false })
+      )
+
+      expect(window.location.hash).toBe('#test')
+      expect(result.current[0]).toBe('test')
+
+      act(() => {
+        result.current[1]('a')
+      })
+
+      expect(window.location.hash).toBe('#a')
+      expect(result.current[0]).toBe('a')
+    })
   })
 })
 
 describe('formatHash', () => {
   const table: [string, string][] = [
-    ['', ''],
+    ['', ' '],
+    [' ', '# '],
     ['#', '#'],
     ['##', '##'],
     ['###', '###'],

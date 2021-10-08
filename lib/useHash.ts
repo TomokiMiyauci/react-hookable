@@ -4,8 +4,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useEventListener } from '@/useEventListener'
 import { isBrowser } from '@/utils'
 
-const formatHash = (value: string): string =>
-  value === '' || value.startsWith('#') ? value : `#${value}`
+const formatHash = (value: string): string => {
+  if (value === '') return ' '
+  return value.startsWith('#') ? value : `#${value}`
+}
 
 const initializer = (value?: string | (() => string)): string => {
   if (!isBrowser) return ''
@@ -15,10 +17,10 @@ const initializer = (value?: string | (() => string)): string => {
       : typeof value === 'string'
       ? value
       : value()
-  if (_value) {
-    window.location.hash = _value
+  if (typeof _value === 'string') {
+    window.history.replaceState(null, document.title, formatHash(_value))
   }
-  return _value ? formatHash(_value) : window.location.hash
+  return window.location.hash
 }
 
 /**
@@ -39,19 +41,21 @@ const initializer = (value?: string | (() => string)): string => {
  * @beta
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const useHash = <T extends boolean = false>(
-  initialState?: string | (() => string),
-  options?: { trimHash: T }
+const useHash = <T extends boolean = true>(
+  initialState?: ('' | (string & {})) | (() => '' | (string & {})),
+  options?: { hashMark: T }
 ) => {
-  const trimHash = options?.trimHash ?? false
+  const hashMark = options?.hashMark ?? true
   const [state, setState] = useState<string>(initializer(initialState))
 
   const onHashChange = useCallback(() => setState(window.location.hash), [])
 
   const setHash = useCallback(
-    (newHash: string) => {
-      if (newHash === state) return
-      window.location.hash = newHash
+    (newHash: '' | (string & {})) => {
+      const formalHash = formatHash(newHash)
+      if (formalHash === state) return
+      window.history.replaceState(null, document.title, formalHash)
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
     },
     [state]
   )
@@ -65,12 +69,12 @@ const useHash = <T extends boolean = false>(
   }, [])
 
   const hash = useMemo<
-    '' | (T extends true ? string & {} : `#${string}`)
+    '' | (T extends true ? `#${string}` : string & {})
   >(() => {
-    return (trimHash ? state.replace('#', '') : state) as
+    return (hashMark ? state : state.replace('#', '')) as
       | ''
-      | (T extends true ? string & {} : `#${string}`)
-  }, [state, trimHash])
+      | (T extends true ? `#${string}` : string & {})
+  }, [state, hashMark])
 
   return [hash, setHash] as const
 }

@@ -22,8 +22,8 @@ import { useBoolean } from '@/useBoolean'
 import { useHash } from '@/useHash'
 
 export const Demo: FunctionalComponent = () => {
-  const [trimHash, { toggle }] = useBoolean()
-  const [hash, setHash] = useHash(undefined, { trimHash })
+  const [hashMark, { toggle }] = useBoolean(true)
+  const [hash, setHash] = useHash(undefined, { hashMark })
 
   return (
     <>
@@ -43,10 +43,10 @@ export const Demo: FunctionalComponent = () => {
         <Tbody>
           <Tr>
             <Td>
-              <Code>trimHash</Code>
+              <Code>hashMark</Code>
             </Td>
             <Td>
-              <Switch isChecked={trimHash} onChange={toggle} size="sm" />
+              <Switch isChecked={hashMark} onChange={toggle} size="sm" />
             </Td>
           </Tr>
         </Tbody>
