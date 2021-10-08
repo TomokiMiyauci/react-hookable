@@ -2,9 +2,24 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useEventListener } from '@/useEventListener'
+import { isBrowser } from '@/utils'
 
 const formatHash = (value: string): string =>
   value === '' || value.startsWith('#') ? value : `#${value}`
+
+const initializer = (value?: string | (() => string)): string => {
+  if (!isBrowser) return ''
+  const _value =
+    typeof value === 'undefined'
+      ? undefined
+      : typeof value === 'string'
+      ? value
+      : value()
+  if (_value) {
+    window.location.hash = _value
+  }
+  return _value ? formatHash(_value) : window.location.hash
+}
 
 /**
  * Tracks location hash value
@@ -25,18 +40,11 @@ const formatHash = (value: string): string =>
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const useHash = <T extends boolean = false>(
-  initialState?: string,
+  initialState?: string | (() => string),
   options?: { trimHash: T }
 ) => {
   const trimHash = options?.trimHash ?? false
-  const [state, setState] = useState<string>(() => {
-    if (initialState) {
-      window.location.hash = initialState
-    }
-    return typeof initialState === 'string'
-      ? formatHash(initialState)
-      : window.location.hash
-  })
+  const [state, setState] = useState<string>(initializer(initialState))
 
   const onHashChange = useCallback(() => setState(window.location.hash), [])
 
@@ -67,4 +75,4 @@ const useHash = <T extends boolean = false>(
   return [hash, setHash] as const
 }
 
-export { formatHash, useHash }
+export { formatHash, initializer, useHash }

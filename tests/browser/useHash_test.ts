@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import { formatHash, useHash } from '@/useHash'
+import { formatHash, initializer, useHash } from '@/useHash'
 import type { Maybe } from '@/utils/types'
 
 describe('useHash', () => {
@@ -24,20 +24,23 @@ describe('useHash', () => {
     expect(result.current[0]).toBe('#test')
   })
 
-  const table: [Maybe<string>, string][] = [
+  const table: [Maybe<string> | (() => string), string][] = [
     ['#test', '#test'],
     ['', ''],
     ['test', '#test'],
     ['###', '###'],
     ['-', '#-'],
-    [undefined, '']
+    [undefined, ''],
+    [() => '', ''],
+    [() => 'test', '#test'],
+    [() => 'あ', '#%E3%81%82']
   ]
 
   it.each(table)('should change init hash with hash', (initState, expected) => {
     const { result } = renderHook(() => useHash(initState))
 
     expect(window.location.hash).toBe(expected)
-    expect(result.current[0]).toBe(expected)
+    expect(result.current[0]).toBe(decodeURI(expected))
   })
 
   it('should return hash without hash tag when trimHash is true', async () => {
@@ -167,4 +170,24 @@ describe('formatHash', () => {
   it.each(table)('should return formatHash(%s) => %s', (value, expected) => {
     expect(formatHash(value)).toBe(expected)
   })
+})
+
+describe('initializer', () => {
+  beforeEach(() => {
+    window.location.hash = ''
+  })
+  const table: [Maybe<string> | (() => string), string][] = [
+    ['', ''],
+    [undefined, ''],
+    ['test', '#test'],
+    [() => '', ''],
+    [() => 'test', '#test']
+  ]
+  it.each(table)(
+    'should return hash and effect location hash',
+    (value, expected) => {
+      expect(initializer(value)).toBe(expected)
+      expect(window.location.hash).toBe(expected)
+    }
+  )
 })
