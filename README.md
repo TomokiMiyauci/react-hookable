@@ -62,6 +62,7 @@ const { appliers, _ref } = useProcedure(...)
 - [`useEventListener`](docs/useEventListener.mdx) - Returns a set of event listeners `add` and `remove` functions that can be called anywhere. The event listeners will automatically be removed on unmount. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useeventlistener) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useShortcut`](docs/useShortcut.mdx) - Hooks for `keydown` shortcut dispatcher [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useshortcut) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useTimeout`](docs/useTimeout.mdx) - Safe timeout function that provides named timer setter and clearer, auto clear timer when unmounted [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usetimeout) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
+- [`useUnmount`](docs/useUnmount.mdx) - Register unmount callback [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useunmount)
 
 ## Enhancement
 
