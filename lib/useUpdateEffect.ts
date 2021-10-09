@@ -14,20 +14,21 @@ const useIsFirstMount = (): boolean => {
 
 /**
  * Hooks for effect on update dependency
- * @param effect — Imperative function that can return a cleanup function
- * @param deps —Effect will only activate if the values in the list change.
+ * @param effect - Imperative function that can return a cleanup function
+ * @param deps - Effect will only activate if the values in the list change.
  *
  * @example
  * ```ts
  * const [state, setState] = useState(false)
- * const fn = () => console.log('called')
- * useUpdateEffect(fn, [state])
- * fn // not called
- * setState(true)
- * fn // 'called'
- * setState(false)
- * fn // 'called'
+ *
+ * useUpdateEffect(() => {
+ *   // Not call when first mount
+ *   // When deps update, then effect
+ * }, [state])
  * ```
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/enhancement-useupdateeffect
+ * @beta
  */
 const useUpdateEffect: typeof useEffect = (effect, deps) => {
   const isFirstMount = useIsFirstMount()

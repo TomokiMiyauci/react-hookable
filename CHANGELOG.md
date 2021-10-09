@@ -1,3 +1,49 @@
+# [v1.0.0-beta.18](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2021-10-08)
+
+## 🐛 Bug Fixes
+- [`65a577e`](https://github.com/TomokiMiyauci/react-hookable/commit/65a577e)   Change hash update to use &#x60;replaceState&#x60; from &#x60;location.hash&#x60;
+
+# [v1.0.0-beta.17](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2021-10-08)
+
+## ✨ New Features
+- [`7f8d31a`](https://github.com/TomokiMiyauci/react-hookable/commit/7f8d31a)   Add &#x60;useHash&#x60; for tracking location hash value 
+- [`73fceb1`](https://github.com/TomokiMiyauci/react-hookable/commit/73fceb1)   Support SSR with &#x60;useHash&#x60;
+
+# [v1.0.0-beta.16](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-10-07)
+
+## 🐛 Bug Fixes
+- [`69c267b`](https://github.com/TomokiMiyauci/react-hookable/commit/69c267b)   Change &#x60;useEventListener&#x60; interface 
+- [`e08af06`](https://github.com/TomokiMiyauci/react-hookable/commit/e08af06)   Fix &#x60;useEventListener&#x60; remove logic 
+- [`57110da`](https://github.com/TomokiMiyauci/react-hookable/commit/57110da)   Fix &#x60;useEventListener&#x60; interface 
+- [`95d499c`](https://github.com/TomokiMiyauci/react-hookable/commit/95d499c)   Change &#x60;useShortcut&#x60; interface, add docs and storybook
+
+# [v1.0.0-beta.15](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2021-10-06)
+
+## 🐛 Bug Fixes
+- [`adb6cb3`](https://github.com/TomokiMiyauci/react-hookable/commit/adb6cb3)   Change &#x60;useTimeout&#x60; interface
+
+# [v1.0.0-beta.14](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2021-10-05)
+
+## ✨ New Features
+- [`e6780ba`](https://github.com/TomokiMiyauci/react-hookable/commit/e6780ba)   Add &#x60;useDebounce&#x60; that safe debounce function 
+- [`2873d21`](https://github.com/TomokiMiyauci/react-hookable/commit/2873d21)   Add &#x60;useTimeout&#x60; that provide safe timeout clearing logic
+
+# [v1.0.0-beta.13](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2021-10-05)
+
+## ✨ New Features
+- [`daea59e`](https://github.com/TomokiMiyauci/react-hookable/commit/daea59e)   Add &#x60;useNumber&#x60; for basic number counter
+
+# [v1.0.0-beta.12](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2021-10-05)
+
+## ✨ New Features
+- [`e7608b3`](https://github.com/TomokiMiyauci/react-hookable/commit/e7608b3)   Add &#x60;useAsyncMemo&#x60; what async &#x60;useMemo&#x60;
+
+# [v1.0.0-beta.11](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2021-10-04)
+
+## 🐛 Bug Fixes
+- [`87df004`](https://github.com/TomokiMiyauci/react-hookable/commit/87df004)   Remove &#x60;useToggle&#x60;, rename to &#x60;useBoolean&#x60; 
+- [`2219692`](https://github.com/TomokiMiyauci/react-hookable/commit/2219692)   Merged &#x60;useBoolean&#x60; hooks from &#x60;useSwitch&#x60; and &#x60;useToggle&#x60;
+
 # [v1.0.0-beta.10](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2021-10-04)
 
 ## 🐛 Bug Fixes

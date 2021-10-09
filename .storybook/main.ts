@@ -1,43 +1,38 @@
-import { StorybookConfig, CoreConfig, Options } from '@storybook/core-common'
-import { UserConfig } from 'vite'
-import { Weaken } from 'utilitypes'
-import { resolve } from 'path'
-import preact from '@preact/preset-vite'
-interface CustomizedCoreConfig extends Weaken<CoreConfig, 'builder'> {
-  builder: CoreConfig['builder'] | 'storybook-builder-vite'
-}
-interface CustomizedStorybookConfig extends Weaken<StorybookConfig, 'core'> {
-  core: CustomizedCoreConfig
-  viteFinal?: (
-    config: UserConfig,
-    options: Options
-  ) => UserConfig | Promise<UserConfig>
-}
+import type { StorybookConfig } from '@storybook/core-common'
+import { join } from 'path'
 
-const config: CustomizedStorybookConfig = {
+const toPath = (path: string): string => join(process.cwd(), path)
+
+const config: StorybookConfig = {
   stories: [
     '../stories/**/*.story.mdx',
     '../stories/**/*.story.@(js|jsx|ts|tsx)'
   ],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
-  core: {
-    builder: 'storybook-builder-vite'
-  },
-  viteFinal: (config) => {
-    if (process.env.NODE_ENV === 'production') {
-      config.build.chunkSizeWarningLimit = 1700
+  addons: [
+    '@storybook/addon-links',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        actions: false,
+        controls: false
+      }
     }
+  ],
 
-    config.plugins = [...config.plugins, preact()]
-    config.esbuild = {
-      ...config.esbuild
+  webpackFinal: async (config) => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          '@': toPath('lib'),
+          '@doc': toPath('docs'),
+          '@emotion/core': toPath('node_modules/@emotion/react'),
+          'emotion-theming': toPath('node_modules/@emotion/react')
+        }
+      }
     }
-
-    config.resolve.alias = {
-      '@': resolve(__dirname, '..', 'lib')
-    }
-
-    return config
   }
 }
 

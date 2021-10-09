@@ -1,0 +1,12 @@
+# useAsyncEffect
+
+Hooks for asynchronous `useEffect`
+
+## Usage
+
+```tsx
+useAsyncEffect(async () => {
+  const { run } = await import('any/module')
+  run()
+})
+```

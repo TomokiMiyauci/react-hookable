@@ -9,6 +9,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -23,7 +24,7 @@
     "react",
     "@typescript-eslint",
     "simple-import-sort",
-    "plugin:react/jsx-runtime"
+    "eslint-plugin-tsdoc"
   ],
   "rules": {
     "linebreak-style": ["error", "unix"],
@@ -32,7 +33,7 @@
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"]
-  },
-  "ignorePatterns": ["dist"]
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "tsdoc/syntax": "warn"
+  }
 }

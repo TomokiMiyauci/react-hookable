@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DependencyList } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-type IsNever<T> = [T] extends [never] ? true : false
-type EventMap<T> = T extends HTMLElement
+import { DEFAULT_CLEAR_OPTIONS } from '@/utils/constants'
+import type { ClearOptions } from '@/utils/types'
+import type { IsNever, VFn } from '@/utils/types'
+
+type EventMap<T extends EventTarget> = T extends HTMLElement
   ? HTMLElementEventMap
   : T extends Element
   ? ElementEventMap
@@ -14,32 +16,78 @@ type EventMap<T> = T extends HTMLElement
   : never
 
 /**
- * Register using addEventListener on mount, and removeEventListener automatically on unmount.
- * @param target - Target of `addEventListener`
- * @param type - Event type
- * @param listener - Call on fire event
- * @param options - EventListener options
- * @param deps -  If present, effect will only activate if the values in the list change.
+ * Returns a set of event listeners `add` and `remove` functions that can be called anywhere.
+ *
+ * The event listeners will automatically be removed on unmount.
+ * @param options - Hooks options
+ * @returns A set of event listener register and remover
+ *
+ * @example
+ * ```tsx
+ * const { add } = useEventListener()
+ * // Event listeners registered with the `add` function will be automatically removed when unmounted
+ * useEffect(() => {
+ *  add(window, 'mousemove', anyFn)
+ * }, [])
+ *
+ * const handleClick = () => {
+ *  add(document, 'resize', anyFn)
+ * }
+ * ```
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/procedure-useeventlistener
+ * @beta
  */
-const useEventListener = <T extends EventTarget, K extends keyof EventMap<T>>(
-  target: T | (() => T),
-  type: IsNever<K> extends true ? string : K,
-  listener: (
-    this: T,
-    ev: IsNever<EventMap<T>> extends true ? Event : EventMap<T>[K]
-  ) => any,
-  options?: AddEventListenerOptions | boolean,
-  deps?: DependencyList
-): void => {
-  useEffect(() => {
-    const _target = typeof target === 'function' ? target() : target
-    _target.addEventListener(type as any, listener as any, options)
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const useEventListener = ({
+  clearAuto
+}: ClearOptions = DEFAULT_CLEAR_OPTIONS) => {
+  const ref = useRef<
+    [
+      EventTarget,
+      string,
+      EventListenerOrEventListenerObject,
+      AddEventListenerOptions | boolean | undefined
+    ][]
+  >([])
 
-    return () =>
-      _target.removeEventListener(type as any, listener as any, options)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
+  const add = <T extends EventTarget, K extends keyof EventMap<T>>(
+    target: T | (() => T),
+    type: IsNever<K> extends true ? string : K,
+    listener: (
+      this: T,
+      ev: IsNever<EventMap<T>> extends true ? Event : EventMap<T>[K]
+    ) => any,
+    options?: AddEventListenerOptions | boolean
+  ): void => {
+    const _target = typeof target === 'function' ? target() : target
+
+    _target.addEventListener(type as any, listener as any, options)
+    ref.current.push([_target, type as string, listener as any, options])
+  }
+
+  useEffect(() => {
+    return () => {
+      if (clearAuto) {
+        remove()
+      }
+    }
+  }, [clearAuto])
+
+  const remove: VFn = () => {
+    ref.current.forEach(([target, type, listener, options]) => {
+      target.removeEventListener(type as any, listener as any, options)
+    })
+    ref.current = []
+  }
+
+  return {
+    add,
+    remove,
+    _ref: ref
+  }
 }
 
 export { useEventListener }
+
 export type { EventMap }

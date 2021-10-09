@@ -1,0 +1,20 @@
+# useShortcut
+
+Hooks for `keydown` shortcut dispatcher
+
+## Usage
+
+```tsx
+import { useBoolean } from 'react-hookable'
+
+const { bind, unbind } = useShortcut()
+
+useEffect(() => {
+  bind({ cmd: true, key: 'k' }, () => alert('command -> K keydown at window'))
+  bind({ cmd: true, key: 'k' }, () =>
+    alert('command -> K keydown at document', {
+      target: document
+    })
+  )
+}, [])
+```

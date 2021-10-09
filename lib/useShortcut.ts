@@ -1,6 +1,5 @@
-import type { DependencyList } from 'react'
-
 import { useEventListener } from '@/useEventListener'
+import type { ClearOptions } from '@/utils/types'
 import type { Alphabet } from '@/utils/types/keyboard'
 
 const validateKeyMap = (
@@ -46,43 +45,65 @@ type Keys =
 
 /**
  * Hooks for `keydown` shortcut dispatcher
- * @param keyMap - Binding shortcut key
- * @param onKeyDown - Fire on keydown shortcut
- * @param options - EventListener options and binding [`target` default:`window`]
- * @param deps - If present, effect will only activate if the values in the list change
+ * @param options - Clear options
+ * @returns Shortcut binder set of `bind` and `unbind` functions
  *
  * @example
  * ```ts
- * useShortcut({ shift: true, key: 'K' }, () => alert('shirt+K keydown'))
+ * const { bind, unbind } = useShortcut()
+ * useEffect(() => {
+ *   bind({ cmd: true, key: 'k' }, () => alert('command -> K keydown at window'))
+ * }, [])
  * ```
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/procedure-useshortcut
+ * @beta
  */
-const useShortcut = (
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  keyMap: Partial<Record<MetaKey, true> & { key: Keys }>,
-  onKeyDown: (ev: KeyboardEvent) => void,
-  options?: {
-    target?:
-      | Window
-      | Document
-      | HTMLElement
-      | (() => Window | Document | HTMLElement)
-  } & AddEventListenerOptions,
-  deps?: DependencyList
-): void => {
-  useEventListener(
-    options?.target ?? (() => window),
-    'keydown',
-    (ev) => {
-      const {
-        key: _key,
-        option = false,
-        shift = false,
-        cmd = false,
-        ctrl = false
-      } = keyMap
 
-      if (
-        validateKeyMap(
+const useShortcut = (
+  options?: ClearOptions
+): {
+  bind: (
+    keyMap: Partial<Record<MetaKey, true> & { key: Keys }>,
+    onKeyDown: (ev: KeyboardEvent) => void,
+    options?: {
+      target?:
+        | Window
+        | Document
+        | HTMLElement
+        | (() => Window | Document | HTMLElement)
+    }
+  ) => void
+  unbind: ReturnType<typeof useEventListener>['remove']
+  _ref: ReturnType<typeof useEventListener>['_ref']
+} => {
+  const { add, remove, _ref } = useEventListener(options)
+
+  const bind = (
+    keyMap: Partial<Record<MetaKey, true> & { key: Keys }>,
+    onKeyDown: (ev: KeyboardEvent) => void,
+    options?: {
+      target?:
+        | Window
+        | Document
+        | HTMLElement
+        | (() => Window | Document | HTMLElement)
+    } & AddEventListenerOptions
+  ): void => {
+    const {
+      key: _key,
+      option = false,
+      shift = false,
+      cmd = false,
+      ctrl = false
+    } = keyMap
+    const target = options?.target ?? (() => window)
+
+    add(
+      target,
+      'keydown',
+      (ev) => {
+        const isValidKeyMap = validateKeyMap(
           {
             option,
             shift,
@@ -92,13 +113,14 @@ const useShortcut = (
           },
           ev
         )
-      ) {
+        if (!isValidKeyMap) return
         onKeyDown(ev)
-      }
-    },
-    options,
-    deps
-  )
+      },
+      options
+    )
+  }
+
+  return { bind, unbind: remove, _ref }
 }
 
 export { useShortcut, validateKeyMap }

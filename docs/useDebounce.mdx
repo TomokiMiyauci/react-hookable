@@ -1,0 +1,13 @@
+# useDebounce
+
+Safe debounce function that can be executed anywhere
+
+## Usage
+
+```tsx
+const debounce = useDebounce()
+const [input, setInput] = useState<string>('')
+useEffect(() => {
+  debounce(anySearchFn(input), 1000)
+}, [input])
+```

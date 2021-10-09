@@ -1,0 +1,19 @@
+# useBoolean
+
+Switchable `boolean` hooks
+
+## Usage
+
+```tsx
+import { useBoolean } from 'react-hookable'
+
+const [state, { on, off, toggle }] = useBoolean()
+on()
+// state: true
+off()
+// state: false
+toggle()
+// state: true
+toggle()
+// state: false
+```
