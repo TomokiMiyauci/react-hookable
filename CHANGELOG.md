@@ -1,3 +1,8 @@
+# [v1.0.0-beta.18](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2021-10-08)
+
+## 🐛 Bug Fixes
+- [`65a577e`](https://github.com/TomokiMiyauci/react-hookable/commit/65a577e)   Change hash update to use &#x60;replaceState&#x60; from &#x60;location.hash&#x60;
+
 # [v1.0.0-beta.17](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2021-10-08)
 
 ## ✨ New Features
