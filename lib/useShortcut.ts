@@ -56,7 +56,7 @@ type Keys =
  * }, [])
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/stateless-useshortcut
+ * @see https://react-hookable.vercel.app/?path=/story/procedure-useshortcut
  * @beta
  */
 

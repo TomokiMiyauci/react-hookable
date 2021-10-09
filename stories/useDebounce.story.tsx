@@ -84,7 +84,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'stateless/useDebounce',
+  title: 'procedure/useDebounce',
   component: Demo,
   parameters: {
     docs: {

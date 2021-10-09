@@ -27,7 +27,7 @@ const useIsFirstMount = (): boolean => {
  * }, [state])
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/lifecycle-useupdateeffect
+ * @see https://react-hookable.vercel.app/?path=/story/enhancement-useupdateeffect
  * @beta
  */
 const useUpdateEffect: typeof useEffect = (effect, deps) => {

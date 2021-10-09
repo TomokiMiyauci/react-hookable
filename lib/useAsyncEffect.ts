@@ -17,7 +17,7 @@ type AsyncEffectCallback = () => Promise<void | VFn>
  *   run()
  * })
  *
- * @see https://react-hookable.vercel.app/?path=/story/lifecyle-useasynceffect
+ * @see https://react-hookable.vercel.app/?path=/story/enhancement-useasynceffect
  * @beta
  * ```
  */

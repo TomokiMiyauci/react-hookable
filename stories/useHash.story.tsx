@@ -63,7 +63,7 @@ export const Demo: FunctionalComponent = () => {
   )
 }
 export default {
-  title: 'state/useHash',
+  title: 'stateset/useHash',
   component: Demo,
   parameters: {
     docs: {

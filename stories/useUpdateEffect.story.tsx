@@ -28,7 +28,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'Lifecycle/useUpdateEffect',
+  title: 'Enhancement/useUpdateEffect',
   component: Demo,
   parameters: {
     docs: {

@@ -36,6 +36,6 @@ export const Demo: FunctionalComponent = () => {
   )
 }
 export default {
-  title: 'stateless/useEventListener',
+  title: 'procedure/useEventListener',
   component: Demo
 } as Meta<typeof Demo>

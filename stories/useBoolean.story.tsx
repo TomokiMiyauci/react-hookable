@@ -21,7 +21,7 @@ const Demo: FunctionComponent = () => {
 import Docs from '@doc/useBoolean.mdx'
 
 const meta: Meta<typeof Demo> = {
-  title: 'state/useBoolean',
+  title: 'stateset/useBoolean',
   component: Demo,
   parameters: {
     docs: {

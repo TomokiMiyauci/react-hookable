@@ -23,7 +23,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'Lifecycle/useAsyncEffect',
+  title: 'Enhancement/useAsyncEffect',
   component: Demo,
   parameters: {
     docs: {

@@ -35,7 +35,7 @@ type EventMap<T extends EventTarget> = T extends HTMLElement
  * }
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/stateless-useeventlistener
+ * @see https://react-hookable.vercel.app/?path=/story/procedure-useeventlistener
  * @beta
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
