@@ -1,42 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import type { MutableRefObject } from 'react'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
+import { useRefArray } from '@/shared'
+import { EventLoopDefaultOptions } from '@/shared/constants'
+import type { EventLoopOptions } from '@/shared/types'
 import type { AnyFn, VFn } from '@/utils/types'
-
-type Timeout = ReturnType<typeof setTimeout>
-const useTimeoutDefaultOptions: UseTimeoutOptions = {
-  clearAuto: true
-}
-
-/**
- * Types of `useTimeout` first arg
- */
-type UseTimeoutOptions = {
-  /**
-   * Whether to automatically clear the timeout timer when unmount
-   * @defaultValue `true`
-   */
-  clearAuto: boolean
-}
 
 /**
  * Types of `useTimeout` return values
  */
 type UseTimeoutReturn = {
   /**
-   * Invoke `setTimeout` universally
+   * Invoke `setTimeout`
    */
-  set: (invoke: AnyFn, ms: number) => void
+  use: (invoke: AnyFn, ms: number) => void
   /**
    * Invoke `clearTimeout` safety
    */
-  clear: VFn
+  disuse: VFn
   /**
    * Timers `ref`
    *
    * This is used for edge cases.
    */
-  _ref: MutableRefObject<Timeout[]>
+  _ref: MutableRefObject<ReturnType<typeof setTimeout>[]>
 }
 
 /**
@@ -58,34 +46,32 @@ type UseTimeoutReturn = {
  */
 const useTimeout = ({
   clearAuto
-}: UseTimeoutOptions = useTimeoutDefaultOptions): UseTimeoutReturn => {
-  const timers = useRef<Timeout[]>([])
+}: EventLoopOptions = EventLoopDefaultOptions): UseTimeoutReturn => {
+  const { _ref, add, clear } = useRefArray<ReturnType<typeof setTimeout>>()
 
-  const set = (invoke: AnyFn, ms: number): void => {
-    timers.current.push(setTimeout(invoke, ms))
-  }
-  const clear: VFn = () => {
-    timers.current.forEach((timer) => {
+  const use = (invoke: AnyFn, ms: number): void => add(setTimeout(invoke, ms))
+
+  const disuse: VFn = () => {
+    _ref.current.forEach((timer) => {
       clearTimeout(timer)
     })
-    timers.current = []
+    clear()
   }
 
   useEffect(
     () => () => {
       if (clearAuto) {
-        clear()
+        disuse()
       }
     },
     [clearAuto]
   )
 
   return {
-    set,
-    clear,
-    _ref: timers
+    use,
+    disuse,
+    _ref
   }
 }
 
-export { useTimeout, useTimeoutDefaultOptions }
-export type { UseTimeoutOptions }
+export { useTimeout }
