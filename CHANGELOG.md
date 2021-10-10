@@ -1,3 +1,8 @@
+# [v1.0.0-beta.20](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2021-10-10)
+
+## 🐛 Bug Fixes
+- [`9fc14c3`](https://github.com/TomokiMiyauci/react-hookable/commit/9fc14c3)   Change interface of &#x60;useDebounce&#x60;
+
 # [v1.0.0-beta.19](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2021-10-10)
 
 ## ✨ New Features
