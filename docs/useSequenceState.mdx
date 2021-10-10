@@ -1,0 +1,17 @@
+# useSequenceState
+
+Prevents other processes from running until the end of the process. This is ideal for preventing chattering.
+
+## Usage
+
+```tsx
+import { useSequenceState } from 'react-hookable'
+const [pending, sequence] = useSequenceState()
+
+// pending: false
+sequence(AnyFn)
+// pending: true
+sequence(AnyFn) // not call
+// End of function processing
+// pending: false
+```
