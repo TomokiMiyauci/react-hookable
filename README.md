@@ -45,7 +45,7 @@ const [state, dispatcher] = useStateSet(...)
 ```
 
 - [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-useboolean)
-- [`useHash`](docs/useHash.mdx) - Tracks location hash value [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usehash) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
+- [`useHashState`](docs/useHashState.mdx) - Tracks location hash value [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usehashstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usenumber)
 
 ## Procedure
