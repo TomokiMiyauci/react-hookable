@@ -21,12 +21,13 @@ yarn add react-hook@beta
 
 ## Type of hooks
 
-We have classified hooks into three categories.
+We have classified hooks into four categories.
 Each category has a different interface.
 
 - [StateSet](#stateset) => `[state/{ states }, dispatcher/{ dispatchers }]`
 - [Procedure](#procedure) => `{ appliers }`
 - [Enhancement](#enhancement) extends `react` / `preact` standard hooks
+- [Lifecycle](#lifecycle) Component lifecycle
 
 Each function that contains a side-effect also has an
 
@@ -73,6 +74,12 @@ These are highly abstract hooks that enhance the standard hooks in `react` or `p
 - [`useAsyncEffect`](docs/useAsyncEffect.mdx) - Hooks for asynchronous `useEffect` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useasynceffect)
 - [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useasyncmemo)
 - [`useUpdateEffect`](docs/useUpdateEffect.mdx) - Hooks for effect on update dependency [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useupdateeffect)
+
+## Lifecycle
+
+Component lifecycle
+
+- [`useIsUnmounted`](docs/useIsUnmounted.mdx) - Ref of isUnmounted or not [![tag][demo]](https://react-hookable.vercel.app/?path=/story/lifecycle-useisunmounted)
 
 ## Contributing
 
