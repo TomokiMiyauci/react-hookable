@@ -66,6 +66,7 @@ const { appliers, _ref } = useProcedure(...)
 - [`useShortcut`](docs/useShortcut.mdx) - Hooks for `keydown` shortcut dispatcher [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useshortcut) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useTimeout`](docs/useTimeout.mdx) - Safe timeout function that provides named timer setter and clearer, auto clear timer when unmounted [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usetimeout) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useUnmount`](docs/useUnmount.mdx) - Register unmount callback [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useunmount)
+- [`useWait`](docs/useWait.mdx) - Safe process wait [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usewait) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ## Enhancement
 

@@ -75,3 +75,4 @@ const useTimeout = ({
 }
 
 export { useTimeout }
+export type { UseTimeoutReturn }
