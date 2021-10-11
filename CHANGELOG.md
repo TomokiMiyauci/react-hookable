@@ -1,3 +1,8 @@
+# [v1.0.0-beta.24](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2021-10-11)
+
+## ✨ New Features
+- [`f0e362c`](https://github.com/TomokiMiyauci/react-hookable/commit/f0e362c)   Add &#x60;useFetch&#x60; for abort http request on mount
+
 # [v1.0.0-beta.23](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2021-10-11)
 
 ## 🐛 Bug Fixes
