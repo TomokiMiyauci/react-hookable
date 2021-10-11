@@ -1,3 +1,9 @@
+# [v1.0.0-beta.22](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2021-10-11)
+
+## ✨ New Features
+- [`af5492a`](https://github.com/TomokiMiyauci/react-hookable/commit/af5492a)   Add &#x60;useIsUnmounted&#x60; fro ref of isUnmounted or not 
+- [`8e9ac2e`](https://github.com/TomokiMiyauci/react-hookable/commit/8e9ac2e)   Add &#x60;useWait&#x60; for safe process waiting
+
 # [v1.0.0-beta.21](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2021-10-10)
 
 ## ✨ New Features
