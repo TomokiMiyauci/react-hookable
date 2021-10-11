@@ -46,4 +46,19 @@ describe('useSequenceState', () => {
     expect(fn.mock.results[0].value).toBeTruthy()
     expect(fn.mock.results[1].value).toBeUndefined()
   })
+
+  it('should not call when unmount', async () => {
+    const { result, unmount } = renderHook(() => useSequenceState())
+    expect(result.current[0]).toBeFalsy()
+    const fn = jest.fn()
+    expect(fn).not.toHaveBeenCalled()
+
+    unmount()
+
+    await act(async () => {
+      await result.current[1](fn)
+    })
+
+    expect(result.current[0]).toBeFalsy()
+  })
 })

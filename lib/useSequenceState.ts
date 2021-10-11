@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import { AnyFn } from '@/utils/types'
+import { useIsUnmounted } from '@/useIsUnmounted'
+import type { AnyFn } from '@/utils/types'
 type UseSequenceStateReturn = [boolean, (fn: AnyFn) => Promise<void>]
 
 /**
@@ -23,14 +24,17 @@ type UseSequenceStateReturn = [boolean, (fn: AnyFn) => Promise<void>]
  */
 const useSequenceState = (): UseSequenceStateReturn => {
   const [pending, setPending] = useState<boolean>(false)
+  const hasUnmounted = useIsUnmounted()
 
-  const use = async (fn: AnyFn) => {
-    if (pending) return
+  const use = async (fn: AnyFn): Promise<void> => {
+    if (pending || hasUnmounted.current) return
     setPending(true)
     try {
       await fn()
     } finally {
-      setPending(false)
+      if (!hasUnmounted.current) {
+        setPending(false)
+      }
     }
   }
 
