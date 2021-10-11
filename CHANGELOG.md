@@ -1,3 +1,8 @@
+# [v1.0.0-beta.23](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2021-10-11)
+
+## 🐛 Bug Fixes
+- [`dbeda84`](https://github.com/TomokiMiyauci/react-hookable/commit/dbeda84)   Fix &#x60;useSequenceState&#x60; to mutation on mount
+
 # [v1.0.0-beta.22](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2021-10-11)
 
 ## ✨ New Features
