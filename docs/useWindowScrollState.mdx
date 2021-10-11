@@ -1,0 +1,21 @@
+# useWindowScrollState
+
+Reactive window scroll
+
+## Usage
+
+```tsx
+import { useWindowScrollState } from 'react-hookable'
+const [{ x, y }, { use, disuse }] = useWindowScrollState()
+
+// x: undefined
+// y: undefined
+
+use()
+// x: window.scrollX
+// y: window.scrollY
+
+// scroll
+// x: window.scrollX
+// y: window.scrollY
+```

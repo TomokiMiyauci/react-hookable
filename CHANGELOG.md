@@ -1,3 +1,33 @@
+# [v1.0.0-beta.23](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2021-10-11)
+
+## 🐛 Bug Fixes
+- [`dbeda84`](https://github.com/TomokiMiyauci/react-hookable/commit/dbeda84)   Fix &#x60;useSequenceState&#x60; to mutation on mount
+
+# [v1.0.0-beta.22](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2021-10-11)
+
+## ✨ New Features
+- [`af5492a`](https://github.com/TomokiMiyauci/react-hookable/commit/af5492a)   Add &#x60;useIsUnmounted&#x60; fro ref of isUnmounted or not 
+- [`8e9ac2e`](https://github.com/TomokiMiyauci/react-hookable/commit/8e9ac2e)   Add &#x60;useWait&#x60; for safe process waiting
+
+# [v1.0.0-beta.21](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2021-10-10)
+
+## ✨ New Features
+- [`ea65413`](https://github.com/TomokiMiyauci/react-hookable/commit/ea65413)   Add &#x60;useSequenceState&#x60; for sequential process
+
+# [v1.0.0-beta.20](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2021-10-10)
+
+## 🐛 Bug Fixes
+- [`9fc14c3`](https://github.com/TomokiMiyauci/react-hookable/commit/9fc14c3)   Change interface of &#x60;useDebounce&#x60;
+
+# [v1.0.0-beta.19](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2021-10-10)
+
+## ✨ New Features
+- [`6c7c281`](https://github.com/TomokiMiyauci/react-hookable/commit/6c7c281)   Add &#x60;useUnmount&#x60; for register unmount callback 
+- [`e5bb1e3`](https://github.com/TomokiMiyauci/react-hookable/commit/e5bb1e3)   Add &#x60;useWindowScrollState&#x60; for reactive window scroll 
+
+## 🐛 Bug Fixes
+- [`f39e395`](https://github.com/TomokiMiyauci/react-hookable/commit/f39e395)   Rename &#x60;useHash&#x60; to &#x60;useHashState&#x60;
+
 # [v1.0.0-beta.18](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2021-10-08)
 
 ## 🐛 Bug Fixes

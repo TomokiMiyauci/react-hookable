@@ -1,0 +1,48 @@
+# useUnmount
+
+Register unmount callback
+
+## Usage
+
+```tsx
+import { useUnmount } from 'react-hookable'
+
+const { use, disuse } = useUnmount()
+
+use(voidFn)
+
+// unmount
+voidFn()
+```
+
+### use
+
+```tsx
+import { useUnmount } from 'react-hookable'
+
+const { use } = useUnmount()
+
+use(voidFn1)
+use(voidFn2)
+
+// unmount
+// Order by register
+voidFn1()
+voidFn2()
+```
+
+### disuse
+
+```tsx
+import { useUnmount } from 'react-hookable'
+
+const { use, disuse } = useUnmount()
+
+use(AnyVoidFn1)
+use(AnyVoidFn2)
+
+disuse()
+
+// unmount
+// Any functions registered before `disuse` is called will be removed
+```

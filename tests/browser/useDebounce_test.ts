@@ -14,7 +14,7 @@ describe('useDebounce', () => {
 
     expect(invoke).not.toHaveBeenCalled()
     act(() => {
-      result.current(invoke, 1000)
+      result.current.use(invoke, 1000)
     })
     expect(invoke).not.toHaveBeenCalled()
 
@@ -31,9 +31,9 @@ describe('useDebounce', () => {
     expect(invoke).not.toHaveBeenCalled()
 
     act(() => {
-      result.current(invoke, 100)
-      result.current(invoke, 100)
-      result.current(invoke, 100)
+      result.current.use(invoke, 100)
+      result.current.use(invoke, 100)
+      result.current.use(invoke, 100)
     })
     expect(invoke).not.toHaveBeenCalled()
     jest.advanceTimersByTime(100)
@@ -52,9 +52,9 @@ describe('useDebounce', () => {
     const invoke3 = jest.fn()
 
     act(() => {
-      result.current(invoke1, 100)
-      result.current(invoke2, 100)
-      result.current(invoke3, 100)
+      result.current.use(invoke1, 100)
+      result.current.use(invoke2, 100)
+      result.current.use(invoke3, 100)
     })
     expect(invoke1).not.toHaveBeenCalled()
     expect(invoke2).not.toHaveBeenCalled()
@@ -69,5 +69,23 @@ describe('useDebounce', () => {
     expect(invoke1).not.toHaveBeenCalled()
     expect(invoke2).not.toHaveBeenCalled()
     expect(invoke3).toHaveBeenCalledTimes(1)
+  })
+
+  it('should cancel via disuse', () => {
+    const { result } = renderHook(() => useDebounce())
+
+    const invoke = jest.fn()
+
+    act(() => {
+      result.current.use(invoke, 100)
+    })
+    expect(invoke).not.toHaveBeenCalled()
+
+    act(() => {
+      result.current.disuse()
+    })
+
+    jest.advanceTimersByTime(100)
+    expect(invoke).not.toHaveBeenCalled()
   })
 })

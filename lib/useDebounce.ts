@@ -1,10 +1,6 @@
-import type { UseTimeoutOptions } from '@/useTimeout'
-import { useTimeout, useTimeoutDefaultOptions } from '@/useTimeout'
-import type { AnyFn } from '@/utils/types'
-
-type UseDebounceOptions = UseTimeoutOptions
-
-const useDebounceDefaultOptions = useTimeoutDefaultOptions
+import { EventLoopDefaultOptions } from '@/shared/constants'
+import type { EventLoopOptions } from '@/shared/types'
+import { useTimeout } from '@/useTimeout'
 
 /**
  * Safe debounce function that can be executed anywhere
@@ -13,11 +9,11 @@ const useDebounceDefaultOptions = useTimeoutDefaultOptions
  *
  * @example
  * ```tsx
- * const debounce = useDebounce()
+ * const { use, disuse } = useDebounce()
  * const [input, setInput] = useState<string>('')
  *
  * useEffect(() => {
- *   debounce(anySearchFn(input), 1000)
+ *   use(anySearchFn(input), 1000)
  * }, [input])
  * ```
  *
@@ -25,14 +21,19 @@ const useDebounceDefaultOptions = useTimeoutDefaultOptions
  * @beta
  */
 const useDebounce = (
-  options: UseDebounceOptions = useDebounceDefaultOptions
-): typeof set => {
-  const { set, clear } = useTimeout(options)
+  options: EventLoopOptions = EventLoopDefaultOptions
+): ReturnType<typeof useTimeout> => {
+  const { use: _use, disuse, _ref } = useTimeout(options)
 
-  return (invoke: AnyFn, ms: number): typeof clear => {
-    clear()
-    set(invoke, ms)
-    return clear
+  const use: typeof _use = (invoke, ms) => {
+    disuse()
+    _use(invoke, ms)
+  }
+
+  return {
+    use,
+    disuse,
+    _ref
   }
 }
 

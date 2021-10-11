@@ -12,7 +12,7 @@ describe('useTimeout', () => {
     expect(result.current._ref.current).toHaveLength(0)
     const invoke = jest.fn()
     act(() => {
-      result.current.set(invoke, 1000)
+      result.current.use(invoke, 1000)
     })
 
     expect(invoke).not.toHaveBeenCalled()
@@ -26,7 +26,7 @@ describe('useTimeout', () => {
 
     const invoke = jest.fn()
     act(() => {
-      result.current.set(invoke, 1)
+      result.current.use(invoke, 1)
     })
 
     jest.advanceTimersByTime(1)
@@ -41,7 +41,7 @@ describe('useTimeout', () => {
 
     const invoke = jest.fn()
     act(() => {
-      result.current.set(invoke, 1)
+      result.current.use(invoke, 1)
     })
 
     jest.runAllTimers()
@@ -59,7 +59,7 @@ describe('useTimeout', () => {
 
     const invoke = jest.fn()
     act(() => {
-      result.current.set(invoke, 1)
+      result.current.use(invoke, 1)
     })
 
     jest.runAllTimers()
@@ -75,9 +75,9 @@ describe('useTimeout', () => {
 
     const invoke = jest.fn()
     act(() => {
-      result.current.set(invoke, 1)
-      result.current.set(invoke, 2)
-      result.current.set(invoke, 3)
+      result.current.use(invoke, 1)
+      result.current.use(invoke, 2)
+      result.current.use(invoke, 3)
     })
 
     jest.runAllTimers()

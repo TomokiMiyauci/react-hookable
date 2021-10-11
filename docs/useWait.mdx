@@ -1,0 +1,30 @@
+# useWait
+
+Safe process wait
+
+## Usage
+
+```tsx
+import { useWait } from 'react-hookable'
+const { use } = useWait()
+
+const handleClick = async () => {
+  await use(1000)
+  doSomething()
+}
+```
+
+### Unmount
+
+If unmounted while using `useWait`, no further processing will continue.
+
+```tsx
+import { useWait } from 'react-hookable'
+const { use } = useWait()
+
+const hancleClick = async () => {
+  await use(1000)
+  // unmounted
+  // doSomething()
+}
+```

@@ -23,7 +23,7 @@ export const Demo: FunctionalComponent = () => {
   const [invokeCount, { inc: invoked }] = useNumber()
   const [duration, { set: setDuration }] = useNumber(1000)
 
-  const debounce = useDebounce()
+  const { use } = useDebounce()
 
   const countUpFn = (fn: AnyFn) => {
     clickCountUp()
@@ -57,25 +57,19 @@ export const Demo: FunctionalComponent = () => {
       </Box>
 
       <HStack padding="1.5">
-        <Button onClick={() => countUpFn(() => debounce(inc, duration))}>
+        <Button onClick={() => countUpFn(() => use(inc, duration))}>
           Increment
         </Button>
-        <Button onClick={() => countUpFn(() => debounce(dec, duration))}>
+        <Button onClick={() => countUpFn(() => use(dec, duration))}>
           Decrement
         </Button>
-        <Button
-          onClick={() => countUpFn(() => debounce(() => inc(5), duration))}
-        >
+        <Button onClick={() => countUpFn(() => use(() => inc(5), duration))}>
           Increment(5)
         </Button>
-        <Button
-          onClick={() => countUpFn(() => debounce(() => dec(5), duration))}
-        >
+        <Button onClick={() => countUpFn(() => use(() => dec(5), duration))}>
           Decrement(5)
         </Button>
-        <Button
-          onClick={() => countUpFn(() => debounce(() => set(100), duration))}
-        >
+        <Button onClick={() => countUpFn(() => use(() => set(100), duration))}>
           Set(100)
         </Button>
       </HStack>

@@ -31,7 +31,7 @@ const initializer = (value?: string | (() => string)): string => {
  *
  * @example
  * ```tsx
- * const [hash, setHash] = useHash()
+ * const [hash, setHash] = useHashState()
  * setHash('searching')
  * // URL: http~/#searching
  * // hash: #searching
@@ -41,7 +41,7 @@ const initializer = (value?: string | (() => string)): string => {
  * @beta
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const useHash = <T extends boolean = true>(
+const useHashState = <T extends boolean = true>(
   initialState?: ('' | (string & {})) | (() => '' | (string & {})),
   options?: { hashMark: T }
 ) => {
@@ -79,4 +79,4 @@ const useHash = <T extends boolean = true>(
   return [hash, setHash] as const
 }
 
-export { formatHash, initializer, useHash }
+export { formatHash, initializer, useHashState }

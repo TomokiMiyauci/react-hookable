@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  HStack,
   Slider,
   SliderFilledTrack,
   SliderThumb,
@@ -9,27 +8,33 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
-import Docs from '@doc/useTimeout.mdx'
+import Docs from '@doc/useWait.mdx'
 import type { Meta } from '@storybook/preact'
 import type { FunctionalComponent } from 'preact'
-import { useState } from 'preact/hooks'
 
-import { useTimeout } from '@/useTimeout'
-
+import { useNumber } from '@/useNumber'
+import { useWait } from '@/useWait'
 export const Demo: FunctionalComponent = () => {
-  const { use, disuse } = useTimeout()
-  const [duration, setDuration] = useState(1000)
-  const toast = useToast()
+  const { use: wait } = useWait()
+  const [ms, { set: setMs }] = useNumber(1000)
 
+  const toast = useToast()
+  const handleClick = async () => {
+    await wait(ms)
+    toast({
+      title: 'useWait',
+      description: `wait for ${ms}`
+    })
+  }
   return (
     <>
-      <Text>duration: {duration}ms</Text>
+      <Text>ms: {ms}ms</Text>
 
       <Box p="3.5">
         <Slider
-          onChange={setDuration}
+          onChange={setMs}
           defaultValue={1000}
-          value={duration}
+          value={ms}
           min={0}
           max={2000}
           step={500}
@@ -41,30 +46,13 @@ export const Demo: FunctionalComponent = () => {
           <SliderThumb boxSize={6} />
         </Slider>
       </Box>
-
-      <HStack my="1.5">
-        <Button
-          onClick={() => {
-            use(
-              () =>
-                toast({
-                  title: 'useTimeout',
-                  description: `Timeout: ${duration}`
-                }),
-              duration
-            )
-          }}
-        >
-          use
-        </Button>
-        <Button onClick={disuse}>disuse</Button>
-      </HStack>
+      <Button onClick={handleClick}>use</Button>
     </>
   )
 }
 
 export default {
-  title: 'procedure/useTimeout',
+  title: 'useWait',
   component: Demo,
   parameters: {
     docs: {

@@ -14,16 +14,16 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
-import Docs from '@doc/useHash.mdx'
+import Docs from '@doc/useHashState.mdx'
 import type { Meta } from '@storybook/preact'
 import type { FunctionalComponent } from 'preact'
 
 import { useBoolean } from '@/useBoolean'
-import { useHash } from '@/useHash'
+import { useHashState } from '@/useHashState'
 
 export const Demo: FunctionalComponent = () => {
   const [hashMark, { toggle }] = useBoolean(true)
-  const [hash, setHash] = useHash(undefined, { hashMark })
+  const [hash, setHash] = useHashState(undefined, { hashMark })
 
   return (
     <>
@@ -63,7 +63,7 @@ export const Demo: FunctionalComponent = () => {
   )
 }
 export default {
-  title: 'stateset/useHash',
+  title: 'stateset/useHashState',
   component: Demo,
   parameters: {
     docs: {
