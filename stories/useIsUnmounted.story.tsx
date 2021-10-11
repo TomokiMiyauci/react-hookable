@@ -21,7 +21,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'lifecycle/useUnmounted',
+  title: 'lifecycle/useIsUnmounted',
   component: Demo,
   parameters: {
     docs: {

@@ -52,7 +52,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'procedure/useUnmount',
+  title: 'lifecycle/useUnmount',
   component: Demo,
   parameters: {
     docs: {

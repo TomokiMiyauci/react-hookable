@@ -20,7 +20,7 @@ type UnmountReturn = {
  * voidFn()
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/procedure-useunmount
+ * @see https://react-hookable.vercel.app/?path=/story/lifecycle-useunmount
  * @beta
  *
  */
