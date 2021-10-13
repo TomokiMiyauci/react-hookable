@@ -49,6 +49,7 @@ const [state, dispatcher] = useStateSet(...)
 - [`useHashState`](docs/useHashState.mdx) - Tracks location hash value [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usehashstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usenumber)
 - [`useSequenceState`](docs/useSequenceState.mdx) - Prevents other processes from running until the end of the process. This is ideal for preventing chattering. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usesequencestate)
+- [`useSwipeState`](docs/useSwipeState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-useswipestate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useWindowScrollState`](docs/useWindowScrollState.mdx) - Reactive window scroll [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usewindowscrollstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ## Procedure

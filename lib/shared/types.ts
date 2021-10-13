@@ -9,4 +9,12 @@ type EventLoopOptions = {
   clearAuto: boolean
 }
 
-export type { EventLoopOptions }
+/**
+ * Alias for position
+ */
+type Position = {
+  x: number
+  y: number
+}
+
+export type { EventLoopOptions, Position }
