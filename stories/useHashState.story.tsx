@@ -56,7 +56,7 @@ export const Demo: FunctionalComponent = () => {
         <InputLeftAddon>#</InputLeftAddon>
         <Input
           placeholder="Enter hash"
-          onChange={({ currentTarget }) => setHash(currentTarget.value as any)}
+          onChange={({ currentTarget }) => setHash(currentTarget.value)}
         />
       </InputGroup>
     </>

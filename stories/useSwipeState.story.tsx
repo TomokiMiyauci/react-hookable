@@ -19,7 +19,7 @@ export const Demo: FunctionalComponent = () => {
   useEffect(() => {
     if (!ref.current) return
     use(ref.current, {
-      onSwipe: (_) => {
+      onSwipe: () => {
         if (lengthX > 0) {
           setLeft(`${Math.abs(lengthX).toFixed(0)}px`)
         }
