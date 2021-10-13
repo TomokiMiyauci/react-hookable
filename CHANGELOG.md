@@ -1,3 +1,8 @@
+# [v1.0.0-beta.25](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2021-10-13)
+
+## ✨ New Features
+- [`25c2844`](https://github.com/TomokiMiyauci/react-hookable/commit/25c2844)   Add &#x60;useSwipeState&#x60; for touch event manager
+
 # [v1.0.0-beta.24](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2021-10-11)
 
 ## ✨ New Features
