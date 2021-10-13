@@ -1,12 +1,8 @@
 import { useState } from 'react'
 
+import type { Position } from '@/shared/types'
 import { useEventListener } from '@/useEventListener'
 import type { MaybeRecord, VFn } from '@/utils/types'
-
-type Position = {
-  x: number
-  y: number
-}
 
 type WindowScrollStateReturn = [
   MaybeRecord<Position>,
@@ -59,4 +55,3 @@ const useWindowScrollState = (): WindowScrollStateReturn => {
 }
 
 export { useWindowScrollState }
-export type { Position }
