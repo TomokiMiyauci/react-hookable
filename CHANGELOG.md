@@ -1,3 +1,8 @@
+# [v1.0.0-beta.26](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2021-10-15)
+
+## ✨ New Features
+- [`7a0a9fe`](https://github.com/TomokiMiyauci/react-hookable/commit/7a0a9fe)   Add &#x60;useConditionalEffect&#x60; for effect on condition
+
 # [v1.0.0-beta.25](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2021-10-13)
 
 ## ✨ New Features
