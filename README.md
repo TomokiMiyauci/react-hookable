@@ -76,6 +76,7 @@ These are highly abstract hooks that enhance the standard hooks in `react` or `p
 - [`useAsyncEffect`](docs/useAsyncEffect.mdx) - Hooks for asynchronous `useEffect` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useasynceffect)
 - [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useasyncmemo)
 - [`useUpdateEffect`](docs/useUpdateEffect.mdx) - Hooks for effect on update dependency [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useupdateeffect)
+- [`useConditionalEffect`](docs/useConditionalEffect.mdx) - `useEffect` with conditional function [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useconditionaleffect)
 
 ## Lifecycle
 

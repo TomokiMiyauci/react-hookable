@@ -1,6 +1,7 @@
 export { useAsyncEffect } from '@/useAsyncEffect'
 export { useAsyncMemo } from '@/useAsyncMemo'
 export { useBoolean } from '@/useBoolean'
+export { useConditionalEffect } from '@/useConditionalEffect'
 export { useDebounce } from '@/useDebounce'
 export { useEventListener } from '@/useEventListener'
 export { useFetch } from '@/useFetch'
