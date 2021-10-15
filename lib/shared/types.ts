@@ -1,3 +1,7 @@
+import type { DependencyList } from 'react'
+
+import type { Maybe } from '@/utils/types'
+
 /**
  * Types of Event loop options
  */
@@ -17,4 +21,13 @@ type Position = {
   y: number
 }
 
-export type { EventLoopOptions, Position }
+/**
+ * Define effect
+ */
+type UseEffect<T extends Record<PropertyKey, unknown>, R = void> = (
+  options: T,
+  deps: DependencyList,
+  condition?: () => Maybe<boolean>
+) => R
+
+export type { EventLoopOptions, Position, UseEffect }

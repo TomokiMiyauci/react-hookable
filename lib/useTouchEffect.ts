@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { DependencyList } from 'react'
 import { RefObject, useState } from 'react'
 
 import { takeCurrent } from '@/shared'
+import type { UseEffect } from '@/shared/types'
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useEventListener } from '@/useEventListener'
 import { useUpdateEffect } from '@/useUpdateEffect'
-import type { Maybe } from '@/utils/types'
 
 type UseTouchEffect =
   | {
@@ -58,7 +57,7 @@ type UseTouchEffect =
  * @see https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect
  * @beta
  */
-const useTouchEffect = <T extends DependencyList>(
+const useTouchEffect: UseEffect<UseTouchEffect> = (
   {
     target,
     onTouchMove,
@@ -66,9 +65,9 @@ const useTouchEffect = <T extends DependencyList>(
     onTouchStart,
     passive = true,
     ...addEventListenerOptions
-  }: UseTouchEffect,
-  deps: T,
-  condition?: (...args: T) => Maybe<boolean>
+  },
+  deps,
+  condition
 ): void => {
   const { add, remove } = useEventListener()
   const [startEvent, setStartEvent] = useState<TouchEvent>()
