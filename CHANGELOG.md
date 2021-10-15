@@ -1,3 +1,15 @@
+# [v1.0.0-beta.27](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2021-10-15)
+
+## ✨ New Features
+- [`ced31d5`](https://github.com/TomokiMiyauci/react-hookable/commit/ced31d5)   Add &#x60;useTouchEffect&#x60; for TouchEvent effect 
+- [`e062ac3`](https://github.com/TomokiMiyauci/react-hookable/commit/e062ac3)   Add &#x60;useSwipeEffectState&#x60; what redesign &#x60;useSwipeState&#x60; 
+
+## 🐛 Bug Fixes
+- [`80d7b4c`](https://github.com/TomokiMiyauci/react-hookable/commit/80d7b4c)   Change &#x60;useConditionalEffect&#x60; interface 
+- [`b6098bc`](https://github.com/TomokiMiyauci/react-hookable/commit/b6098bc)   Fix &#x60;useConditionalEffect&#x60; interface of condition 
+- [`51881f5`](https://github.com/TomokiMiyauci/react-hookable/commit/51881f5)   Fix &#x60;useTouchEffect&#x60; interface 
+- [`da78716`](https://github.com/TomokiMiyauci/react-hookable/commit/da78716)   Change &#x60;EventMap&#x60; types
+
 # [v1.0.0-beta.26](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2021-10-15)
 
 ## ✨ New Features
