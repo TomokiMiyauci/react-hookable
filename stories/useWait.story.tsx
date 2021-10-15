@@ -52,7 +52,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'useWait',
+  title: 'procedure/useWait',
   component: Demo,
   parameters: {
     docs: {

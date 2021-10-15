@@ -1,5 +1,5 @@
 import type { MutableRefObject } from 'react'
-import { useRef } from 'react'
+import { RefObject, useRef } from 'react'
 
 import { VFn } from '@/utils/types'
 type RefArrayReturn<T> = {
@@ -21,4 +21,11 @@ const useRefArray = <T>(initialState: T[] = []): RefArrayReturn<T> => {
   }
 }
 
-export { useRefArray }
+const takeCurrent = <T>(maybeRef: T | RefObject<T>): T | null => {
+  if ('current' in maybeRef) {
+    return maybeRef.current
+  }
+  return maybeRef
+}
+
+export { takeCurrent, useRefArray }

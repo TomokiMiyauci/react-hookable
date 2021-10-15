@@ -21,10 +21,12 @@ yarn add react-hook@beta
 
 ## Type of hooks
 
-We have classified hooks into four categories.
+We have classified hooks into six categories.
 Each category has a different interface.
 
 - [StateSet](#stateset) => `[state/{ states }, dispatcher/{ dispatchers }]`
+- [Effect](#effect) => `void`
+- [EffectState](#effect-state) => `[state/{ states }, dispatcher/{ dispatchers }]`
 - [Procedure](#procedure) => `{ appliers }`
 - [Enhancement](#enhancement) extends `react` / `preact` standard hooks
 - [Lifecycle](#lifecycle) Component lifecycle
@@ -49,7 +51,33 @@ const [state, dispatcher] = useStateSet(...)
 - [`useHashState`](docs/useHashState.mdx) - Tracks location hash value [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usehashstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usenumber)
 - [`useSequenceState`](docs/useSequenceState.mdx) - Prevents other processes from running until the end of the process. This is ideal for preventing chattering. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usesequencestate)
+- [`useSwipeState`](docs/useSwipeState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-useswipestate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useWindowScrollState`](docs/useWindowScrollState.mdx) - Reactive window scroll [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usewindowscrollstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
+
+## Effect
+
+Effect deals with side effects. It does not have a return value like `useEffect`. It takes as argument a `condition` function that handles the effect dynamically.
+
+### Interface
+
+```tsx
+useMyEffect(effect, deps, () => Maybe<boolean>) // void
+```
+
+[`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
+
+## Effect State
+
+Effect State is a hook to handle side effects with reactive state. Effect is an extension of `useEffect` with a conditional execution.
+The return value is a set of reactive states and their dispatches.
+
+### Interface
+
+```tsx
+const [states, dispatches] = useEffectState(options, deps, condition)
+```
+
+[`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
 
 ## Procedure
 
@@ -63,9 +91,9 @@ const { appliers, _ref } = useProcedure(...)
 
 - [`useDebounce`](docs/useDebounce.mdx) - Safe debounce function that can be executed anywhere [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usedebounce) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useEventListener`](docs/useEventListener.mdx) - Returns a set of event listeners `add` and `remove` functions that can be called anywhere. The event listeners will automatically be removed on unmount. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useeventlistener) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
+- [`useFetch`](docs/useFetch.mdx) - Safe fetch hooks that abort http request on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usefetch) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useShortcut`](docs/useShortcut.mdx) - Hooks for `keydown` shortcut dispatcher [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useshortcut) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useTimeout`](docs/useTimeout.mdx) - Safe timeout function that provides named timer setter and clearer, auto clear timer when unmounted [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usetimeout) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
-- [`useUnmount`](docs/useUnmount.mdx) - Register unmount callback [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useunmount)
 - [`useWait`](docs/useWait.mdx) - Safe process wait [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usewait) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ## Enhancement
@@ -75,12 +103,14 @@ These are highly abstract hooks that enhance the standard hooks in `react` or `p
 - [`useAsyncEffect`](docs/useAsyncEffect.mdx) - Hooks for asynchronous `useEffect` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useasynceffect)
 - [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useasyncmemo)
 - [`useUpdateEffect`](docs/useUpdateEffect.mdx) - Hooks for effect on update dependency [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useupdateeffect)
+- [`useConditionalEffect`](docs/useConditionalEffect.mdx) - `useEffect` with conditional function [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useconditionaleffect)
 
 ## Lifecycle
 
 Component lifecycle
 
 - [`useIsUnmounted`](docs/useIsUnmounted.mdx) - Ref of isUnmounted or not [![tag][demo]](https://react-hookable.vercel.app/?path=/story/lifecycle-useisunmounted)
+- [`useUnmount`](docs/useUnmount.mdx) - Register unmount callback [![tag][demo]](https://react-hookable.vercel.app/?path=/story/lifecycle-useunmount)
 
 ## Contributing
 

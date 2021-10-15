@@ -7,6 +7,8 @@ import type { IsNever, VFn } from '@/utils/types'
 
 type EventMap<T extends EventTarget> = T extends HTMLElement
   ? HTMLElementEventMap
+  : T extends SVGElement
+  ? SVGElementEventMap
   : T extends Element
   ? ElementEventMap
   : T extends Document

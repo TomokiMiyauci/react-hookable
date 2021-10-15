@@ -1,0 +1,28 @@
+# useSwipeState
+
+Reactive swipe detection based on [`TouchEvents`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent)
+
+## Usage
+
+```tsx
+import { useSwipeState } from 'react-hookable'
+import { useRef, useEffect } from 'react'
+const [
+  { isSwiping, direction, lengthX, lengthY, coordsStart, coordsEnd },
+  { use, disuse, reset }
+] = useSwipeState()
+
+const ref = useRef<HTMLDivElement>(null)
+
+useEffect(() => {
+  if (!ref.current) return
+  use(ref.current)
+}, [])
+
+const clickHandler = () => {
+  if (!ref.current) return
+  use(ref.current)
+}
+
+return <div ref={ref} />
+```
