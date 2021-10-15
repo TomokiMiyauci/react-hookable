@@ -1,6 +1,7 @@
 import type { DependencyList, EffectCallback } from 'react'
 import { useEffect } from 'react'
 
+import type { Maybe } from '@/utils/types'
 /**
  * `useEffect` with conditional function
  * @param effect - Imperative function that can return a cleanup function
@@ -18,7 +19,7 @@ import { useEffect } from 'react'
 const useConditionalEffect = (
   effect: EffectCallback,
   deps: DependencyList,
-  condition?: () => boolean | undefined
+  condition?: () => Maybe<boolean>
 ): void => {
   useEffect(() => {
     if (typeof condition === 'function' && condition() !== true) return
