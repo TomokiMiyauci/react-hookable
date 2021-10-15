@@ -77,4 +77,20 @@ describe('useConditionalEffect', () => {
     rerender({ a: true, b: true, c: true })
     expect(effect).toHaveBeenCalledTimes(1)
   })
+
+  it('should effect when not pass condition', () => {
+    const effect = jest.fn()
+    const { rerender } = renderHook(
+      ({ a }) => useConditionalEffect(effect, [a]),
+      {
+        initialProps: {
+          a: false
+        }
+      }
+    )
+
+    expect(effect).toHaveBeenCalledTimes(1)
+    rerender({ a: true })
+    expect(effect).toHaveBeenCalledTimes(2)
+  })
 })

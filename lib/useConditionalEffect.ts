@@ -5,7 +5,7 @@ import { useEffect } from 'react'
  * `useEffect` with conditional function
  * @param effect - Imperative function that can return a cleanup function
  * @param deps - If present, effect will only activate if the values in the list change
- * @param condition - The conditional function that effect or not. Args is updated states
+ * @param condition - The conditional function that effect or not. Args is updated deps. If return `true` effect, otherwise not.
  *
  * @example
  * ```tsx
@@ -18,10 +18,10 @@ import { useEffect } from 'react'
 const useConditionalEffect = <T extends DependencyList>(
   effect: EffectCallback,
   deps: T,
-  condition: (...args: T) => boolean | undefined
+  condition?: (...args: T) => boolean | undefined
 ): void => {
   useEffect(() => {
-    if (condition(...deps) !== true) return
+    if (typeof condition === 'function' && condition(...deps) !== true) return
     return effect()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
