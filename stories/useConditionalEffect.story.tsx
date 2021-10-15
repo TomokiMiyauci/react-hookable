@@ -17,7 +17,7 @@ export const Demo: FunctionalComponent = () => {
       })
     },
     [state],
-    (state) => state
+    () => state
   )
   return (
     <>

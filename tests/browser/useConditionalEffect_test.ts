@@ -37,8 +37,7 @@ describe('useConditionalEffect', () => {
   it('should not effect when condition is undefined or false', () => {
     const effect = jest.fn()
     const { rerender } = renderHook(
-      ({ isShow }) =>
-        useConditionalEffect(effect, [isShow], (isShow) => isShow),
+      ({ isShow }) => useConditionalEffect(effect, [isShow], () => isShow),
       {
         initialProps: {
           isShow: false
@@ -60,7 +59,7 @@ describe('useConditionalEffect', () => {
     const effect = jest.fn()
     const { rerender } = renderHook(
       ({ a, b, c }) =>
-        useConditionalEffect(effect, [a, b, c], (a, b, c) => a && b && c),
+        useConditionalEffect(effect, [a, b, c], () => a && b && c),
       {
         initialProps: {
           a: false,
