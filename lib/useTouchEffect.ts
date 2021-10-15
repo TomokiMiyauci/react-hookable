@@ -41,7 +41,7 @@ type UseTouchEffect =
  * `TouchEvents` effect
  * @param touchEffect - Define binding `target` with `TouchEvents`, effect `onTouchStart`, `onTouchMove` and `onTouchEnd`
  * @param deps - Effect will only activate if the values in the list change
- * @param condition - The conditional function that effect or not. Args is updated deps. If return `true` effect, otherwise not.
+ * @param condition - The conditional function that effect or not. If return `true` effect, otherwise not.
  *
  * @example
  * ```tsx
