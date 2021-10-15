@@ -21,10 +21,12 @@ yarn add react-hook@beta
 
 ## Type of hooks
 
-We have classified hooks into four categories.
+We have classified hooks into six categories.
 Each category has a different interface.
 
 - [StateSet](#stateset) => `[state/{ states }, dispatcher/{ dispatchers }]`
+- [Effect](#effect) => `void`
+- [EffectState](#effect-state) => `[state/{ states }, dispatcher/{ dispatchers }]`
 - [Procedure](#procedure) => `{ appliers }`
 - [Enhancement](#enhancement) extends `react` / `preact` standard hooks
 - [Lifecycle](#lifecycle) Component lifecycle
@@ -51,6 +53,31 @@ const [state, dispatcher] = useStateSet(...)
 - [`useSequenceState`](docs/useSequenceState.mdx) - Prevents other processes from running until the end of the process. This is ideal for preventing chattering. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usesequencestate)
 - [`useSwipeState`](docs/useSwipeState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-useswipestate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useWindowScrollState`](docs/useWindowScrollState.mdx) - Reactive window scroll [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usewindowscrollstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
+
+## Effect
+
+Effect deals with side effects. It does not have a return value like `useEffect`. It takes as argument a `condition` function that handles the effect dynamically.
+
+### Interface
+
+```tsx
+useMyEffect(effect, deps, () => Maybe<boolean>) // void
+```
+
+[`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
+
+## Effect State
+
+Effect State is a hook to handle side effects with reactive state. Effect is an extension of `useEffect` with a conditional execution.
+The return value is a set of reactive states and their dispatches.
+
+### Interface
+
+```tsx
+const [states, dispatches] = useEffectState(options, deps, condition)
+```
+
+[`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
 
 ## Procedure
 

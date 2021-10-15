@@ -1,0 +1,18 @@
+# useSwipeEffectState
+
+Reactive swipe detection based on `TouchEvents`
+
+## Usage
+
+```tsx
+import { useSwipeEffectState } from 'react-hookable'
+
+const [
+  { isSwiping, direction, lengthX, lengthY, coordsStart, coordsEnd },
+  { reset }
+] = useSwipeEffectState(
+  { target: window, onSwipe, onSwipeStart, onSwipeEnd },
+  deps,
+  condition
+)
+```
