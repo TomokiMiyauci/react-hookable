@@ -1,5 +1,6 @@
 import type { StorybookConfig } from '@storybook/core-common'
 import { join } from 'path'
+import postcss from 'postcss'
 
 const toPath = (path: string): string => join(process.cwd(), path)
 
@@ -15,6 +16,14 @@ const config: StorybookConfig = {
       options: {
         actions: false,
         controls: false
+      }
+    },
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        postcssLoaderOptions: {
+          implementation: postcss
+        }
       }
     }
   ],
