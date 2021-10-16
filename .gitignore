@@ -6,3 +6,5 @@ dist-ssr
 *.log
 coverage
 storybook-static
+
+.vercel
