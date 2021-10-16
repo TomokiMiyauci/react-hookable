@@ -1,0 +1,17 @@
+# useTimeoutEffect
+
+`Timeout` effect what timer clear automatically on unmount
+
+## Usage
+
+```tsx
+import { useTimeoutEffect } from 'react-hookable'
+useTimeoutEffect(
+  {
+    callback: SyncFn,
+    ms: 1000
+  },
+  deps,
+  condition
+)
+```
