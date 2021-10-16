@@ -118,7 +118,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'useFetchEffect',
+  title: 'effect/useFetchEffect',
   component: Demo,
   parameters: {
     docs: {
