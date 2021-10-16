@@ -1,3 +1,11 @@
+# [v1.0.0-beta.28](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2021-10-16)
+
+## ✨ New Features
+- [`fdc3a9e`](https://github.com/TomokiMiyauci/react-hookable/commit/fdc3a9e)   Add &#x60;useEventListenerEffect&#x60; for automatically clean up 
+
+## 🐛 Bug Fixes
+- [`84db90f`](https://github.com/TomokiMiyauci/react-hookable/commit/84db90f)   Diprecated all procedure
+
 # [v1.0.0-beta.27](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2021-10-15)
 
 ## ✨ New Features
