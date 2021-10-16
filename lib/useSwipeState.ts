@@ -77,7 +77,7 @@ const initialPosition: Position = { x: 0, y: 0 }
  * ```
  *
  * @see
- * @beta
+ * @deprecated 1.0.0-beta.30
  */
 const useSwipeState = (): UseSwipeStateReturn => {
   const [isSwiping, { on: swipeOn, off: swipeOff }] = useBoolean()

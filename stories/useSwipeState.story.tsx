@@ -83,7 +83,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'useSwipeState',
+  title: 'stateset/useSwipeState',
   component: Demo,
   parameters: {
     docs: {
