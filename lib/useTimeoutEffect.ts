@@ -10,7 +10,7 @@ type UseTimeoutEffectOptions = {
 /**
  * `Timeout` effect
  * @param options - Timeout options
- * @param deps - If present, effect will only activate if the values in the list change
+ * @param deps - If present, effect will only activate if the values in the list change.
  * @param condition - The conditional function that effect or not. If return `true` effect, otherwise not.
  *
  * @example

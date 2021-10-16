@@ -33,7 +33,7 @@ type UseEventListenerEffectOptions<
 /**
  * `EventListener` effect that clean up automatically
  * @param options - EventListener options
- * @param deps - Effect will only activate if the values in the list change
+ * @param deps - If present, effect will only activate if the values in the list change.
  * @param condition - The conditional function that effect or not. If return `true` effect, otherwise not.
  *
  * @example

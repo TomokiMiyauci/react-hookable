@@ -18,7 +18,7 @@ import type { Maybe } from '@/utils/types'
  */
 const useConditionalEffect = (
   effect: EffectCallback,
-  deps: DependencyList,
+  deps?: DependencyList,
   condition?: () => Maybe<boolean>
 ): void => {
   useEffect(() => {

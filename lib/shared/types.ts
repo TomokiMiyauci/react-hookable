@@ -26,7 +26,7 @@ type Position = {
  */
 type UseEffect<T extends Record<PropertyKey, unknown>, R = void> = (
   options: T,
-  deps: DependencyList,
+  deps?: DependencyList,
   condition?: () => Maybe<boolean>
 ) => R
 
