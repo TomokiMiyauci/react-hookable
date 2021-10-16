@@ -13,20 +13,29 @@ Collection of essential React Composition Utilities
 
 ## Install
 
+### Node.js
+
 ```bash
 npm i react-hook@beta
 // or
 yarn add react-hook@beta
 ```
 
+### Deno
+
+```ts
+import {*} from 'https://esm.sh/react-hookable'
+```
+
 ## Type of hooks
 
-We have classified hooks into six categories.
+We have classified hooks into seven categories.
 Each category has a different interface.
 
-- [StateSet](#stateset) => `[state/{ states }, dispatcher/{ dispatchers }]`
+- [State](#state) => `[state/{ states }, dispatcher/{ dispatchers }]`
 - [Effect](#effect) => `void`
 - [EffectState](#effect-state) => `[state/{ states }, dispatcher/{ dispatchers }]`
+- [Ref](#ref) => `{ _ref, ... }`
 - [Procedure](#procedure) => `{ appliers }`
 - [Enhancement](#enhancement) extends `react` / `preact` standard hooks
 - [Lifecycle](#lifecycle) Component lifecycle
@@ -42,14 +51,14 @@ Set of stateful value, and a function to update it. All functions are interfaces
 ### Interface
 
 ```tsx
-const [state, dispatcher] = useStateSet(...)
+const [state, dispatcher] = useMyState(...)
 // state: state/{ states }
 // dispatcher: dispatch/{ dispatches }
 ```
 
-- [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-useboolean)
+- [`useBoolean`](docs/useBoolean.mdx) - Switchable `boolean` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/state-useboolean)
+- [`useNumber`](docs/useNumber.mdx) - Basic number counter [![tag][demo]](https://react-hookable.vercel.app/?path=/story/state-usenumber)
 - [`useHashState`](docs/useHashState.mdx) - Tracks location hash value [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usehashstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
-- [`useNumber`](docs/useNumber.mdx) - Basic number counter [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usenumber)
 - [`useSequenceState`](docs/useSequenceState.mdx) - Prevents other processes from running until the end of the process. This is ideal for preventing chattering. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usesequencestate)
 - [`useSwipeState`](docs/useSwipeState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-useswipestate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useWindowScrollState`](docs/useWindowScrollState.mdx) - Reactive window scroll [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usewindowscrollstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
@@ -64,7 +73,9 @@ Effect deals with side effects. It does not have a return value like `useEffect`
 useMyEffect(effect, deps, () => Maybe<boolean>) // void
 ```
 
-[`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
+- [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
+- [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
+- [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
 
 ## Effect State
 
@@ -77,7 +88,19 @@ The return value is a set of reactive states and their dispatches.
 const [states, dispatches] = useEffectState(options, deps, condition)
 ```
 
-[`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
+- [`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
+
+### Ref
+
+Ref is a utility for `useRef`. The return value of all hooks is a key value object, containing the original `_ref`.
+
+### Interface
+
+```tsx
+const { ..., _ref: MutableObject | RefObject } = useMyRef()
+```
+
+- [`useIsFirstMountRef`](docs/useIsFirstMountRef.mdx) - Ref of first mount or not. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/ref-useidfirstmountref)
 
 ## Procedure
 

@@ -57,7 +57,7 @@ type Keys =
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/procedure-useshortcut
- * @beta
+ * @deprecated 1.0.0-beta.28
  */
 
 const useShortcut = (

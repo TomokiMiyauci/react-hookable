@@ -15,7 +15,7 @@ type UseFetchReturn = {
  * @example
  * ```tsx
  * const { use: fetch } = useFetch()
- * fecth(input, requestInit).catch((e: Error) => {
+ * fetch(input, requestInit).catch((e: Error) => {
  *   if (e.name === 'AbortError') {
  *     // catch abort error
  *   }
@@ -26,7 +26,7 @@ type UseFetchReturn = {
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/procedure-usefetch
- * @beta
+ * @deprecated 1.0.0-beta.28
  */
 const useFetch = (): UseFetchReturn => {
   const abortController = useRef<AbortController>(new AbortController())

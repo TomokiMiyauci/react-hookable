@@ -1,0 +1,17 @@
+# useEventListenerEffect
+
+`EventListener` effect that clean up automatically
+
+## Usage
+
+```tsx
+import { useEventListenerEffect } from 'react-hookable'
+useEventListenerEffect({
+  target: () => document,
+  type: 'resize',
+  listener: (ev) => {
+    // fire on resize
+  },
+  []
+})
+```

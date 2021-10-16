@@ -1,3 +1,20 @@
+# [v1.0.0-beta.29](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2021-10-16)
+
+## ✨ New Features
+- [`75a54dc`](https://github.com/TomokiMiyauci/react-hookable/commit/75a54dc)   Add &#x60;useTimeoutEffect&#x60; for safe timeout 
+- [`95c247c`](https://github.com/TomokiMiyauci/react-hookable/commit/95c247c)   Add &#x60;useIsFirstMountRef&#x60; for ref of first mount or not 
+
+## 🐛 Bug Fixes
+- [`fa44163`](https://github.com/TomokiMiyauci/react-hookable/commit/fa44163)   Change &#x60;useConditionalEffect&#x60; interface
+
+# [v1.0.0-beta.28](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2021-10-16)
+
+## ✨ New Features
+- [`fdc3a9e`](https://github.com/TomokiMiyauci/react-hookable/commit/fdc3a9e)   Add &#x60;useEventListenerEffect&#x60; for automatically clean up 
+
+## 🐛 Bug Fixes
+- [`84db90f`](https://github.com/TomokiMiyauci/react-hookable/commit/84db90f)   Diprecated all procedure
+
 # [v1.0.0-beta.27](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2021-10-15)
 
 ## ✨ New Features

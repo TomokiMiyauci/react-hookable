@@ -42,7 +42,7 @@ type UseTimeoutReturn = {
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/procedure-usetimeout
- * @beta
+ * @deprecated 1.0.0-beta.28
  */
 const useTimeout = ({
   clearAuto

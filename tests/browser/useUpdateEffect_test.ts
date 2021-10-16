@@ -1,28 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import { useIsFirstMount, useUpdateEffect } from '@/useUpdateEffect'
-
-describe('useIsFirstMount', () => {
-  it('should be defined', () => {
-    expect(useIsFirstMount).toBeDefined()
-  })
-
-  it('should return Boolean', () => {
-    const { result } = renderHook(() => useIsFirstMount())
-
-    expect(result.current).toEqual(expect.any(Boolean))
-  })
-
-  it('should return true when the first render then return false', () => {
-    const { result, rerender } = renderHook(() => useIsFirstMount())
-
-    expect(result.current).toBeTruthy()
-    rerender()
-    expect(result.current).toBeFalsy()
-    rerender()
-    expect(result.current).toBeFalsy()
-  })
-})
+import { useUpdateEffect } from '@/useUpdateEffect'
 
 describe('useUpdateEffect', () => {
   it('should be defined', () => {

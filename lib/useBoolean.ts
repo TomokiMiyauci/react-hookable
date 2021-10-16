@@ -19,7 +19,7 @@ import type { VFn } from '@/utils/types'
  * state // false
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/stateset-useboolean
+ * @see https://react-hookable.vercel.app/?path=/story/state-useboolean
  * @beta
  */
 const useBoolean = (
