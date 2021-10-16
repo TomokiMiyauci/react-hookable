@@ -13,10 +13,18 @@ Collection of essential React Composition Utilities
 
 ## Install
 
+### Node.js
+
 ```bash
 npm i react-hook@beta
 // or
 yarn add react-hook@beta
+```
+
+### Deno
+
+```ts
+import {*} from 'https://esm.sh/react-hookable'
 ```
 
 ## Type of hooks
@@ -64,6 +72,7 @@ Effect deals with side effects. It does not have a return value like `useEffect`
 useMyEffect(effect, deps, () => Maybe<boolean>) // void
 ```
 
+[`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
 [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
 
 ## Effect State
