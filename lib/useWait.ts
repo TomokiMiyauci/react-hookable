@@ -20,7 +20,7 @@ type UseWaitReturn = {
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/procedure-usewait
- * @beta
+ * @deprecated 1.0.0-beta.28
  */
 const useWait = (): UseWaitReturn => {
   const { use: _use, _ref } = useTimeout()

@@ -38,7 +38,7 @@ const initializer = (value?: string | (() => string)): string => {
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/stateset-usehash
- * @beta
+ * @deprecated 1.0.0-beta.28
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const useHashState = <T extends boolean = true>(
