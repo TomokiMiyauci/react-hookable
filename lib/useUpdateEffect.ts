@@ -1,16 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
-const useIsFirstMount = (): boolean => {
-  const isFirstMount = useRef<boolean>(true)
-
-  if (isFirstMount.current) {
-    isFirstMount.current = false
-
-    return true
-  }
-
-  return isFirstMount.current
-}
+import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 
 /**
  * Hooks for effect on update dependency
@@ -31,7 +21,7 @@ const useIsFirstMount = (): boolean => {
  * @beta
  */
 const useUpdateEffect: typeof useEffect = (effect, deps) => {
-  const isFirstMount = useIsFirstMount()
+  const { isFirstMount } = useIsFirstMountRef()
 
   useEffect(() => {
     if (isFirstMount) return
@@ -41,4 +31,4 @@ const useUpdateEffect: typeof useEffect = (effect, deps) => {
   }, deps)
 }
 
-export { useIsFirstMount, useUpdateEffect }
+export { useUpdateEffect }
