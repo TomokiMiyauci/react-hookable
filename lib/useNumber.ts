@@ -40,7 +40,7 @@ const reducer: Reducer<
  * set(100)// state: 100
  * ```
  *
- * @see https://react-hookable.vercel.app/?path=/story/stateset-usenumber
+ * @see https://react-hookable.vercel.app/?path=/story/state-usenumber
  * @beta
  */
 const useNumber = (

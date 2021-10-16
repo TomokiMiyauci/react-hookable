@@ -24,7 +24,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'stateset/useNumber',
+  title: 'state/useNumber',
   component: Demo,
   parameters: {
     docs: {
