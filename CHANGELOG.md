@@ -1,3 +1,8 @@
+# [v1.0.0-beta.30](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2021-10-16)
+
+## 🐛 Bug Fixes
+- [`4dbd7c4`](https://github.com/TomokiMiyauci/react-hookable/commit/4dbd7c4)   Deprecated &#x60;useSwipeState&#x60;
+
 # [v1.0.0-beta.29](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2021-10-16)
 
 ## ✨ New Features
