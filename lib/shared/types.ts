@@ -1,4 +1,4 @@
-import type { DependencyList } from 'react'
+import type { DependencyList, MutableRefObject, RefObject } from 'react'
 
 import type { Maybe } from '@/utils/types'
 
@@ -22,7 +22,7 @@ type Position = {
 }
 
 /**
- * Define effect
+ * Define effect hooks
  */
 type UseEffect<T extends Record<PropertyKey, unknown>, R = void> = (
   options: T,
@@ -30,4 +30,15 @@ type UseEffect<T extends Record<PropertyKey, unknown>, R = void> = (
   condition?: () => Maybe<boolean>
 ) => R
 
-export type { EventLoopOptions, Position, UseEffect }
+/**
+ * Define ref hooks
+ * @typeParam T - Return hooks value with `_ref`
+ */
+type UseRef<
+  T extends {
+    _ref: RefObject<unknown> | MutableRefObject<unknown>
+    [k: PropertyKey]: unknown
+  }
+> = () => T
+
+export type { EventLoopOptions, Position, UseEffect, UseRef }

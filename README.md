@@ -29,12 +29,13 @@ import {*} from 'https://esm.sh/react-hookable'
 
 ## Type of hooks
 
-We have classified hooks into six categories.
+We have classified hooks into seven categories.
 Each category has a different interface.
 
 - [State](#state) => `[state/{ states }, dispatcher/{ dispatchers }]`
 - [Effect](#effect) => `void`
 - [EffectState](#effect-state) => `[state/{ states }, dispatcher/{ dispatchers }]`
+- [Ref](#ref) => `{ _ref, ... }`
 - [Procedure](#procedure) => `{ appliers }`
 - [Enhancement](#enhancement) extends `react` / `preact` standard hooks
 - [Lifecycle](#lifecycle) Component lifecycle
@@ -72,9 +73,9 @@ Effect deals with side effects. It does not have a return value like `useEffect`
 useMyEffect(effect, deps, () => Maybe<boolean>) // void
 ```
 
-[`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
-[`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
-[`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
+- [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
+- [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
+- [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
 
 ## Effect State
 
@@ -87,7 +88,19 @@ The return value is a set of reactive states and their dispatches.
 const [states, dispatches] = useEffectState(options, deps, condition)
 ```
 
-[`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
+- [`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
+
+### Ref
+
+Ref is a utility for `useRef`. The return value of all hooks is a key value object, containing the original `_ref`.
+
+### Interface
+
+```tsx
+const { ..., _ref: MutableObject | RefObject } = useMyRef()
+```
+
+- [`useIsFirstMountRef`](docs/useIsFirstMountRef.mdx) - Ref of first mount or not. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/ref-useidfirstmountref)
 
 ## Procedure
 
