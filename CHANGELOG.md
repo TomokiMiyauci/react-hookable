@@ -1,3 +1,8 @@
+# [v1.0.0-beta.32](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2021-10-17)
+
+## ✨ New Features
+- [`6c9b2f0`](https://github.com/TomokiMiyauci/react-hookable/commit/6c9b2f0)   Add &#x60;useAnimationFrameEffect&#x60; for &#x60;requestAnimationFrame&#x60;
+
 # [v1.0.0-beta.31](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2021-10-17)
 
 ## ✨ New Features
