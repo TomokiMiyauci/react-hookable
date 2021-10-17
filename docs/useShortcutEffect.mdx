@@ -1,0 +1,19 @@
+# useShortcutEffect
+
+Effect for `keydown` as shortcut
+
+## Usage
+
+```tsx
+import { useShortcutEffect } from 'react-hookable'
+useShortcutEffect(
+  {
+    keyMap: {
+      cmd: true,
+      code: 'KeyK'
+    },
+    onShortcut: SyncFn
+  },
+  []
+)
+```
