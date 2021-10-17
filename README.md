@@ -73,6 +73,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 ```
 
 - [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
+- [`useFetchEffect`](docs/useFetchEffect.mdx) - Auto aborting `fetch` API effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usefetcheffect)
 - [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
 - [`useShortcutEffect`](docs/useShortcutEffect.mdx) - Effect for `keydown` as shortcut [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useshortcuteffect)
 - [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
