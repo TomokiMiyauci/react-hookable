@@ -72,7 +72,7 @@ const Template: Story<SwipeProps> = (args) => {
 export const Demo = Template.bind({})
 
 export default {
-  title: 'component/swipe',
+  title: 'component/Swipe',
   component: Swipe
 } as Meta<typeof Swipe>
 

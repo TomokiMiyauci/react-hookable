@@ -22,7 +22,8 @@ export const Demo: FunctionalComponent = () => {
         reset()
       }
     },
-    []
+    [use],
+    () => use
   )
 
   const width = useMemo(() => {
