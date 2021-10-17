@@ -1,3 +1,8 @@
+# [v1.0.0-beta.31](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2021-10-17)
+
+## ✨ New Features
+- [`3e99398`](https://github.com/TomokiMiyauci/react-hookable/commit/3e99398)   Add &#x60;useShortcutEffect&#x60; for bind shortcut to keydown
+
 # [v1.0.0-beta.30](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2021-10-16)
 
 ## 🐛 Bug Fixes
