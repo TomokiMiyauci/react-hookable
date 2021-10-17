@@ -134,3 +134,8 @@ const useSwipeEffectState: UseEffect<
 }
 
 export { initialPosition, useSwipeEffectState }
+export type {
+  UseSwipeEffectDispatch,
+  UseSwipeEffectState,
+  UseSwipeEffectStateOptions
+}
