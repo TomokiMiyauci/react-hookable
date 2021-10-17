@@ -56,7 +56,7 @@ const useEventListenerEffect = <
   K extends keyof EventMap<T>
 >(
   { target, type, listener, options }: UseEventListenerEffectOptions<T, K>,
-  deps: DependencyList,
+  deps?: DependencyList,
   condition?: () => Maybe<boolean>
 ): void => {
   useConditionalEffect(

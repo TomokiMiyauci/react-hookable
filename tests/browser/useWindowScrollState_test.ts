@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import type { Position } from '@/useWindowScrollState'
+import type { Position } from '@/shared/types'
 import { useWindowScrollState } from '@/useWindowScrollState'
 
 const mockScrollPosition = ({ x, y }: Partial<Position>): void => {

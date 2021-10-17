@@ -29,7 +29,7 @@ const Children: FunctionalComponent<{
     {
       input,
 
-      onResolve: (res) => {
+      onResolve: async (res) => {
         if (res.ok) {
           toast({
             title: 'Success',
@@ -37,9 +37,11 @@ const Children: FunctionalComponent<{
             status: 'success'
           })
         } else {
+          const result = await res.json()
+
           toast({
             title: 'Error',
-            description: 'Fail to fetch',
+            description: result,
             status: 'error'
           })
         }
@@ -84,7 +86,9 @@ const Children: FunctionalComponent<{
 }
 export const Demo: FunctionalComponent = () => {
   const [isShow, { toggle }] = useBoolean(true)
-  const [url, setUrl] = useState('react-hookable.vercel.app/api/v1/debug')
+  const [url, setUrl] = useState(
+    'react-hookable-tomoki-miyauci.vercel.app/api/v1/debug?wait=3000'
+  )
 
   return (
     <>
@@ -118,7 +122,7 @@ export const Demo: FunctionalComponent = () => {
 }
 
 export default {
-  title: 'useFetchEffect',
+  title: 'effect/useFetchEffect',
   component: Demo,
   parameters: {
     docs: {

@@ -41,4 +41,10 @@ type UseRef<
   }
 > = () => T
 
-export type { EventLoopOptions, Position, UseEffect, UseRef }
+/**
+ * Union types of `EventTarget`
+ * @typeParam T - Any `EventTarget`
+ */
+type Target<T extends EventTarget> = T | (() => T) | RefObject<T>
+
+export type { EventLoopOptions, Position, Target, UseEffect, UseRef }

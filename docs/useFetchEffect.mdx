@@ -1,0 +1,19 @@
+# useFetchEffect
+
+Auto aborting `fetch` API effect
+
+## Usage
+
+```tsx
+import { useFetchEffect } from 'react-hookable'
+useFetchEffect(
+  {
+    input: 'URL',
+    onResolve: (res) => {},
+    onAbort: () => {},
+    onReject: () => {},
+    onFinally: () => {}
+  },
+  []
+)
+```

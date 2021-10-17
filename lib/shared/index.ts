@@ -21,7 +21,10 @@ const useRefArray = <T>(initialState: T[] = []): RefArrayReturn<T> => {
   }
 }
 
-const takeCurrent = <T>(maybeRef: T | RefObject<T>): T | null => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const takeCurrent = <T extends Record<PropertyKey, any>>(
+  maybeRef: T | RefObject<T>
+): T | null => {
   if ('current' in maybeRef) {
     return maybeRef.current
   }

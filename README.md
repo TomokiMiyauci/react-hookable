@@ -60,7 +60,6 @@ const [state, dispatcher] = useMyState(...)
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter [![tag][demo]](https://react-hookable.vercel.app/?path=/story/state-usenumber)
 - [`useHashState`](docs/useHashState.mdx) - Tracks location hash value [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usehashstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useSequenceState`](docs/useSequenceState.mdx) - Prevents other processes from running until the end of the process. This is ideal for preventing chattering. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usesequencestate)
-- [`useSwipeState`](docs/useSwipeState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-useswipestate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useWindowScrollState`](docs/useWindowScrollState.mdx) - Reactive window scroll [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usewindowscrollstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ## Effect
@@ -74,7 +73,9 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 ```
 
 - [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
+- [`useFetchEffect`](docs/useFetchEffect.mdx) - Auto aborting `fetch` API effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usefetcheffect)
 - [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
+- [`useShortcutEffect`](docs/useShortcutEffect.mdx) - Effect for `keydown` as shortcut [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useshortcuteffect)
 - [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
 
 ## Effect State
@@ -112,12 +113,7 @@ A collection of functions that depend on `ref`. Often causes side effects. There
 const { appliers, _ref } = useProcedure(...)
 ```
 
-- [`useDebounce`](docs/useDebounce.mdx) - Safe debounce function that can be executed anywhere [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usedebounce) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useEventListener`](docs/useEventListener.mdx) - Returns a set of event listeners `add` and `remove` functions that can be called anywhere. The event listeners will automatically be removed on unmount. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useeventlistener) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
-- [`useFetch`](docs/useFetch.mdx) - Safe fetch hooks that abort http request on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usefetch) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
-- [`useShortcut`](docs/useShortcut.mdx) - Hooks for `keydown` shortcut dispatcher [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useshortcut) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
-- [`useTimeout`](docs/useTimeout.mdx) - Safe timeout function that provides named timer setter and clearer, auto clear timer when unmounted [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usetimeout) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
-- [`useWait`](docs/useWait.mdx) - Safe process wait [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-usewait) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ## Enhancement
 
