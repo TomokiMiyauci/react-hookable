@@ -7,4 +7,8 @@ import { <%= name %> } from '@/<%= name %>'
 
 describe('<%= name %>', () => {
   it('should be defined', () => expect(<%= name %>).toBeDefined())
+
+  it('should', () => {
+    renderHook(() => <%= name %>())
+  })
 })
