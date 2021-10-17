@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { RefObject, useState } from 'react'
 
-import { takeCurrent } from '@/shared'
 import type { UseEffect } from '@/shared/types'
-import { useConditionalEffect } from '@/useConditionalEffect'
-import { useEventListener } from '@/useEventListener'
+import { useEventListenerEffect } from '@/useEventListenerEffect'
 import { useUpdateEffect } from '@/useUpdateEffect'
 
 type UseTouchEffect =
@@ -69,10 +67,48 @@ const useTouchEffect: UseEffect<UseTouchEffect> = (
   deps,
   condition
 ): void => {
-  const { add, remove } = useEventListener()
   const [startEvent, setStartEvent] = useState<TouchEvent>()
   const [event, setEvent] = useState<TouchEvent>()
   const [endEvent, setEndEvent] = useState<TouchEvent>()
+
+  useEventListenerEffect(
+    {
+      target,
+      type: 'touchstart',
+      listener: setStartEvent,
+      options: {
+        ...addEventListenerOptions,
+        passive
+      }
+    },
+    deps,
+    condition
+  )
+
+  useEventListenerEffect(
+    {
+      target,
+      type: 'touchmove',
+      listener: setEvent,
+      options: {
+        ...addEventListenerOptions,
+        passive
+      }
+    },
+    deps,
+    condition
+  )
+
+  useEventListenerEffect(
+    {
+      target,
+      type: 'touchend',
+      listener: setEndEvent,
+      options: { ...addEventListenerOptions, passive }
+    },
+    deps,
+    condition
+  )
 
   useUpdateEffect(() => {
     onTouchStart?.(startEvent!)
@@ -85,44 +121,6 @@ const useTouchEffect: UseEffect<UseTouchEffect> = (
   useUpdateEffect(() => {
     onTouchEnd?.(endEvent!)
   }, [endEvent])
-
-  useConditionalEffect(
-    () => {
-      const current = takeCurrent(target)
-      if (!current) return
-
-      add(
-        current,
-        'touchstart',
-        (e) => {
-          setStartEvent(e)
-        },
-        { ...addEventListenerOptions, passive }
-      )
-
-      add(
-        current,
-        'touchmove',
-        (e) => {
-          setEvent(e)
-        },
-        { ...addEventListenerOptions, passive }
-      )
-
-      add(
-        current,
-        'touchend',
-        (e) => {
-          setEndEvent(e)
-        },
-        { ...addEventListenerOptions, passive }
-      )
-
-      return remove
-    },
-    deps,
-    condition
-  )
 }
 
 export { useTouchEffect }
