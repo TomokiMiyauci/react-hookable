@@ -21,6 +21,7 @@ import type { FunctionalComponent } from 'preact'
 import { useBoolean } from '@/useBoolean'
 import { useShortcutEffect } from '@/useShortcutEffect'
 
+// eslint-disable-next-line react/prop-types
 const WithPlus: FunctionalComponent = ({ children }) => <>{children} + </>
 export const Demo: FunctionalComponent = () => {
   const [enableMeta, { toggle: toggleMeta }] = useBoolean(false)
