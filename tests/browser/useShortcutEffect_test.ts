@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import type { MetaKey } from '@/useShortcut'
+import type { MetaKey } from '@/useShortcutEffect'
 import { Code, useShortcutEffect, validateKeyMap } from '@/useShortcutEffect'
 
 describe('useShortcutEffect', () => {

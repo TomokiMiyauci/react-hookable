@@ -11,7 +11,7 @@ export const Demo: FunctionalComponent = () => {
   const [imported, setImported] = useState<boolean>(false)
   const isInValid = useAsyncMemo(async () => {
     if (!email) return
-    const { default: isEmail } = await import('is-email')
+    const { default: isEmail } = await require('is-email')
     setImported(true)
     return !isEmail(email) as boolean
   }, [email])
