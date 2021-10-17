@@ -1,3 +1,8 @@
+# [v1.0.0-beta.33](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2021-10-17)
+
+## 🐛 Bug Fixes
+- [`058e281`](https://github.com/TomokiMiyauci/react-hookable/commit/058e281)   Export &#x60;useSwipeEffectState&#x60;
+
 # [v1.0.0-beta.32](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2021-10-17)
 
 ## ✨ New Features
