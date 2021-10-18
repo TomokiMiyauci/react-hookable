@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
-import { useEventListener } from '@/useEventListener'
+import { useEventListenerEffect } from '@/useEventListenerEffect'
 import { isBrowser } from '@/utils'
-
 const formatHash = (value: string): string => {
   if (value === '') return ' '
   return value.startsWith('#') ? value : `#${value}`
@@ -60,13 +59,14 @@ const useHashState = <T extends boolean = true>(
     [state]
   )
 
-  const { add } = useEventListener()
-
-  useEffect(() => {
-    add(window, 'hashchange', onHashChange)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  useEventListenerEffect(
+    {
+      target: () => window,
+      type: 'hashchange',
+      listener: onHashChange
+    },
+    []
+  )
 
   const hash = useMemo<
     '' | (T extends true ? `#${string}` : string & {})
