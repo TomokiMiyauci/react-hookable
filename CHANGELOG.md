@@ -1,3 +1,8 @@
+# [v1.0.0-beta.34](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2021-10-18)
+
+## ✨ New Features
+- [`a6bfd29`](https://github.com/TomokiMiyauci/react-hookable/commit/a6bfd29)   Add &#x60;useIntervalEffect&#x60; for &#x60;setInterval&#x60; timer
+
 # [v1.0.0-beta.33](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2021-10-17)
 
 ## 🐛 Bug Fixes
