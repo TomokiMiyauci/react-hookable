@@ -94,6 +94,7 @@ const [states, dispatches] = useEffectState(options, deps, condition)
 ```
 
 - [`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
+- [`useWindowScrollEffectState`](docs/useWindowScrollEffectState.mdx) - Reactive `window` scroll state [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-usewindowscrolleffectstate)
 
 ### Ref
 
