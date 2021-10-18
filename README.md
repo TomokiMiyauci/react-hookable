@@ -6,11 +6,11 @@ Collection of essential React Composition Utilities
 
 ## Feature
 
-- Consistent interface
-- Pure TypeScript
-- Full support for preact
-- Full support for Deno
-- Tested with CSR and SSR
+- :sparkles: Consistent interface
+- :memo: Pure TypeScript
+- :seedling: Full support for preact
+- :green_heart: Full support for Deno
+- :white_check_mark: Tested with CSR and SSR
 
 ## Install
 
@@ -76,6 +76,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 - [`useAnimationFrameEffect`](docs/useAnimationFrameEffect.mdx) - Effect for `requestAnimationFrame` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useanimationframeeffect)
 - [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
 - [`useFetchEffect`](docs/useFetchEffect.mdx) - Auto aborting `fetch` API effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usefetcheffect)
+- [`useIdleCallbackEffect`](docs/useIdleCallbackEffect.mdx) - Effect for `requestIdleCallback` with fallback that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useidlecallbackeffect)
 - [`useIntervalEffect`](docs/useIntervalEffect.mdx) - Effect for `setInterval` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintervaleffect)
 - [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
 - [`useShortcutEffect`](docs/useShortcutEffect.mdx) - Effect for `keydown` as shortcut [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useshortcuteffect)
