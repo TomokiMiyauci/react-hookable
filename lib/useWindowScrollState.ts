@@ -22,7 +22,7 @@ type WindowScrollStateReturn = [
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/stateset-usewindowscrollstate
- * @beta
+ * @deprecated 1.0.0-beta.36
  */
 const useWindowScrollState = (): WindowScrollStateReturn => {
   const [state, setState] = useState<MaybeRecord<Position>>({
