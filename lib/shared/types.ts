@@ -31,6 +31,15 @@ type UseEffect<T extends Record<PropertyKey, unknown>, R = void> = (
 ) => R
 
 /**
+ * Define effect hooks with optional arguments
+ */
+type UseEffectSimple<T extends Record<PropertyKey, unknown>, R = void> = (
+  options?: T,
+  deps?: DependencyList,
+  condition?: () => Maybe<boolean>
+) => R
+
+/**
  * Define ref hooks
  * @typeParam T - Return hooks value with `_ref`
  */
@@ -47,4 +56,11 @@ type UseRef<
  */
 type Target<T extends EventTarget> = T | (() => T) | RefObject<T>
 
-export type { EventLoopOptions, Position, Target, UseEffect, UseRef }
+export type {
+  EventLoopOptions,
+  Position,
+  Target,
+  UseEffect,
+  UseEffectSimple,
+  UseRef
+}

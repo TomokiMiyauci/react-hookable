@@ -33,4 +33,15 @@ type ClearOptions = {
   clearAuto: boolean
 }
 
-export type { AnyFn, ClearOptions, IsNever, Maybe, MaybeRecord, VFn }
+type valueOf<T> = T[keyof T]
+
+type Rename<
+  T extends Record<PropertyKey, unknown>,
+  K extends Record<string, keyof T>
+> = {
+  [t in keyof Omit<T, valueOf<K>>]: T[t]
+} & {
+  [k in keyof Pick<T, keyof K>]: T[K[k]]
+}
+
+export type { AnyFn, ClearOptions, IsNever, Maybe, MaybeRecord, Rename, VFn }

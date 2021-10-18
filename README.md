@@ -1,8 +1,16 @@
+<div align="center">
+
 # react-hookable
+
+<img width="180" src="https://res.cloudinary.com/dz3vsv9pg/image/upload/v1634554925/projects/react-hookable/logo.svg">
 
 Collection of essential React Composition Utilities
 
 [![codecov](https://codecov.io/gh/TomokiMiyauci/react-hookable/branch/main/graph/badge.svg?token=kb8KG2KSaR)](https://codecov.io/gh/TomokiMiyauci/react-hookable)
+
+</div >
+
+---
 
 ## Feature
 
@@ -30,14 +38,13 @@ import {*} from 'https://esm.sh/react-hookable'
 
 ## Type of hooks
 
-We have classified hooks into seven categories.
+We have classified hooks into six categories.
 Each category has a different interface.
 
 - [State](#state) => `[state/{ states }, dispatcher/{ dispatchers }]`
 - [Effect](#effect) => `void`
 - [EffectState](#effect-state) => `[state/{ states }, dispatcher/{ dispatchers }]`
 - [Ref](#ref) => `{ _ref, ... }`
-- [Procedure](#procedure) => `{ appliers }`
 - [Enhancement](#enhancement) extends `react` / `preact` standard hooks
 - [Lifecycle](#lifecycle) Component lifecycle
 
@@ -45,7 +52,7 @@ Each function that contains a side-effect also has an
 
 ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black) tag.
 
-## StateSet
+## State
 
 Set of stateful value, and a function to update it. All functions are interfaces of `[state, dispatcher]`, like `useState`.
 
@@ -61,11 +68,12 @@ const [state, dispatcher] = useMyState(...)
 - [`useNumber`](docs/useNumber.mdx) - Basic number counter [![tag][demo]](https://react-hookable.vercel.app/?path=/story/state-usenumber)
 - [`useHashState`](docs/useHashState.mdx) - Tracks location hash value [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usehashstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 - [`useSequenceState`](docs/useSequenceState.mdx) - Prevents other processes from running until the end of the process. This is ideal for preventing chattering. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usesequencestate)
-- [`useWindowScrollState`](docs/useWindowScrollState.mdx) - Reactive window scroll [![tag][demo]](https://react-hookable.vercel.app/?path=/story/stateset-usewindowscrollstate) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ## Effect
 
 Effect deals with side effects. It does not have a return value like `useEffect`. It takes as argument a `condition` function that handles the effect dynamically.
+
+All functions contain side effects. ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ### Interface
 
@@ -87,6 +95,8 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 Effect State is a hook to handle side effects with reactive state. Effect is an extension of `useEffect` with a conditional execution.
 The return value is a set of reactive states and their dispatches.
 
+All functions contain side effects. ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
+
 ### Interface
 
 ```tsx
@@ -94,8 +104,9 @@ const [states, dispatches] = useEffectState(options, deps, condition)
 ```
 
 - [`useSwipeEffectState`](docs/useSwipeEffectState.mdx) - Reactive swipe detection based on `TouchEvents` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-useswipeeffectstate)
+- [`useWindowScrollEffectState`](docs/useWindowScrollEffectState.mdx) - Reactive `window` scroll state [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effectstate-usewindowscrolleffectstate)
 
-### Ref
+## Ref
 
 Ref is a utility for `useRef`. The return value of all hooks is a key value object, containing the original `_ref`.
 
@@ -106,18 +117,6 @@ const { ..., _ref: MutableObject | RefObject } = useMyRef()
 ```
 
 - [`useIsFirstMountRef`](docs/useIsFirstMountRef.mdx) - Ref of first mount or not. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/ref-useidfirstmountref)
-
-## Procedure
-
-A collection of functions that depend on `ref`. Often causes side effects. There are no reactive states. As an escape hatch, an internal `ref` can be referenced from a `_ref`.
-
-### Interface
-
-```tsx
-const { appliers, _ref } = useProcedure(...)
-```
-
-- [`useEventListener`](docs/useEventListener.mdx) - Returns a set of event listeners `add` and `remove` functions that can be called anywhere. The event listeners will automatically be removed on unmount. [![tag][demo]](https://react-hookable.vercel.app/?path=/story/procedure-useeventlistener) ![side-effect](https://img.shields.io/badge/side%20effect-%F0%9F%92%A5-black)
 
 ## Enhancement
 
