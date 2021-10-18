@@ -1,3 +1,8 @@
+# [v1.0.0-beta.36](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2021-10-18)
+
+## 🐛 Bug Fixes
+- [`ac15f60`](https://github.com/TomokiMiyauci/react-hookable/commit/ac15f60)   Deprecated &#x60;useWindowScrollState&#x60;
+
 # [v1.0.0-beta.35](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2021-10-18)
 
 ## ✨ New Features
