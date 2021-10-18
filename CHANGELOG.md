@@ -1,3 +1,8 @@
+# [v1.0.0-beta.35](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2021-10-18)
+
+## ✨ New Features
+- [`e16511e`](https://github.com/TomokiMiyauci/react-hookable/commit/e16511e)   Add &#x60;useIdleCallbackEffect&#x60; for requestIdleCallback effect
+
 # [v1.0.0-beta.34](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2021-10-18)
 
 ## ✨ New Features
