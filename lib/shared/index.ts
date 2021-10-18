@@ -1,26 +1,20 @@
-import type { MutableRefObject } from 'react'
-import { RefObject, useRef } from 'react'
+import { RefObject } from 'react'
 
-import { VFn } from '@/utils/types'
-type RefArrayReturn<T> = {
-  _ref: MutableRefObject<T[]>
-  clear: VFn
-  add: (...items: Parameters<Array<T>['push']>) => void
-}
-const useRefArray = <T>(initialState: T[] = []): RefArrayReturn<T> => {
-  const ref = useRef<T[]>(initialState)
+import type { Target } from '@/shared/types'
 
-  return {
-    _ref: ref,
-    clear: () => {
-      ref.current.length = 0
-    },
-    add: (...items: Parameters<Array<T>['push']>): void => {
-      ref.current.push(...items)
-    }
-  }
-}
-
+/**
+ * Safe current accessor
+ * @param maybeRef - Ref object or any `Record`
+ * @returns ref.current or `Record` or `null`
+ *
+ * @example
+ * ```ts
+ * const ref = createRef()
+ * takeCurrent(ref) // null
+ *
+ * takeCurrent({}) // {}
+ * ```
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const takeCurrent = <T extends Record<PropertyKey, any>>(
   maybeRef: T | RefObject<T>
@@ -31,4 +25,22 @@ const takeCurrent = <T extends Record<PropertyKey, any>>(
   return maybeRef
 }
 
-export { takeCurrent, useRefArray }
+/**
+ * Safe target accessor
+ * @param target - Any `EventTarget` that return or wrapped ref
+ * @returns pure target
+ * @example
+ * ```ts
+ * takeTarget(window) // window
+ * takeTarget(() => document) // document
+ * const ref = useRef<HTMLDivElement>(null)
+ * takeTarget(ref) // HTMLDivElement or null
+ * ```
+ */
+const takeTarget = <T extends EventTarget>(target: Target<T>): T | null => {
+  const current = takeCurrent(target)
+
+  return typeof current === 'function' ? current() : current
+}
+
+export { takeCurrent, takeTarget }
