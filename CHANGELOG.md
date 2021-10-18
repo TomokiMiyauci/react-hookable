@@ -1,3 +1,8 @@
+# [v1.0.0-beta.37](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2021-10-18)
+
+## ✨ New Features
+- [`663b311`](https://github.com/TomokiMiyauci/react-hookable/commit/663b311)   Add &#x60;useWindowScrollEffectState&#x60; for reactive window state
+
 # [v1.0.0-beta.36](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2021-10-18)
 
 ## 🐛 Bug Fixes
