@@ -1,7 +1,7 @@
 {
   "name": "react-hookable",
   "description": "Collection of essential React Composition Utilities",
-  "version": "1.0.0-beta.31",
+  "version": "1.0.0-beta.36",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "test": "run-p test:*",
     "test:unit": "jest",
     "build": "run-p build:*",
-    "build:scripts": "node -r esbuild-register build.ts",
+    "build:scripts": "node -r esbuild-register scripts/build.ts",
     "build:types": "dts-bundle-generator --no-check --no-banner --external-imports=react --external-imports=react-dom -o dist/index.d.ts lib/index.ts",
     "storybook": "start-storybook -p 6006",
     "docs": "build-storybook",

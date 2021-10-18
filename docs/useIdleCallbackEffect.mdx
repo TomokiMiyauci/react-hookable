@@ -1,0 +1,38 @@
+# useIdleCallbackEffect
+
+Effect for `requestIdleCallback` with fallback that clear automatically when unmount
+
+## Usage
+
+```tsx
+import { useIdleCallbackEffect } from 'react-hookable'
+useIdleCallbackEffect(
+  {
+    callback: () => {
+      // requestIdleCallback
+    },
+    fallback: () => {
+      // call when requestIdleCallback is not supported
+    },
+    options
+  },
+  deps,
+  condition
+)
+```
+
+### fallback
+
+If the browser is not support `requestIdleCallback`, `fallback` will call.
+
+```tsx
+import { useIdleCallbackEffect } from 'react-hookable'
+useIdleCallbackEffect({
+  callback: SyncFn,
+  fallback: () => {
+    const id = requestAnimationFrame(SyncFn)
+
+    return () => cancelAnimationFrame(id)
+  }
+})
+```

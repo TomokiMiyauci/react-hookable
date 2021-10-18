@@ -16,7 +16,7 @@ import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useNumber } from '@/useNumber'
 import { useTimeoutEffect } from '@/useTimeoutEffect'
 export const Demo: FunctionalComponent = () => {
-  const isFirstMount = useIsFirstMountRef()
+  const { isFirstMount } = useIsFirstMountRef()
   const [ms, { set: setMs }] = useNumber(1000)
   const toast = useToast({
     title: 'useTimeoutEffect',

@@ -1,3 +1,28 @@
+# [v1.0.0-beta.36](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2021-10-18)
+
+## 🐛 Bug Fixes
+- [`ac15f60`](https://github.com/TomokiMiyauci/react-hookable/commit/ac15f60)   Deprecated &#x60;useWindowScrollState&#x60;
+
+# [v1.0.0-beta.35](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2021-10-18)
+
+## ✨ New Features
+- [`e16511e`](https://github.com/TomokiMiyauci/react-hookable/commit/e16511e)   Add &#x60;useIdleCallbackEffect&#x60; for requestIdleCallback effect
+
+# [v1.0.0-beta.34](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2021-10-18)
+
+## ✨ New Features
+- [`a6bfd29`](https://github.com/TomokiMiyauci/react-hookable/commit/a6bfd29)   Add &#x60;useIntervalEffect&#x60; for &#x60;setInterval&#x60; timer
+
+# [v1.0.0-beta.33](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2021-10-17)
+
+## 🐛 Bug Fixes
+- [`058e281`](https://github.com/TomokiMiyauci/react-hookable/commit/058e281)   Export &#x60;useSwipeEffectState&#x60;
+
+# [v1.0.0-beta.32](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2021-10-17)
+
+## ✨ New Features
+- [`6c9b2f0`](https://github.com/TomokiMiyauci/react-hookable/commit/6c9b2f0)   Add &#x60;useAnimationFrameEffect&#x60; for &#x60;requestAnimationFrame&#x60;
+
 # [v1.0.0-beta.31](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2021-10-17)
 
 ## ✨ New Features

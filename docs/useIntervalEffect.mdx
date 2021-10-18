@@ -1,0 +1,15 @@
+# useIntervalEffect
+
+Effect for `setInterval` that clear automatically when unmount
+
+## Usage
+
+```tsx
+import { useIntervalEffect } from 'react-hookable'
+useIntervalEffect({
+  callback: () => {
+    // setInterval
+  },
+  ms: 1000 // ms
+})
+```

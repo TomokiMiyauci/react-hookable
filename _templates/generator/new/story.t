@@ -1,18 +1,24 @@
 ---
 to: stories/<%= name %>.story.tsx
 ---
+import { Button } from '@chakra-ui/react'
 import Docs from '@doc/<%= name %>.mdx'
 import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
+import { useState } from 'preact/hooks'
 
 import { <%= name %> } from '@/<%= name %>'
-export const Demo: FunctionalComponent = () => {
+export const Demo = (): JSX.Element => {
+  const [, setState] = useState(false)
   <%= name %>()
-  return <></>
+  return (
+    <>
+      <Button onClick={() => setState(true)} />
+    </>
+  )
 }
 
 export default {
-  title: '<%= name %>',
+  title: '<%= category %>/<%= name %>',
   component: Demo,
   parameters: {
     docs: {
