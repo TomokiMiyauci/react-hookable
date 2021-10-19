@@ -1,0 +1,19 @@
+# UseSwipe
+
+Reactive swipe state wrapper
+
+## Usage
+
+```tsx
+import { UseSwipe } from 'react-hookable'
+
+render(
+  <UseSwipe onSwipe={(ev, stateState) => {}}>
+    {({ isSwiping, lengthY, ref }) => (
+      <div>
+        <div ref={ref}></div>
+      </div>
+    )}
+  </UseSwipe>
+)``
+```

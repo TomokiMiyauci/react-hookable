@@ -1,7 +1,7 @@
 {
   "name": "react-hookable",
   "description": "Collection of essential React Composition Utilities",
-  "version": "1.0.0-beta.38",
+  "version": "1.0.0-beta.40",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "test:unit": "jest",
     "build": "run-p build:*",
     "build:scripts": "node -r esbuild-register scripts/build.ts",
-    "build:types": "dts-bundle-generator --no-check --no-banner --external-imports=react --external-imports=react-dom -o dist/index.d.ts lib/index.ts",
+    "build:types": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "storybook": "start-storybook -p 6006",
     "docs": "build-storybook",
     "release": "semantic-release"
@@ -61,7 +61,6 @@
     "commitizen": "^4.2.4",
     "commitlint-config-gitmoji": "^2.2.5",
     "cz-emoji": "^1.3.1",
-    "dts-bundle-generator": "^5.9.0",
     "esbuild": "^0.13.3",
     "esbuild-register": "^3.0.0",
     "eslint": "^7.32.0",
@@ -83,6 +82,7 @@
     "semantic-release": "^18.0.0",
     "semantic-release-gitmoji": "^1.4.2",
     "tailwindcss": "^3.0.0-alpha.1",
+    "tsc-alias": "^1.3.10",
     "typescript": "^4.4.3",
     "utilitypes": "^1.0.0-beta.4"
   },

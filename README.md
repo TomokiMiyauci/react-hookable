@@ -135,6 +135,10 @@ Component lifecycle
 - [`useIsUnmounted`](docs/useIsUnmounted.mdx) - Ref of isUnmounted or not [![tag][demo]](https://react-hookable.vercel.app/?path=/story/lifecycle-useisunmounted)
 - [`useUnmount`](docs/useUnmount.mdx) - Register unmount callback [![tag][demo]](https://react-hookable.vercel.app/?path=/story/lifecycle-useunmount)
 
+## Components
+
+- [`UseSwipe`](docs/components/UseSwipe.mdx) - Reactive swipe state wrapper [![tag][demo]](https://react-hookable.vercel.app/?path=/story/component-useswipe)
+
 ## Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check

@@ -1,1 +1,1 @@
-export * as Swipe from './swipe'
+export * as UseSwipe from '@/components/UseSwipe'
