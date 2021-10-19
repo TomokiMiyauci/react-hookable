@@ -1,3 +1,8 @@
+# [v1.0.0-beta.39](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2021-10-19)
+
+## ✨ New Features
+- [`72dfa49`](https://github.com/TomokiMiyauci/react-hookable/commit/72dfa49)   Add &#x60;UseSwipe&#x60; for reactive swipe state wrapper
+
 # [v1.0.0-beta.38](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2021-10-19)
 
 ## ✨ New Features
