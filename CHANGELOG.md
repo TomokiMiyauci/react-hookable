@@ -1,3 +1,8 @@
+# [v1.0.0-beta.40](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2021-10-19)
+
+## 🐛 Bug Fixes
+- [`3f435b4`](https://github.com/TomokiMiyauci/react-hookable/commit/3f435b4)   Change output declaration files by tsc
+
 # [v1.0.0-beta.39](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2021-10-19)
 
 ## ✨ New Features
