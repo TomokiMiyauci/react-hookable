@@ -1,3 +1,8 @@
+# [v1.0.0-beta.38](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2021-10-19)
+
+## ✨ New Features
+- [`3a131f2`](https://github.com/TomokiMiyauci/react-hookable/commit/3a131f2)   Add &#x60;useIntersectionObserverEffect&#x60; that disconnect auto
+
 # [v1.0.0-beta.37](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2021-10-18)
 
 ## ✨ New Features

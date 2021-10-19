@@ -1,0 +1,16 @@
+# useIntersectionObserverEffect
+
+Effect for `IntersectionObserver` that disconnect automatically when unmount
+
+## Usage
+
+```tsx
+import { useIntersectionObserverEffect } from 'react-hookable'
+const target = useRef<Element>(null)
+useIntersectionObserverEffect({
+  target,
+  callback: (entry) => {
+    // intersection callback
+  }
+})
+```
