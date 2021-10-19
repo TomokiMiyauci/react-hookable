@@ -1,27 +1,31 @@
-import type { RefAttributes } from 'react'
+import type { RefObject } from 'react'
 import { useRef } from 'react'
 
-import { useSwipeEffectState } from '@/useSwipeEffectState'
-import {
+import type {
   UseSwipeEffectDispatch,
   UseSwipeEffectState
 } from '@/useSwipeEffectState'
+import { useSwipeEffectState } from '@/useSwipeEffectState'
 
-type SwipeProps = {
+type SwipeProps<T extends HTMLElement | SVGElement> = {
   children: (
-    stateSet: UseSwipeEffectState & UseSwipeEffectDispatch
+    stateSet: UseSwipeEffectState &
+      UseSwipeEffectDispatch & { ref: RefObject<T> }
   ) => JSX.Element
   onSwipeStart?: (
     ev: TouchEvent,
-    stateSet: UseSwipeEffectState & UseSwipeEffectDispatch
+    stateSet: UseSwipeEffectState &
+      UseSwipeEffectDispatch & { ref: RefObject<T> }
   ) => void
   onSwipe?: (
     ev: TouchEvent,
-    stateSet: UseSwipeEffectState & UseSwipeEffectDispatch
+    stateSet: UseSwipeEffectState &
+      UseSwipeEffectDispatch & { ref: RefObject<T> }
   ) => void
   onSwipeEnd?: (
     ev: TouchEvent,
-    stateSet: UseSwipeEffectState & UseSwipeEffectDispatch
+    stateSet: UseSwipeEffectState &
+      UseSwipeEffectDispatch & { ref: RefObject<T> }
   ) => void
 }
 
@@ -31,13 +35,13 @@ type SwipeProps = {
  *
  * @beta
  */
-const Swipe = ({
+const Swipe = <T extends HTMLElement | SVGElement>({
   children,
   onSwipe,
   onSwipeEnd,
   onSwipeStart
-}: SwipeProps): JSX.Element => {
-  const ref = useRef<HTMLElement | SVGElement>(null)
+}: SwipeProps<T>): JSX.Element => {
+  const ref = useRef<T>(null)
   const [state, dispatch] = useSwipeEffectState(
     {
       target: ref,
@@ -47,11 +51,8 @@ const Swipe = ({
     },
     []
   )
-  const stateSet = { ...state, ...dispatch }
-
-  const Children = children(stateSet) as JSX.Element &
-    RefAttributes<HTMLElement | SVGElement>
-  Children.ref = ref
+  const stateSet = { ...state, ...dispatch, ref }
+  const Children = children(stateSet)
 
   return Children
 }
