@@ -5,25 +5,16 @@ import type { Meta, Story } from '@storybook/preact'
 import clsx from 'clsx'
 import { useMemo } from 'preact/hooks'
 
-import type { SwipeProps } from '@/components/swipe'
-import Swipe from '@/components/swipe'
+import UseSwipe from '@/components/UseSwipe'
 import { useBoolean } from '@/useBoolean'
 const threshold = -100
 
-const Template: Story<SwipeProps<HTMLElement>> = (args) => {
+const Template: Story = (args) => {
   const [isExceed, { on, off }] = useBoolean()
   return (
     <>
-      {isExceed && (
-        <Button
-          onClick={() => {
-            off()
-          }}
-        >
-          Reset
-        </Button>
-      )}
-      <Swipe<HTMLDivElement>
+      {isExceed && <Button onClick={off}>Reset</Button>}
+      <UseSwipe<HTMLDivElement>
         onSwipeEnd={(_, { reset, lengthY }) => {
           if (lengthY < threshold) {
             on()
@@ -70,7 +61,7 @@ const Template: Story<SwipeProps<HTMLElement>> = (args) => {
             </Box>
           )
         }}
-      </Swipe>
+      </UseSwipe>
     </>
   )
 }
@@ -78,8 +69,8 @@ const Template: Story<SwipeProps<HTMLElement>> = (args) => {
 export const Demo = Template.bind({})
 
 export default {
-  title: 'component/Swipe',
-  component: Swipe
-} as Meta<typeof Swipe>
+  title: 'component/UseSwipe',
+  component: UseSwipe
+} as Meta<typeof UseSwipe>
 
-export { Swipe }
+export { UseSwipe }
