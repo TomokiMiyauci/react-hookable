@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DependencyList } from 'react'
+import type { Exclusive } from 'utilitypes'
 
 import { takeTarget } from '@/shared'
 import type { Target } from '@/shared/types'
@@ -18,11 +19,10 @@ type EventMap<T extends EventTarget> = T extends HTMLElement
   ? WindowEventMap
   : never
 
-type UseEventListenerEffectOptions<
+type EventListenerParameters<
   T extends EventTarget,
   K extends keyof EventMap<T>
 > = {
-  target: Target<T>
   type: IsNever<K> extends true ? string : K
   listener: (
     this: T,
@@ -30,6 +30,43 @@ type UseEventListenerEffectOptions<
   ) => any
   options?: AddEventListenerOptions | boolean
 }
+
+type UseEventListenerEffectOptions<
+  T extends EventTarget,
+  K extends keyof EventMap<T>
+> = {
+  /**
+   * `EventListener` target
+   */
+  target: Target<T>
+
+  /**
+   * `addEventListener` arguments. Configure multiple event listeners from `listeners`.
+   *
+   * @example
+   * ```ts
+   * {
+   *  target: window,
+   *  type: 'click',
+   *  listener: () => {},
+   *  options: { passive: true }
+   * }
+   * ```
+   *
+   * @example
+   * ```ts
+   * {
+   *  target: window,
+   *  listeners: [
+   *    { type: 'touchstart', listener: () => {} }, { type: 'touchmove', listener: () => {} }
+   *  ]
+   * }
+   * ```
+   */
+} & Exclusive<
+  EventListenerParameters<T, K>,
+  { listeners: EventListenerParameters<T, K>[] }
+>
 
 /**
  * `EventListener` effect that clean up automatically
@@ -49,6 +86,28 @@ type UseEventListenerEffectOptions<
  * })
  * ```
  *
+ * @example
+ * ```tsx
+ * useEventListenerEffect({
+ *   target: window,
+ *   listeners: [
+ *     {
+ *       type: 'touchstart',
+ *       listener: () => {
+ *         // fire on touchstart
+ *       },
+ *       options: { passive: true }
+ *     },
+ *     {
+ *       type: 'touchmove',
+ *       listener: () => {
+ *         // fire on touchmove
+ *       }
+ *     }
+ *   ]
+ * })
+ * ```
+ *
  * @see https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect
  * @beta
  */
@@ -56,7 +115,13 @@ const useEventListenerEffect = <
   T extends EventTarget,
   K extends keyof EventMap<T>
 >(
-  { target, type, listener, options }: UseEventListenerEffectOptions<T, K>,
+  {
+    target,
+    type,
+    listener,
+    options,
+    listeners = []
+  }: UseEventListenerEffectOptions<T, K>,
   deps?: DependencyList,
   condition?: () => Maybe<boolean>
 ): void => {
@@ -64,10 +129,20 @@ const useEventListenerEffect = <
     () => {
       const _target = takeTarget(target)
       if (!_target) return
-      _target.addEventListener(type as any, listener as any, options)
+
+      const eventListeners =
+        typeof listener === 'undefined'
+          ? listeners
+          : [{ type, listener, options }]
+
+      eventListeners.forEach(({ type, listener, options }) => {
+        _target.addEventListener(type as any, listener as any, options)
+      })
 
       return () => {
-        _target.removeEventListener(type as any, listener as any, options)
+        eventListeners.forEach(({ type, listener, options }) => {
+          _target.removeEventListener(type as any, listener as any, options)
+        })
       }
     },
     deps,

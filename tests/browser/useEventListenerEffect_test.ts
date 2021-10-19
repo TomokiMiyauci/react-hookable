@@ -182,4 +182,49 @@ describe('useEventListenerEffect', () => {
     })
     expect(listener).toHaveBeenCalledTimes(1)
   })
+
+  it('should accept multiple event listeners', () => {
+    const touchMove = jest.fn()
+    const touchStart = jest.fn()
+    const el = document.createElement('div')
+    const target: RefObject<typeof el> = { current: el }
+
+    const { unmount } = renderHook(() =>
+      useEventListenerEffect(
+        {
+          target,
+          listeners: [
+            {
+              type: 'touchmove',
+              listener: touchMove
+            },
+            {
+              type: 'touchstart',
+              listener: touchStart
+            }
+          ]
+        },
+        []
+      )
+    )
+
+    expect(touchMove).not.toHaveBeenCalled()
+    expect(touchStart).not.toHaveBeenCalled()
+
+    act(() => {
+      el.dispatchEvent(new TouchEvent('touchmove'))
+      el.dispatchEvent(new TouchEvent('touchstart'))
+    })
+    expect(touchMove).toHaveBeenCalledTimes(1)
+    expect(touchStart).toHaveBeenCalledTimes(1)
+
+    unmount()
+
+    act(() => {
+      el.dispatchEvent(new TouchEvent('touchmove'))
+      el.dispatchEvent(new TouchEvent('touchstart'))
+    })
+    expect(touchMove).toHaveBeenCalledTimes(1)
+    expect(touchStart).toHaveBeenCalledTimes(1)
+  })
 })
