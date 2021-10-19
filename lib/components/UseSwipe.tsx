@@ -42,6 +42,18 @@ type UseSwipeProps<
  * Reactive swipe state wrapper
  * @param props - Swipe props
  *
+ * @example
+ * ```tsx
+ * <UseSwipe onSwipe={(ev, stateState) => {}}>
+ *   {({ isSwiping, lengthY, ref }) => (
+ *     <div>
+ *       <div ref={ref}></div>
+ *     </div>
+ *   )}
+ * </UseSwipe>
+ * ```
+ *
+ * @see https://react-hookable.vercel.app/?path=/story/component-useswipe
  * @beta
  */
 const UseSwipe = <
