@@ -1,18 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { RefObject, useState } from 'react'
+import { useState } from 'react'
 
-import type { UseEffect } from '@/shared/types'
+import type { Target, UseEffect } from '@/shared/types'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
 import { useUpdateEffect } from '@/useUpdateEffect'
 
 type UseTouchEffect =
   | {
-      target:
-        | Window
-        | Document
-        | HTMLElement
-        | SVGElement
-        | RefObject<HTMLElement | SVGElement>
+      target: Target<Window | Document | HTMLElement | SVGElement>
       /**
        * Callback on touch start
        */

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DependencyList, RefObject } from 'react'
+import type { DependencyList } from 'react'
 
-import { takeCurrent } from '@/shared'
+import { takeTarget } from '@/shared'
+import type { Target } from '@/shared/types'
 import { useConditionalEffect } from '@/useConditionalEffect'
 import type { IsNever, Maybe } from '@/utils/types'
 
@@ -21,7 +22,7 @@ type UseEventListenerEffectOptions<
   T extends EventTarget,
   K extends keyof EventMap<T>
 > = {
-  target: T | (() => T) | RefObject<T>
+  target: Target<T>
   type: IsNever<K> extends true ? string : K
   listener: (
     this: T,
@@ -61,9 +62,8 @@ const useEventListenerEffect = <
 ): void => {
   useConditionalEffect(
     () => {
-      const current = takeCurrent(target)
-      if (!current) return
-      const _target = typeof current === 'function' ? current() : current
+      const _target = takeTarget(target)
+      if (!_target) return
       _target.addEventListener(type as any, listener as any, options)
 
       return () => {
