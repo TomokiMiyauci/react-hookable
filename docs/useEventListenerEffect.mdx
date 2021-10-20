@@ -15,3 +15,34 @@ useEventListenerEffect({
   []
 })
 ```
+
+### listeners
+
+It support multiple event listeners.
+This is useful if you want to add a list of event listeners dynamically.
+
+If you are using TypeScript, exclusive properties allow you to specify properties in a type-safe way.
+
+`{ target, type, listner, options }` | `{ target, listeners: { type, listner, options }[] }`
+
+```tsx
+import { useEventListenerEffect } from 'react-hookable'
+useEventListenerEffect({
+  target: window,
+  listeners: [
+    {
+      type: 'touchstart',
+      listener: () => {
+        // fire on touchstart
+      },
+      options: { passive: true }
+    },
+    {
+      type: 'touchmove',
+      listener: () => {
+        // fire on touchmove
+      }
+    }
+  ]
+})
+```

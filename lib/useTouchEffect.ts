@@ -69,37 +69,29 @@ const useTouchEffect: UseEffect<UseTouchEffect> = (
   useEventListenerEffect(
     {
       target,
-      type: 'touchstart',
-      listener: setStartEvent,
-      options: {
-        ...addEventListenerOptions,
-        passive
-      }
-    },
-    deps,
-    condition
-  )
-
-  useEventListenerEffect(
-    {
-      target,
-      type: 'touchmove',
-      listener: setEvent,
-      options: {
-        ...addEventListenerOptions,
-        passive
-      }
-    },
-    deps,
-    condition
-  )
-
-  useEventListenerEffect(
-    {
-      target,
-      type: 'touchend',
-      listener: setEndEvent,
-      options: { ...addEventListenerOptions, passive }
+      listeners: [
+        {
+          type: 'touchstart',
+          listener: setStartEvent,
+          options: {
+            ...addEventListenerOptions,
+            passive
+          }
+        },
+        {
+          type: 'touchmove',
+          listener: setEvent,
+          options: {
+            ...addEventListenerOptions,
+            passive
+          }
+        },
+        {
+          type: 'touchend',
+          listener: setEndEvent,
+          options: { ...addEventListenerOptions, passive }
+        }
+      ]
     },
     deps,
     condition

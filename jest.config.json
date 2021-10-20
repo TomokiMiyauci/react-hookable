@@ -5,7 +5,8 @@
       "testEnvironment": "jsdom",
       "testMatch": [
         "<rootDir>/tests/browser/**/*_test.[tj]s?(x)",
-        "<rootDir>/tests/shared/**/*_test.[tj]s?(x)"
+        "<rootDir>/tests/shared/**/*_test.[tj]s?(x)",
+        "<rootDir>/tests/utils/**/*_test.[tj]s?(x)"
       ],
       "transform": {
         "^.+\\.(t|j)sx?$": "@swc/jest"

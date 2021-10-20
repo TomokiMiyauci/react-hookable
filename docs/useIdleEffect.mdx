@@ -6,5 +6,15 @@ Effect for track whether the user is being inactive
 
 ```tsx
 import { useIdleEffect } from 'react-hookable'
-useIdleEffect()
+useIdleEffect({
+  onIdle: () => {
+    // call on Idle
+  },
+  onActive: () => {
+    // call on active from idle
+  },
+  onInteract: () => {
+    // call on user interaction
+  }
+})
 ```

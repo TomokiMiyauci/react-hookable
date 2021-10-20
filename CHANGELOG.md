@@ -1,3 +1,13 @@
+# [v1.0.0-beta.42](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.41...v1.0.0-beta.42) (2021-10-20)
+
+## ✨ New Features
+- [`ff7dafc`](https://github.com/TomokiMiyauci/react-hookable/commit/ff7dafc)   Add &#x60;useIdleEffect&#x60; for track whether the user is being active
+
+# [v1.0.0-beta.41](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2021-10-19)
+
+## ✨ New Features
+- [`7b1ad45`](https://github.com/TomokiMiyauci/react-hookable/commit/7b1ad45)   &#x60;useEventListenerEffect&#x60; accepts multiple event listeners
+
 # [v1.0.0-beta.40](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2021-10-19)
 
 ## 🐛 Bug Fixes
