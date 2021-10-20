@@ -4,6 +4,9 @@ import {
   Button,
   Code,
   Input,
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
   Link,
   Modal,
   ModalBody,
@@ -99,16 +102,26 @@ const DocsTable = ({
                   </Link>
                 </Text>
               </Text>
-              <Input
-                value={timeout}
-                type="number"
-                min="4"
-                max="2147483647"
-                mt="2"
-                onChange={({ currentTarget }) =>
-                  onChange(Number(currentTarget.value))
-                }
-              />
+              <InputGroup my="2">
+                <InputLeftAddon>timeout</InputLeftAddon>
+                <Input
+                  value={timeout}
+                  type="number"
+                  min="4"
+                  max="2147483647"
+                  onChange={({ currentTarget }) =>
+                    onChange(Number(currentTarget.value))
+                  }
+                />
+                <InputRightAddon>ms</InputRightAddon>
+              </InputGroup>
+            </Text>
+
+            <Text>
+              events?: <Code>(keyof WindowEventMap)[]</Code>
+              <Text>
+                {'[mousemove, mousedown, resize, keydown, touchstart, wheel]'}
+              </Text>
             </Text>
           </Td>
         </Tr>
@@ -188,7 +201,7 @@ const Playground = ({
       <Progress max={timeout} hasStripe value={ratio} />
 
       <Modal isOpen={isIdle} onClose={() => {}}>
-        <ModalOverlay />
+        <ModalOverlay className="backdrop-blur-md" />
         <ModalContent>
           <ModalHeader>useIdleEffect</ModalHeader>
           <ModalBody>

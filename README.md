@@ -85,6 +85,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 - [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
 - [`useFetchEffect`](docs/useFetchEffect.mdx) - Auto aborting `fetch` API effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usefetcheffect)
 - [`useIdleCallbackEffect`](docs/useIdleCallbackEffect.mdx) - Effect for `requestIdleCallback` with fallback that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useidlecallbackeffect)
+- [`useIdleEffect`](docs/useIdleEffect.mdx) - Effect for track whether the user is being inactive [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useidleeffect)
 - [`useIntersectionObserverEffect`](docs/useIntersectionObserverEffect.mdx) - Effect for `IntersectionObserver` that disconnect automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintersectionobservereffect)
 - [`useIntervalEffect`](docs/useIntervalEffect.mdx) - Effect for `setInterval` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintervaleffect)
 - [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
