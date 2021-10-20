@@ -1,7 +1,7 @@
 {
   "name": "react-hookable",
   "description": "Collection of essential React Composition Utilities",
-  "version": "1.0.0-beta.40",
+  "version": "1.0.0-beta.41",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
