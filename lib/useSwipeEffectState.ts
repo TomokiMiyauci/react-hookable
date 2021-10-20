@@ -10,11 +10,34 @@ import type { VFn } from '@/utils/types'
 type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'
 
 type UseSwipeEffectState = {
+  /**
+   * Whether are swiping or not
+   */
   isSwiping: boolean
+
+  /**
+   * Starting point of the swipe
+   */
   coordsStart: Position
+
+  /**
+   * End point of swipe
+   */
   coordsEnd: Position
+
+  /**
+   * The length of the X-axis you are swiping
+   */
   lengthX: number
+
+  /**
+   * The length of the Y-axis you are swiping
+   */
   lengthY: number
+
+  /**
+   * Swipe direction
+   */
   direction: Direction | 'NONE'
 }
 
@@ -59,8 +82,19 @@ type UseSwipeEffectStateOptions = Omit<
   UseTouchEffect,
   'onTouchStart' | 'onTouchMove' | 'onTouchEnd'
 > & {
+  /**
+   * Call on swipe start
+   */
   onSwipeStart?: (ev: TouchEvent) => void
+
+  /**
+   * Keeps being called while swiping
+   */
   onSwipe?: (ev: TouchEvent) => void
+
+  /**
+   * Call on swipe end
+   */
   onSwipeEnd?: (ev: TouchEvent) => void
 }
 
