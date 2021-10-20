@@ -1,7 +1,13 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
 import type { Position } from '@/shared/types'
-import { initialPosition, useSwipeEffectState } from '@/useSwipeEffectState'
+import type { Direction } from '@/useSwipeEffectState'
+import {
+  calcDiffX,
+  calcDirection,
+  initialPosition,
+  useSwipeEffectState
+} from '@/useSwipeEffectState'
 
 const mockTouchEventInit = ({
   x,
@@ -203,4 +209,40 @@ describe('useSwipeEffectState', () => {
     expect(result.current[0].coordsEnd).toEqual(initialPosition)
     expect(result.current[0].coordsStart).toEqual(initialPosition)
   })
+})
+
+describe('calcDiffX', () => {
+  const table: [number, number, number][] = [
+    [0, 0, 0],
+    [0, 1, 1],
+    [1, 0, -1]
+  ]
+  it.each(table)(
+    'calcDiff({ startX: %d, startY: %d} => %d)',
+    (startX, endX, expected) => {
+      expect(
+        calcDiffX({
+          startX,
+          endX
+        })
+      ).toBe(expected)
+    }
+  )
+})
+
+describe('calcDirection', () => {
+  const table: [number, number, Direction | 'NONE'][] = [
+    [0, 0, 'NONE'],
+    [1, 0, 'RIGHT'],
+    [-1, 0, 'LEFT'],
+    [0, 1, 'UP'],
+    [0, -1, 'DOWN']
+  ]
+
+  it.each(table)(
+    'calcDirection({ diffX: %d, diffY: %d} => %d)',
+    (diffX, diffY, expected) => {
+      expect(calcDirection({ diffX, diffY })).toBe(expected)
+    }
+  )
 })
