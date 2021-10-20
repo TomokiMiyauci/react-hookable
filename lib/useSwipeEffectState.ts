@@ -10,11 +10,34 @@ import type { VFn } from '@/utils/types'
 type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'
 
 type UseSwipeEffectState = {
+  /**
+   * Whether are swiping or not
+   */
   isSwiping: boolean
+
+  /**
+   * Starting point of the swipe
+   */
   coordsStart: Position
+
+  /**
+   * End point of swipe
+   */
   coordsEnd: Position
+
+  /**
+   * The length of the X-axis you are swiping
+   */
   lengthX: number
+
+  /**
+   * The length of the Y-axis you are swiping
+   */
   lengthY: number
+
+  /**
+   * Swipe direction
+   */
   direction: Direction | 'NONE'
 }
 
@@ -27,14 +50,51 @@ const getTouchEventCoords = (e: TouchEvent): Position => ({
   y: e.touches[0].clientY
 })
 
+const calcDirection = ({
+  diffX,
+  diffY
+}: {
+  diffX: number
+  diffY: number
+}): Direction | 'NONE' => {
+  if (diffX === 0 && diffY === 0) return 'NONE'
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    return diffX > 0 ? 'RIGHT' : 'LEFT'
+  } else {
+    return diffY > 0 ? 'UP' : 'DOWN'
+  }
+}
+
+const calcDiffX = ({
+  startX,
+  endX
+}: {
+  startX: number
+  endX: number
+}): number => {
+  const result = startX - endX
+  return result === 0 ? result : -result
+}
+
 const initialPosition: Position = { x: 0, y: 0 }
 
 type UseSwipeEffectStateOptions = Omit<
   UseTouchEffect,
   'onTouchStart' | 'onTouchMove' | 'onTouchEnd'
 > & {
+  /**
+   * Call on swipe start
+   */
   onSwipeStart?: (ev: TouchEvent) => void
+
+  /**
+   * Keeps being called while swiping
+   */
   onSwipe?: (ev: TouchEvent) => void
+
+  /**
+   * Call on swipe end
+   */
   onSwipeEnd?: (ev: TouchEvent) => void
 }
 
@@ -92,27 +152,25 @@ const useSwipeEffectState: UseEffect<
   const [isSwiping, { on: swipeOn, off: swipeOff }] = useBoolean()
   const [coordsStart, setCoordsStart] = useState<Position>(initialPosition)
   const [coordsEnd, setCoordsEnd] = useState<Position>(initialPosition)
-  const { abs } = Math
 
-  const diffX = useMemo<number>(() => {
-    const result = coordsStart.x - coordsEnd.x
-    return result === 0 ? result : -result
-  }, [coordsStart.x, coordsEnd.x])
+  const diffX = useMemo<number>(
+    () => calcDiffX({ startX: coordsStart.x, endX: coordsEnd.x }),
+    [coordsStart.x, coordsEnd.x]
+  )
 
   const diffY = useMemo<number>(
     () => coordsStart.y - coordsEnd.y,
     [coordsStart.y, coordsEnd.y]
   )
 
-  const direction = useMemo<Direction | 'NONE'>(() => {
-    if (diffX === 0 && diffY === 0) return 'NONE'
-    if (abs(diffX) > abs(diffY)) {
-      return diffX > 0 ? 'RIGHT' : 'LEFT'
-    } else {
-      return diffY > 0 ? 'UP' : 'DOWN'
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [diffX, diffY])
+  const direction = useMemo<Direction | 'NONE'>(
+    () =>
+      calcDirection({
+        diffX,
+        diffY
+      }),
+    [diffX, diffY]
+  )
 
   const reset: VFn = () => {
     swipeOff()
@@ -133,8 +191,9 @@ const useSwipeEffectState: UseEffect<
   ]
 }
 
-export { initialPosition, useSwipeEffectState }
+export { calcDiffX, calcDirection, initialPosition, useSwipeEffectState }
 export type {
+  Direction,
   UseSwipeEffectDispatch,
   UseSwipeEffectState,
   UseSwipeEffectStateOptions
