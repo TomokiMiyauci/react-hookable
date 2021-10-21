@@ -44,4 +44,24 @@ type Rename<
   [k in keyof Pick<T, keyof K>]: T[K[k]]
 }
 
-export type { AnyFn, ClearOptions, IsNever, Maybe, MaybeRecord, Rename, VFn }
+/**
+ * Mark optional field
+ * @typeParam T - Any record
+ * @typeParam U - The key want to optional
+ */
+type Optional<T extends Record<PropertyKey, unknown>, U extends keyof T> = {
+  [k in keyof Omit<T, U>]: T[k]
+} & {
+  [k in U]?: T[k]
+}
+
+export type {
+  AnyFn,
+  ClearOptions,
+  IsNever,
+  Maybe,
+  MaybeRecord,
+  Optional,
+  Rename,
+  VFn
+}
