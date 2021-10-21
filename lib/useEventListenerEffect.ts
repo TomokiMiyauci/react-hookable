@@ -24,11 +24,22 @@ type EventListenerParameters<
   T extends EventTarget,
   K extends keyof EventMap<T>
 > = {
+  /**
+   * Event type
+   */
   type: IsNever<K> extends true ? string : K
+
+  /**
+   * The object that receives a notification when an event of the specified type occurs
+   */
   listener: (
     this: T,
     ev: IsNever<EventMap<T>> extends true ? Event : EventMap<T>[K]
   ) => any
+
+  /**
+   * An options object specifies characteristics about the event listener
+   */
   options?: AddEventListenerOptions | boolean
 }
 

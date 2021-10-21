@@ -15,7 +15,13 @@ type TableArgTypePolyfill = {
   }
 }
 
+type Control = {
+  type: 'select' | null
+}
+
 type ArgTypePolyfill = {
+  options: unknown[]
+  control: Partial<Control>
   type: {
     required: true
   }
@@ -23,5 +29,6 @@ type ArgTypePolyfill = {
 }
 
 type ExtendedArgType = ArgType & Partial<ArgTypePolyfill>
+type ArgTypes = Record<string, ExtendedArgType>
 
-export type { ExtendedArgType }
+export type { ExtendedArgType, ArgTypes }
