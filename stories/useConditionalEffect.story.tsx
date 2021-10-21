@@ -1,10 +1,13 @@
 import { Button, Code, Text, useToast } from '@chakra-ui/react'
-import Docs from '@doc/useConditionalEffect.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 
 import { useBoolean } from '@/useBoolean'
 import { useConditionalEffect } from '@/useConditionalEffect'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+
+import Docs from '@doc/useConditionalEffect.mdx'
 export const Demo: FunctionalComponent = () => {
   const [state, { toggle }] = useBoolean()
   const toast = useToast()

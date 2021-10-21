@@ -10,10 +10,13 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
-import Docs from '@doc/useWindowScrollEffectState.mdx'
-import type { Meta } from '@storybook/preact'
 
 import { useWindowScrollEffectState } from '@/useWindowScrollEffectState'
+
+import type { Meta } from '@storybook/preact'
+
+import Docs from '@doc/useWindowScrollEffectState.mdx'
+
 
 export const Demo = (): JSX.Element => {
   const [{ scrollY, scrollX }] = useWindowScrollEffectState({}, [])

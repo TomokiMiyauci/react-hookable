@@ -1,12 +1,16 @@
+import { wait } from './utils'
+
 import { Button, Text } from '@chakra-ui/react'
-import Docs from '@doc/useSequenceState.mdx'
+
+import { useSequenceState } from '@/useSequenceState'
+
 import type { Meta } from '@storybook/preact'
 import type { FunctionalComponent } from 'preact'
 import type { MouseEventHandler } from 'react'
 
-import { useSequenceState } from '@/useSequenceState'
+import Docs from '@doc/useSequenceState.mdx'
 
-import { wait } from './utils'
+
 export const Demo: FunctionalComponent = () => {
   const [pending, sequence] = useSequenceState()
 

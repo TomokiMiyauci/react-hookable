@@ -1,8 +1,12 @@
 import { Text } from '@chakra-ui/react'
-import Docs from '@doc/useAsyncEffect.mdx'
+import { useState } from 'preact/hooks'
+
+import { useAsyncEffect } from '@/useAsyncEffect'
+
 import type { Meta } from '@storybook/preact'
 import type { FunctionalComponent } from 'preact'
-import { useState } from 'preact/hooks'
+
+import Docs from '@doc/useAsyncEffect.mdx'
 
 const wait = (ms: number): Promise<void> =>
   new Promise<void>((resolve) =>
@@ -11,7 +15,6 @@ const wait = (ms: number): Promise<void> =>
     }, ms)
   )
 
-import { useAsyncEffect } from '@/useAsyncEffect'
 export const Demo: FunctionalComponent = () => {
   const [effected, setEffected] = useState<boolean>(false)
   useAsyncEffect(async () => {

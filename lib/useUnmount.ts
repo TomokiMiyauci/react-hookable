@@ -1,7 +1,7 @@
-import type { MutableRefObject } from 'react'
 import { useEffect, useRef } from 'react'
 
 import type { VFn } from '@/utils/types'
+import type { MutableRefObject } from 'react'
 type UnmountReturn = {
   use: (fn: VFn) => void
   disuse: () => void

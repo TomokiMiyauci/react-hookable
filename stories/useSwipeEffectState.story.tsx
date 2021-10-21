@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Code, HStack, Text } from '@chakra-ui/react'
-import Docs from '@doc/useSwipeEffectState.mdx'
-import type { Meta } from '@storybook/preact'
 import classnames from 'clsx'
-import type { FunctionalComponent } from 'preact'
 import { useMemo, useRef } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useSwipeEffectState } from '@/useSwipeEffectState'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+import Docs from '@doc/useSwipeEffectState.mdx'
 export const Demo: FunctionalComponent = () => {
   const ref = useRef<SVGCircleElement>(null)
   const svg = useRef<SVGSVGElement>(null)

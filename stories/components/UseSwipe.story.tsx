@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Box, Button, Text } from '@chakra-ui/react'
-import type { Meta, Story } from '@storybook/preact'
 import clsx from 'clsx'
 import { useMemo } from 'preact/hooks'
 
 import type { UseSwipeProps } from '@/components/UseSwipe'
 import UseSwipe from '@/components/UseSwipe'
 import { useBoolean } from '@/useBoolean'
+
+import type { Meta, Story } from '@storybook/preact'
 const threshold = -100
 
 const Template: Story<UseSwipeProps<HTMLDivElement>> = (props) => {

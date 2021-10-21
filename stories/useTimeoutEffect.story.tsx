@@ -8,13 +8,16 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
-import Docs from '@doc/useTimeoutEffect.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
+
 
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useNumber } from '@/useNumber'
 import { useTimeoutEffect } from '@/useTimeoutEffect'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+import Docs from '@doc/useTimeoutEffect.mdx'
 export const Demo: FunctionalComponent = () => {
   const { isFirstMount } = useIsFirstMountRef()
   const [ms, { set: setMs }] = useNumber(1000)

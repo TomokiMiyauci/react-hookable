@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
-import type { UseEffectSimple } from '@/shared/types'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
 import { isBrowser } from '@/utils'
+
+import type { UseEffectSimple } from '@/shared/types'
 
 type UseWindowScrollEffectStateOptions = {
   /**

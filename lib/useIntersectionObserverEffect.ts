@@ -1,6 +1,7 @@
 import { takeTarget } from '@/shared'
-import type { Target, UseEffect } from '@/shared/types'
 import { useConditionalEffect } from '@/useConditionalEffect'
+
+import type { Target, UseEffect } from '@/shared/types'
 
 type UseIntersectionObserverEffectOptions = {
   /**

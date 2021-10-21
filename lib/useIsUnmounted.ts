@@ -1,5 +1,6 @@
-import type { MutableRefObject } from 'react'
 import { useEffect, useRef } from 'react'
+
+import type { MutableRefObject } from 'react'
 
 /**
  * Ref of isUnmounted or not

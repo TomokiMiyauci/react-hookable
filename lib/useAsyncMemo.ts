@@ -1,5 +1,6 @@
-import { DependencyList, useEffect, useState } from 'react'
-import { useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
+
+import type { DependencyList } from 'react'
 
 /**
  * `useAsyncMemo` will only recompute the memoized `async` value when one of the deps has changed.

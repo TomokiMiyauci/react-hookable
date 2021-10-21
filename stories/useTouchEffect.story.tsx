@@ -1,10 +1,13 @@
 import { Box, Code, Text, useToast } from '@chakra-ui/react'
-import Docs from '@doc/useTouchEffect.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 import { useRef, useState } from 'preact/hooks'
 
 import { useTouchEffect } from '@/useTouchEffect'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+
+import Docs from '@doc/useTouchEffect.mdx'
 export const Demo: FunctionalComponent = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [{ x, y }, setState] = useState({ x: 0, y: 0 })

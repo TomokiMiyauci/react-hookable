@@ -1,11 +1,13 @@
 import { Button, Code, HStack, Text, useToast } from '@chakra-ui/react'
-import Docs from '@doc/useEventListenerEffect.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 import { useRef } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+import Docs from '@doc/useEventListenerEffect.mdx'
 export const Demo: FunctionalComponent = () => {
   const toast = useToast({ title: 'useEventListenerEffect' })
   const ref = useRef<HTMLButtonElement>(null)

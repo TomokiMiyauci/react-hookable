@@ -1,6 +1,7 @@
 import { createRef, MutableRefObject } from 'react'
 
 import { takeCurrent, takeTarget } from '@/shared'
+
 import { Target } from '@/shared/types'
 describe('takeCurrent', () => {
   const ref = createRef() as MutableRefObject<number>

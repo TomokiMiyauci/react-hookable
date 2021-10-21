@@ -1,7 +1,7 @@
-import type { DependencyList, EffectCallback } from 'react'
 import { useEffect, useRef } from 'react'
 
 import type { VFn } from '@/utils/types'
+import type { DependencyList, EffectCallback } from 'react'
 
 type AsyncEffectCallback = () => Promise<void | VFn>
 

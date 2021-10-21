@@ -1,11 +1,13 @@
 import { Alert, AlertIcon, Button } from '@chakra-ui/react'
-import Docs from '@doc/useIsFirstMountRef.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 import { useEffect } from 'preact/hooks'
 
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useNumber } from '@/useNumber'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+import Docs from '@doc/useIsFirstMountRef.mdx'
 export const Demo: FunctionalComponent = () => {
   const [, { inc }] = useNumber()
   const { isFirstMount } = useIsFirstMountRef()

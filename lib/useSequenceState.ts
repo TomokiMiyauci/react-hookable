@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { useIsUnmounted } from '@/useIsUnmounted'
+
 import type { AnyFn } from '@/utils/types'
 type UseSequenceStateReturn = [boolean, (fn: AnyFn) => Promise<void>]
 

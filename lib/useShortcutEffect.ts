@@ -1,6 +1,7 @@
-import type { Target, UseEffect } from '@/shared/types'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
 import type { UpperCase } from '@/utils/types/keyboard'
+
+import type { Target, UseEffect } from '@/shared/types'
 const validateKeyMap = (
   {
     option,

@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 
-import type { UseEffect } from '@/shared/types'
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useSafeState } from '@/useSafeState'
+
+import type { UseEffect } from '@/shared/types'
 import type { VFn } from '@/utils/types'
 
 const isSupported = (): boolean => navigator && 'permissions' in navigator

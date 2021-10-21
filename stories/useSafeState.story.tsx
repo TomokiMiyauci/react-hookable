@@ -1,10 +1,13 @@
 import { Alert, AlertIcon, Button, Text } from '@chakra-ui/react'
-import Docs from '@doc/useSafeState.mdx'
-import type { ExtendedArgType } from '@story/shared/types'
-import type { Meta } from '@storybook/preact'
 import { useState } from 'preact/hooks'
 
 import { useSafeState } from '@/useSafeState'
+
+import type { ExtendedArgType } from '@story/shared/types'
+import type { Meta } from '@storybook/preact'
+
+
+import Docs from '@doc/useSafeState.mdx'
 export const Demo = (): JSX.Element => {
   const [state, setState] = useState(0)
   useSafeState()

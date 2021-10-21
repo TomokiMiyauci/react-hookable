@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import type { VFn } from '@/utils/types'
+
 /**
  * Hooks for switchable `boolean` function
  * @param initialState - default:`false`

@@ -1,6 +1,6 @@
 import {
-  Code,
   Table,
+  Code,
   TableCaption,
   Tbody,
   Td,
@@ -9,11 +9,13 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
-import Docs from '@doc/useAnimationFrameEffect.mdx'
-import type { Meta } from '@storybook/preact'
 import { useState } from 'preact/hooks'
 
 import { useAnimationFrameEffect } from '@/useAnimationFrameEffect'
+
+import type { Meta } from '@storybook/preact'
+
+import Docs from '@doc/useAnimationFrameEffect.mdx'
 
 const Timestamp = (): JSX.Element => {
   const [ts, setTs] = useState<number>(Date.now())

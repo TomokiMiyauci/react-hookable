@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks/server'
 
 import { initializer, useHashState } from '@/useHashState'
+
 import type { Maybe } from '@/utils/types'
 
 describe('useHashState', () => {
