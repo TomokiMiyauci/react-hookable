@@ -37,6 +37,7 @@ const config: StorybookConfig = {
           ...config.resolve.alias,
           '@': toPath('lib'),
           '@doc': toPath('docs'),
+          '@story': toPath('stories'),
           '@emotion/core': toPath('node_modules/@emotion/react'),
           'emotion-theming': toPath('node_modules/@emotion/react')
         }
