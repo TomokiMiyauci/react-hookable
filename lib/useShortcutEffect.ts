@@ -52,7 +52,7 @@ type UseShortcutEffectOptions = {
   keyMap: Partial<Record<MetaKey, true> & { code: Code }>
 
   /**
-   * Fire on keydown shortcut keys
+   * Call on keydown shortcut keys
    */
   onShortcut: (ev: KeyboardEvent) => void
 
@@ -128,4 +128,4 @@ const useShortcutEffect: UseEffect<UseShortcutEffectOptions> = (
 }
 
 export { useShortcutEffect, validateKeyMap }
-export type { Code, MetaKey }
+export type { Code, MetaKey, UseShortcutEffectOptions }

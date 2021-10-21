@@ -1,164 +1,259 @@
+/* eslint-disable react/prop-types */
 import {
   Alert,
+  AlertIcon,
   Box,
-  Code,
   Kbd,
-  Switch,
-  Table,
-  TableCaption,
-  Tbody,
-  Td,
+  useToast,
   Text,
-  Th,
-  Thead,
-  Tr,
-  useToast
+  HStack
 } from '@chakra-ui/react'
+import { useRef, useMemo } from 'preact/hooks'
 
-import { useBoolean } from '@/useBoolean'
 import { useShortcutEffect } from '@/useShortcutEffect'
+import type { UseShortcutEffectOptions, Code } from '@/useShortcutEffect'
+import { deps, condition } from '@story/shared/constants'
 
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
-
+import type { ArgTypes } from '@story/shared/types'
+import type { Meta, Story } from '@storybook/preact'
 
 import Docs from '@doc/useShortcutEffect.mdx'
 
-// eslint-disable-next-line react/prop-types
-const WithPlus: FunctionalComponent = ({ children }) => <>{children} + </>
-export const Demo: FunctionalComponent = () => {
-  const [enableMeta, { toggle: toggleMeta }] = useBoolean(false)
-  const [enableShift, { toggle: toggleShift }] = useBoolean()
-  const [enableCtrl, { toggle: toggleCtrl }] = useBoolean()
-  const [enableOption, { toggle: toggleOption }] = useBoolean()
-  const toast = useToast()
+const codes: Code[] = [
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowUp',
+  'Backspace',
+  'Enter',
+  'Escape',
+  'KeyA',
+  'KeyB',
+  'KeyC',
+  'KeyD',
+  'KeyE',
+  'KeyF',
+  'KeyG',
+  'KeyH',
+  'KeyI',
+  'KeyJ',
+  'KeyK',
+  'KeyL',
+  'KeyM',
+  'KeyN',
+  'KeyO',
+  'KeyP',
+  'KeyQ',
+  'KeyR',
+  'KeyS',
+  'KeyT',
+  'KeyU',
+  'KeyV',
+  'KeyW',
+  'KeyX',
+  'KeyY',
+  'KeyZ',
+  'Space'
+]
 
-  const maybeTrue = (val: boolean): true | undefined => (val ? true : undefined)
+const Template: Story<UseShortcutEffectOptions['keyMap']> = ({
+  cmd,
+  shift,
+  ctrl,
+  option,
+  code
+}) => {
+  console.log(code)
+  const toast = useToast()
+  const ref = useRef<HTMLDivElement>(null)
+
+  const bindKeyNumber = useMemo<number>(
+    () =>
+      [cmd, shift, ctrl, option, code].reduce((acc, cur) => {
+        if (cur) {
+          acc = acc + 1
+        }
+        return acc
+      }, 0),
+    [cmd, shift, ctrl, option, code]
+  )
+  const hasBindKey = useMemo<boolean>(() => !!bindKeyNumber, [bindKeyNumber])
+
   useShortcutEffect(
     {
       keyMap: {
-        code: 'KeyK',
-        cmd: maybeTrue(enableMeta),
-        shift: maybeTrue(enableShift),
-        ctrl: maybeTrue(enableCtrl),
-        option: maybeTrue(enableOption)
+        code,
+        cmd,
+        shift,
+        ctrl,
+        option
       },
-      onShortcut: () =>
+      onShortcut: () => {
         toast({
           title: 'useShortcutEffect',
-          description: 'onShortcut'
+          description: 'onShortcut',
+          position: 'bottom-right'
         })
+        ref.current?.animate(
+          {
+            color: 'yellow'
+          },
+          200
+        )
+      }
     },
-    [enableMeta, enableShift, enableCtrl, enableOption]
+    [hasBindKey],
+    () => hasBindKey
   )
   return (
     <>
       <Alert>
-        <Box as="span" mr="2">
-          Press
-        </Box>
-        {enableMeta && (
-          <WithPlus>
-            <Kbd>cmd</Kbd>
-          </WithPlus>
-        )}
-        {enableShift && (
-          <WithPlus>
-            <Kbd>shift</Kbd>
-          </WithPlus>
-        )}
-        {enableCtrl && (
-          <WithPlus>
-            <Kbd>ctrl</Kbd>
-          </WithPlus>
-        )}
-        {enableOption && (
-          <WithPlus>
-            <Kbd>option</Kbd>
-          </WithPlus>
-        )}
-        <Kbd>K</Kbd>
+        <AlertIcon />
+        <HStack space="x-1">
+          <Box as="span">{hasBindKey ? 'Press' : 'Bind keys'}</Box>
+          {cmd && <Kbd>cmd</Kbd>}
+          {shift && <Kbd>shift</Kbd>}
+          {ctrl && <Kbd>ctrl</Kbd>}
+          {option && <Kbd>option</Kbd>}
+          {code && <Kbd>{code}</Kbd>}
+        </HStack>
       </Alert>
 
-      <Table mt="6">
-        <TableCaption>Args</TableCaption>
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Value</Th>
-          </Tr>
-        </Thead>
+      <Text
+        position="fixed"
+        color="gray.500"
+        className="left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      >
+        focus this area
+      </Text>
 
-        <Tbody>
-          <Tr>
-            <Td>options</Td>
-            <Td>
-              <Text mb="2">
-                <Code>UseShortcutEffectOptions</Code>
-              </Text>
-              <Text>keyMap:</Text>
-              <Box pl="4">
-                <Text>
-                  cmd: <Switch isChecked={enableMeta} onChange={toggleMeta} />{' '}
-                  <Code>{String(enableMeta)}</Code>
-                </Text>
-                <Text>
-                  shift:
-                  <Switch isChecked={enableShift} onChange={toggleShift} />{' '}
-                  <Code>{String(enableShift)}</Code>
-                </Text>
-                <Text>
-                  ctrl:
-                  <Switch isChecked={enableCtrl} onChange={toggleCtrl} />{' '}
-                  <Code>{String(enableCtrl)}</Code>
-                </Text>
-                <Text>
-                  option:
-                  <Switch
-                    isChecked={enableOption}
-                    onChange={toggleOption}
-                  />{' '}
-                  <Code>{String(enableOption)}</Code>
-                </Text>
-                <Text>
-                  code:
-                  <Code>KeyK</Code>
-                </Text>
-              </Box>
-              <Text>onShortcut: toast</Text>
-              <Text>
-                target: () ={'>'} <Code>window</Code>
-              </Text>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>deps</Td>
-            <Td>
-              <Code>DependencyList</Code>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>condition</Td>
-            <Td>
-              <Code>
-                () ={'>'} Maybe{'<'}boolean{'>'}{' '}
-              </Code>
-            </Td>
-          </Tr>
-        </Tbody>
-      </Table>
+      <Text ref={ref} mt="2">
+        onShortcut: toast
+      </Text>
     </>
   )
 }
 
+export const Demo = Template.bind({})
+
+const argTypes: ArgTypes = {
+  onShortcut: {
+    description: 'Call on keydown shortcut keys',
+    control: {
+      type: null
+    },
+    type: {
+      required: true
+    },
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '(ev: KeyboardEvent) => void'
+      }
+    }
+  },
+  ctrl: {
+    description: 'Bind `ctrl` | `control` key or not',
+    control: {
+      type: 'boolean'
+    },
+    table: {
+      category: 'args',
+      subcategory: 'keyMap*{ keys }',
+      type: {
+        summary: 'true | undefined'
+      }
+    }
+  },
+  cmd: {
+    description: 'Bind `cmd` | `command` key or not',
+    control: {
+      type: 'boolean'
+    },
+    table: {
+      category: 'args',
+      subcategory: 'keyMap*{ keys }',
+      type: {
+        summary: 'true | undefined'
+      }
+    }
+  },
+  option: {
+    description: 'Bind `option` key or not',
+    control: {
+      type: 'boolean'
+    },
+    table: {
+      category: 'args',
+      subcategory: 'keyMap*{ keys }',
+      type: {
+        summary: 'true | undefined'
+      }
+    }
+  },
+  shift: {
+    description: 'Bind `shift` key or not',
+    control: {
+      type: 'boolean'
+    },
+    table: {
+      category: 'args',
+      subcategory: 'keyMap*{ keys }',
+      type: {
+        summary: 'true | undefined'
+      }
+    }
+  },
+  code: {
+    description: 'Bind key code',
+    control: {
+      type: 'select'
+    },
+    options: codes,
+
+    table: {
+      category: 'args',
+      subcategory: 'keyMap*{ keys }',
+      type: {
+        summary: 'Code | undefined',
+        detail: codes.join(' | ')
+      }
+    }
+  },
+  target: {
+    description: 'Target of attaching event listener',
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'Target<Window | Document | HTMLElement | SVGElement>',
+        detail:
+          'type Target<T extends EventTarget> = T | (() => T) | RefObject<T>'
+      },
+      defaultValue: {
+        summary: '() => window'
+      }
+    }
+  },
+  deps,
+  condition
+}
+
 export default {
   title: 'effect/useShortcutEffect',
-  component: Demo,
+  component: Template,
+  argTypes,
+  args: {
+    ctrl: false,
+    cmd: false,
+    option: false,
+    shift: false,
+    code: undefined
+  },
   parameters: {
     docs: {
       page: Docs
     }
   }
-} as Meta<typeof Demo>
+} as Meta<typeof Template>
