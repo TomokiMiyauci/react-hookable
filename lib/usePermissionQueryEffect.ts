@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import type { UseEffect } from '@/shared/types'
 import { useConditionalEffect } from '@/useConditionalEffect'
-import { useIsUnmounted } from '@/useIsUnmounted'
-import { VFn } from '@/utils/types'
+import { useSafeState } from '@/useSafeState'
+import type { VFn } from '@/utils/types'
+
+const isSupported = (): boolean => navigator && 'permissions' in navigator
 
 type DescriptorNamePolyfill =
   | 'accelerometer'
@@ -78,9 +80,8 @@ const usePermissionQueryEffect: UseEffect<UsePermissionQueryEffectOptions> = (
   deps,
   condition
 ) => {
-  const [permissionState, setPermissionState] = useState<PermissionState>()
-  const [error, setError] = useState<TypeError>()
-  const isUnmounted = useIsUnmounted()
+  const [permissionState, setPermissionState] = useSafeState<PermissionState>()
+  const [error, setError] = useSafeState<TypeError>()
 
   useEffect(() => {
     if (!permissionState) return
@@ -107,27 +108,20 @@ const usePermissionQueryEffect: UseEffect<UsePermissionQueryEffectOptions> = (
 
   useConditionalEffect(
     () => {
-      const isSupported = navigator && 'permissions' in navigator
-      if (!isSupported) {
+      if (!isSupported()) {
         setError(TypeError('Not supported'))
         return
       }
 
       navigator.permissions
         .query({ name: permission as PermissionName })
-        .then(({ state }) => {
-          if (isUnmounted.current) return
-          setPermissionState(state)
-        })
-        .catch((e: TypeError) => {
-          if (isUnmounted.current) return
-          setError(e)
-        })
+        .then(({ state }) => setPermissionState(state))
+        .catch((e: TypeError) => setError(e))
     },
     deps,
     condition
   )
 }
 
-export { usePermissionQueryEffect }
+export { isSupported, usePermissionQueryEffect }
 export type { DescriptorName, UsePermissionQueryEffectOptions }
