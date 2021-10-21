@@ -1,83 +1,92 @@
-import {
-  Code,
-  Table,
-  TableCaption,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr
-} from '@chakra-ui/react'
-import { useMemo } from 'preact/hooks'
+import { Text } from '@chakra-ui/react'
+import { useMemo, useRef } from 'preact/hooks'
 
 import { useIntervalEffect } from '@/useIntervalEffect'
+import type { UseIntervalEffectOptions } from '@/useIntervalEffect'
 import { useNumber } from '@/useNumber'
+import { deps, condition } from '@story/shared/constants'
 
-import type { Meta } from '@storybook/preact'
+import type { ArgTypes } from '@story/shared/types'
+import type { Meta, Story } from '@storybook/preact'
 
 import Docs from '@doc/useIntervalEffect.mdx'
-export const Demo = (): JSX.Element => {
+
+// eslint-disable-next-line react/prop-types
+const Template: Story<UseIntervalEffectOptions> = ({ ms }) => {
   const [now, { set }] = useNumber(Date.now())
+  const ref = useRef<HTMLDivElement>(null)
 
   const date = useMemo(() => new Date(now).toLocaleTimeString(), [now])
   useIntervalEffect(
     {
-      callback: () => set(Date.now()),
-      ms: 1000
+      callback: () => {
+        set(Date.now())
+        ref.current?.animate(
+          {
+            color: 'yellow'
+          },
+          200
+        )
+      },
+      ms
     },
     []
   )
   return (
     <>
       <Text>{date}</Text>
-      <Table>
-        <TableCaption>Args</TableCaption>
-
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Value</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr>
-            <Td>options</Td>
-            <Td>
-              <Text mb="2">
-                <Code>UseIntervalEffectOptions</Code>
-              </Text>
-
-              <Text>
-                callback: <Code>(args: void) ={'>'} void</Code>
-              </Text>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>deps</Td>
-            <Td>
-              <Code>DependencyList</Code>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>condition</Td>
-            <Td>
-              <Code>
-                () ={'>'} Maybe{'<'}boolean{'>'}{' '}
-              </Code>
-            </Td>
-          </Tr>
-        </Tbody>
-      </Table>
+      <Text ref={ref}>callback: updateState</Text>
+      <Text>ms: {ms} ms</Text>
     </>
   )
+}
+export const Demo = Template.bind({})
+
+const argTypes: ArgTypes = {
+  callback: {
+    description: 'A function to be executed every delay milliseconds',
+    type: {
+      required: true
+    },
+    control: {
+      type: null
+    },
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '() => void'
+      }
+    }
+  },
+  ms: {
+    description:
+      'The time, in milliseconds (thousandths of a second), the timer should delay in between executions of the specified function or code.',
+    control: {
+      type: 'number',
+      min: 4,
+      max: 2147483647
+    },
+
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'number | undefined'
+      }
+    }
+  },
+  deps,
+  condition
 }
 
 export default {
   title: 'effect/useIntervalEffect',
-  component: Demo,
+  component: Template,
+  args: {
+    ms: 1000
+  },
+  argTypes,
   parameters: {
     docs: {
       page: Docs
