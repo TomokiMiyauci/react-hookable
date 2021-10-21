@@ -16,7 +16,10 @@ type TableArgTypePolyfill = {
 }
 
 type Control = {
-  type: 'select' | null
+  type: 'select' | 'number' | null
+  min: number
+  max: number
+  step: number
 }
 
 type ArgTypePolyfill = {

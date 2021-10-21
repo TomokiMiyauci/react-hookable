@@ -1,21 +1,11 @@
-import {
-  Alert,
-  AlertIcon,
-  Code,
-  Table,
-  TableCaption,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr
-} from '@chakra-ui/react'
+import { Alert, AlertIcon, Code, Text } from '@chakra-ui/react'
 import { useState } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useIdleCallbackEffect } from '@/useIdleCallbackEffect'
+import { condition, deps } from '@story/shared/constants'
 
+import type { ArgTypes } from '@story/shared/types'
 import type { Meta } from '@storybook/preact'
 
 import Docs from '@doc/useIdleCallbackEffect.mdx'
@@ -32,7 +22,13 @@ const Timestamp = (): JSX.Element => {
     },
     [ts]
   )
-  return <Text>{ts}</Text>
+  return (
+    <>
+      <Text>{ts}</Text>
+      <Text>callback: updateState</Text>
+      <Text>fallback: call on not supported browser</Text>
+    </>
+  )
 }
 export const Demo = (): JSX.Element => {
   const [isSupported, { on, off }] = useBoolean(true)
@@ -60,63 +56,56 @@ export const Demo = (): JSX.Element => {
         </Alert>
       )}
       <Timestamp />
-
-      <Table>
-        <TableCaption>Args</TableCaption>
-
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Value</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr>
-            <Td>options</Td>
-            <Td>
-              <Text mb="2">
-                <Code>UseIdleCallbackEffectOptions</Code>
-              </Text>
-
-              <Text>
-                <Text>
-                  callback: <Code>IdleRequestCallback</Code>
-                </Text>
-                <Text>
-                  fallback?: <Code>EffectCallback</Code>
-                </Text>
-
-                <Text>
-                  options?: <Code>IdleRequestOptions</Code>
-                </Text>
-              </Text>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>deps</Td>
-            <Td>
-              <Code>DependencyList</Code>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>condition</Td>
-            <Td>
-              <Code>
-                () ={'>'} Maybe{'<'}boolean{'>'}{' '}
-              </Code>
-            </Td>
-          </Tr>
-        </Tbody>
-      </Table>
     </>
   )
+}
+
+const argTypes: ArgTypes = {
+  callback: {
+    description:
+      'A reference to a function that should be called in the near future, when the event loop is idle',
+    type: {
+      required: true
+    },
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'IdleRequestCallback'
+      }
+    }
+  },
+
+  fallback: {
+    description: 'Called if `requestIdleCallback` is not supported',
+
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'EffectCallback'
+      }
+    }
+  },
+  options: {
+    description: 'Contains optional configuration parameters',
+
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'IdleRequestOptions'
+      }
+    }
+  },
+  deps,
+  condition
 }
 
 export default {
   title: 'effect/useIdleCallbackEffect',
   component: Demo,
+  argTypes,
   parameters: {
     docs: {
       page: Docs

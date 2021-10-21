@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks'
 import { useAnimationFrameEffect } from '@/useAnimationFrameEffect'
 import { condition, deps } from '@story/shared/constants'
 
-import type { ExtendedArgType } from '@story/shared/types'
+import type { ArgTypes } from '@story/shared/types'
 import type { Meta } from '@storybook/preact'
 
 import Docs from '@doc/useAnimationFrameEffect.mdx'
@@ -27,7 +27,7 @@ export const Demo = (): JSX.Element => {
   )
 }
 
-const argTypes: Record<string, ExtendedArgType> = {
+const argTypes: ArgTypes = {
   callback: {
     description:
       'The function to call when it is time to update your animation for the next repaint',

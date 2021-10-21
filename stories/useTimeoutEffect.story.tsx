@@ -8,27 +8,39 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
-
+import { useRef } from 'preact/hooks'
 
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useNumber } from '@/useNumber'
 import { useTimeoutEffect } from '@/useTimeoutEffect'
+import type { UseTimeoutEffectOptions } from '@/useTimeoutEffect'
+import { deps, condition } from '@story/shared/constants'
 
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
+import type { ArgTypes } from '@story/shared/types'
+import type { Meta, Story } from '@storybook/preact'
 
 import Docs from '@doc/useTimeoutEffect.mdx'
-export const Demo: FunctionalComponent = () => {
+
+const Template: Story<UseTimeoutEffectOptions> = () => {
   const { isFirstMount } = useIsFirstMountRef()
   const [ms, { set: setMs }] = useNumber(1000)
+  const ref = useRef<HTMLDivElement>(null)
   const toast = useToast({
     title: 'useTimeoutEffect',
-    description: `ms: ${ms}ms`,
-    position: 'bottom'
+    description: 'callback',
+    position: 'bottom-right'
   })
   useTimeoutEffect(
     {
-      callback: toast,
+      callback: () => {
+        toast()
+        ref.current?.animate(
+          {
+            color: 'yellow'
+          },
+          200
+        )
+      },
       ms
     },
     [ms],
@@ -36,9 +48,7 @@ export const Demo: FunctionalComponent = () => {
   )
   return (
     <>
-      <Text>
-        callback: <Code>toast</Code>
-      </Text>
+      <Text ref={ref}>callback: toast</Text>
 
       <Text>
         ms: <Code>{ms}</Code>ms
@@ -53,21 +63,47 @@ export const Demo: FunctionalComponent = () => {
           <SliderThumb boxSize={6} />
         </Slider>
       </Box>
-
-      <Text>
-        deps: <Code>ms</Code>
-      </Text>
-
-      <Text>
-        condition: <Code>!isFirstMount</Code>
-      </Text>
     </>
   )
 }
 
+export const Demo = Template.bind({})
+
+const argTypes: ArgTypes = {
+  callback: {
+    description: 'A function to be executed after delay milliseconds',
+    type: {
+      required: true
+    },
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '() => void'
+      }
+    }
+  },
+  ms: {
+    description:
+      'The time, in milliseconds (thousandths of a second), the timer should delay',
+
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'number | undefined'
+      }
+    }
+  },
+
+  deps,
+  condition
+}
+
 export default {
   title: 'effect/useTimeoutEffect',
-  component: Demo,
+  component: Template,
+  argTypes,
   parameters: {
     docs: {
       page: Docs
