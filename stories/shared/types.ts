@@ -7,6 +7,7 @@ type Field = {
 
 type TableArgTypePolyfill = {
   category: string
+  subcategory: string
   type: Partial<Field>
   defaultValue: Partial<Field>
   control: {
