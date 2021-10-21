@@ -3,10 +3,20 @@ import { useConditionalEffect } from '@/useConditionalEffect'
 import type { UseEffect } from '@/shared/types'
 import type { EffectCallback } from 'react'
 
-
 type UseIdleCallbackEffectOptions = {
+  /**
+   * A reference to a function that should be called in the near future, when the event loop is idle
+   */
   callback: IdleRequestCallback
+
+  /**
+   * Called if `requestIdleCallback` is not supported
+   */
   fallback?: EffectCallback
+
+  /**
+   * Contains optional configuration parameters
+   */
   options?: IdleRequestOptions
 }
 
