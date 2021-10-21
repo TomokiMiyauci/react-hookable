@@ -8,13 +8,13 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
+import { useRef } from 'preact/hooks'
 
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useNumber } from '@/useNumber'
 import { useTimeoutEffect } from '@/useTimeoutEffect'
 import type { UseTimeoutEffectOptions } from '@/useTimeoutEffect'
 import { deps, condition } from '@story/shared/constants'
-import { useRef } from 'preact/hooks'
 
 import type { ArgTypes } from '@story/shared/types'
 import type { Meta, Story } from '@storybook/preact'
