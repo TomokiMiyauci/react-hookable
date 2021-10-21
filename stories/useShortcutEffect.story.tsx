@@ -8,6 +8,7 @@ import {
   Text,
   HStack
 } from '@chakra-ui/react'
+import { useRef, useMemo } from 'preact/hooks'
 
 import { useShortcutEffect } from '@/useShortcutEffect'
 import type { UseShortcutEffectOptions, Code } from '@/useShortcutEffect'
@@ -15,7 +16,7 @@ import { deps, condition } from '@story/shared/constants'
 
 import type { ArgTypes } from '@story/shared/types'
 import type { Meta, Story } from '@storybook/preact'
-import { useRef, useMemo } from 'preact/hooks'
+
 import Docs from '@doc/useShortcutEffect.mdx'
 
 const codes: Code[] = [
@@ -55,10 +56,6 @@ const codes: Code[] = [
   'Space'
 ]
 
-// eslint-disable-next-line react/prop-types
-const WithPlus = ({ children }: { children: JSX.Element }): JSX.Element => (
-  <>{children} + </>
-)
 const Template: Story<UseShortcutEffectOptions['keyMap']> = ({
   cmd,
   shift,
