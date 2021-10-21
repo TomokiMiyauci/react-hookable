@@ -1,6 +1,8 @@
-import type { StorybookConfig } from '@storybook/core-common'
-import { join } from 'path'
 import postcss from 'postcss'
+
+import { join } from 'path'
+
+import type { StorybookConfig } from '@storybook/core-common'
 
 const toPath = (path: string): string => join(process.cwd(), path)
 

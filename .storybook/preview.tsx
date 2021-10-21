@@ -1,6 +1,7 @@
 import 'tailwindcss/tailwind.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
+
 import type { BaseDecorators, Parameters } from '@storybook/addons'
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
