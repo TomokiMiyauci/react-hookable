@@ -1,18 +1,10 @@
-import {
-  Table,
-  Code,
-  TableCaption,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr
-} from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { useState } from 'preact/hooks'
 
 import { useAnimationFrameEffect } from '@/useAnimationFrameEffect'
+import { condition, deps } from '@story/shared/constants'
 
+import type { ExtendedArgType } from '@story/shared/types'
 import type { Meta } from '@storybook/preact'
 
 import Docs from '@doc/useAnimationFrameEffect.mdx'
@@ -31,53 +23,33 @@ export const Demo = (): JSX.Element => {
   return (
     <>
       <Timestamp />
-      <Table>
-        <TableCaption>Args</TableCaption>
-
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Value</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr>
-            <Td>options</Td>
-            <Td>
-              <Text mb="2">
-                <Code>UseAnimationFrameEffectOptions</Code>
-              </Text>
-
-              <Text>
-                callback: <Code>FrameRequestCallback</Code>
-              </Text>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>deps</Td>
-            <Td>
-              <Code>DependencyList</Code>
-            </Td>
-          </Tr>
-
-          <Tr>
-            <Td>condition</Td>
-            <Td>
-              <Code>
-                () ={'>'} Maybe{'<'}boolean{'>'}{' '}
-              </Code>
-            </Td>
-          </Tr>
-        </Tbody>
-      </Table>
     </>
   )
+}
+
+const argTypes: Record<string, ExtendedArgType> = {
+  callback: {
+    description:
+      'The function to call when it is time to update your animation for the next repaint',
+    type: {
+      required: true
+    },
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'FrameRequestCallback'
+      }
+    }
+  },
+  deps,
+  condition
 }
 
 export default {
   title: 'effect/useAnimationFrameEffect',
   component: Demo,
+  argTypes,
   parameters: {
     docs: {
       page: Docs
