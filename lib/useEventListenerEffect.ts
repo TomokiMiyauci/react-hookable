@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DependencyList } from 'react'
-import type { Exclusive } from 'utilitypes'
 
 import { takeTarget } from '@/shared'
-import type { Target } from '@/shared/types'
 import { useConditionalEffect } from '@/useConditionalEffect'
+
+import type { Target } from '@/shared/types'
 import type { IsNever, Maybe } from '@/utils/types'
+import type { DependencyList } from 'react'
+import type { Exclusive } from 'utilitypes'
 
 type EventMap<T extends EventTarget> = T extends HTMLElement
   ? HTMLElementEventMap
@@ -23,11 +24,22 @@ type EventListenerParameters<
   T extends EventTarget,
   K extends keyof EventMap<T>
 > = {
+  /**
+   * Event type
+   */
   type: IsNever<K> extends true ? string : K
+
+  /**
+   * The object that receives a notification when an event of the specified type occurs
+   */
   listener: (
     this: T,
     ev: IsNever<EventMap<T>> extends true ? Event : EventMap<T>[K]
   ) => any
+
+  /**
+   * An options object specifies characteristics about the event listener
+   */
   options?: AddEventListenerOptions | boolean
 }
 

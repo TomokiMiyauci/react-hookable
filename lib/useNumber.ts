@@ -1,5 +1,6 @@
-import type { Reducer } from 'react'
 import { useReducer } from 'react'
+
+import type { Reducer } from 'react'
 
 type ActionTypesOfUseNumber = 'increment' | 'decrement' | 'set'
 

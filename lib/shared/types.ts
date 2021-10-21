@@ -1,6 +1,6 @@
+import type { Maybe } from '@/utils/types'
 import type { DependencyList, MutableRefObject, RefObject } from 'react'
 
-import type { Maybe } from '@/utils/types'
 
 /**
  * Types of Event loop options

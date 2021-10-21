@@ -1,9 +1,12 @@
 import { Button, HStack, Text } from '@chakra-ui/react'
-import Docs from '@doc/useNumber.mdx'
+
+import { useNumber } from '@/useNumber'
+
 import type { Meta } from '@storybook/preact'
 import type { FunctionalComponent } from 'preact'
 
-import { useNumber } from '@/useNumber'
+import Docs from '@doc/useNumber.mdx'
+
 
 export const Demo: FunctionalComponent = () => {
   const [state, { inc, dec, set }] = useNumber()

@@ -1,6 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import type { Position } from '@/shared/types'
 import type { Direction } from '@/useSwipeEffectState'
 import {
   calcDiffX,
@@ -8,6 +7,8 @@ import {
   initialPosition,
   useSwipeEffectState
 } from '@/useSwipeEffectState'
+
+import type { Position } from '@/shared/types'
 
 const mockTouchEventInit = ({
   x,

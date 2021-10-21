@@ -1,7 +1,7 @@
-import type { RefObject } from 'react'
 import { useRef } from 'react'
 
 import type { UseRef } from '@/shared/types'
+import type { RefObject } from 'react'
 
 type UseIsFirstMountRefReturn = {
   isFirstMount: boolean

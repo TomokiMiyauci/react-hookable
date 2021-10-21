@@ -11,12 +11,14 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
-import Docs from '@doc/useIdleCallbackEffect.mdx'
-import type { Meta } from '@storybook/preact'
 import { useState } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useIdleCallbackEffect } from '@/useIdleCallbackEffect'
+
+import type { Meta } from '@storybook/preact'
+
+import Docs from '@doc/useIdleCallbackEffect.mdx'
 
 const Timestamp = (): JSX.Element => {
   const [ts, setTs] = useState<number>(Date.now())

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import type { UseEffect } from '@/shared/types'
 import { useBoolean } from '@/useBoolean'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useTimeoutEffect } from '@/useTimeoutEffect'
+
+import type { UseEffect } from '@/shared/types'
 import type { VFn } from '@/utils/types'
 
 const userInteractions: (keyof WindowEventMap)[] = [

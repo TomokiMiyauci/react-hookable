@@ -1,11 +1,14 @@
 import { EmailIcon } from '@chakra-ui/icons'
 import { Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
-import Docs from '@doc/useAsyncMemo.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 import { useState } from 'preact/hooks'
 
 import { useAsyncMemo } from '@/useAsyncMemo'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+
+import Docs from '@doc/useAsyncMemo.mdx'
 export const Demo: FunctionalComponent = () => {
   const [email, setEmail] = useState<string>('')
   const [imported, setImported] = useState<boolean>(false)

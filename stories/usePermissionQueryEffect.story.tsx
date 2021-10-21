@@ -1,7 +1,4 @@
 import { Code, Text, useToast } from '@chakra-ui/react'
-import Docs from '@doc/usePermissionQueryEffect.mdx'
-import type { ExtendedArgType } from '@story/shared/types'
-import type { Meta, Story } from '@storybook/preact'
 import { useRef } from 'preact/hooks'
 
 import type {
@@ -9,6 +6,11 @@ import type {
   UsePermissionQueryEffectOptions
 } from '@/usePermissionQueryEffect'
 import { usePermissionQueryEffect } from '@/usePermissionQueryEffect'
+
+import type { ExtendedArgType } from '@story/shared/types'
+import type { Meta, Story } from '@storybook/preact'
+
+import Docs from '@doc/usePermissionQueryEffect.mdx'
 
 // eslint-disable-next-line react/prop-types
 const Template: Story<UsePermissionQueryEffectOptions> = ({ permission }) => {

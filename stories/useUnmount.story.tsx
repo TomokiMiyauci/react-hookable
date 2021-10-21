@@ -1,11 +1,14 @@
 import { Box, Button, Flex, HStack, Text, useToast } from '@chakra-ui/react'
-import Docs from '@doc/useUnmount.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
+
 
 import { useBoolean } from '@/useBoolean'
 import { useNumber } from '@/useNumber'
 import { useUnmount } from '@/useUnmount'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+import Docs from '@doc/useUnmount.mdx'
 
 const Children: FunctionalComponent = () => {
   const { use, disuse } = useUnmount()

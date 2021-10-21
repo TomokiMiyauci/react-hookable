@@ -1,10 +1,13 @@
 import { Alert } from '@chakra-ui/react'
-import Docs from '@doc/useIsUnmounted.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 import { useEffect } from 'preact/hooks'
 
 import { useIsUnmounted } from '@/useIsUnmounted'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+
+import Docs from '@doc/useIsUnmounted.mdx'
 
 export const Demo: FunctionalComponent = () => {
   const hasUnmounted = useIsUnmounted()

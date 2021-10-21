@@ -1,4 +1,3 @@
-import type { RefObject } from 'react'
 import { useRef } from 'react'
 
 import type {
@@ -6,7 +5,9 @@ import type {
   UseSwipeEffectState
 } from '@/useSwipeEffectState'
 import { useSwipeEffectState } from '@/useSwipeEffectState'
+
 import type { Maybe } from '@/utils/types'
+import type { RefObject } from 'react'
 
 type UseSwipeProps<
   T extends HTMLElement | SVGElement,

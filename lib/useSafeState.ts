@@ -1,7 +1,8 @@
-import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 
 import { useIsUnmounted } from '@/useIsUnmounted'
+
+import type { Dispatch, SetStateAction } from 'react'
 
 /**
  * Update the state only while mounted `useState`

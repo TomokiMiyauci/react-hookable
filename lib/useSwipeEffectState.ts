@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react'
 
-import type { Position } from '@/shared/types'
-import type { UseEffect } from '@/shared/types'
 import { useBoolean } from '@/useBoolean'
-import type { UseTouchEffect } from '@/useTouchEffect'
 import { useTouchEffect } from '@/useTouchEffect'
+import type { UseTouchEffect } from '@/useTouchEffect'
+
+import type { Position, UseEffect } from '@/shared/types'
 import type { VFn } from '@/utils/types'
 
 type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'

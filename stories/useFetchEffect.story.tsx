@@ -8,13 +8,15 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
-import Docs from '@doc/useFetchEffect.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 import { useMemo, useState } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useFetchEffect } from '@/useFetchEffect'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+import Docs from '@doc/useFetchEffect.mdx'
 
 const Children: FunctionalComponent<{
   url: string

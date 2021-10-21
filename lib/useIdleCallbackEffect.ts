@@ -1,7 +1,8 @@
-import type { EffectCallback } from 'react'
+import { useConditionalEffect } from '@/useConditionalEffect'
 
 import type { UseEffect } from '@/shared/types'
-import { useConditionalEffect } from '@/useConditionalEffect'
+import type { EffectCallback } from 'react'
+
 
 type UseIdleCallbackEffectOptions = {
   callback: IdleRequestCallback

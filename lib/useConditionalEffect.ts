@@ -1,7 +1,7 @@
-import type { DependencyList, EffectCallback } from 'react'
 import { useEffect } from 'react'
 
 import type { Maybe } from '@/utils/types'
+import type { DependencyList, EffectCallback } from 'react'
 /**
  * `useEffect` with conditional function
  * @param effect - Imperative function that can return a cleanup function

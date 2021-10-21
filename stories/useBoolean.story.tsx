@@ -1,8 +1,10 @@
 import { Button, HStack, Text } from '@chakra-ui/react'
+
+import { useBoolean } from '@/useBoolean'
+
 import type { Meta } from '@storybook/preact'
 import type { FunctionComponent } from 'preact'
 
-import { useBoolean } from '@/useBoolean'
 
 const Demo: FunctionComponent = () => {
   const [state, { toggle, on, off }] = useBoolean()

@@ -9,12 +9,14 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
-import Docs from '@doc/useIntervalEffect.mdx'
-import type { Meta } from '@storybook/preact'
 import { useMemo } from 'preact/hooks'
 
 import { useIntervalEffect } from '@/useIntervalEffect'
 import { useNumber } from '@/useNumber'
+
+import type { Meta } from '@storybook/preact'
+
+import Docs from '@doc/useIntervalEffect.mdx'
 export const Demo = (): JSX.Element => {
   const [now, { set }] = useNumber(Date.now())
 

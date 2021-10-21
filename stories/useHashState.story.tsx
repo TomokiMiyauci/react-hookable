@@ -14,12 +14,15 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
-import Docs from '@doc/useHashState.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 
 import { useBoolean } from '@/useBoolean'
 import { useHashState } from '@/useHashState'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+
+import Docs from '@doc/useHashState.mdx'
 
 export const Demo: FunctionalComponent = () => {
   const [hashMark, { toggle }] = useBoolean(true)

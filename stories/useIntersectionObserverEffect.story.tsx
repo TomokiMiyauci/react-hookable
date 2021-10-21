@@ -11,11 +11,13 @@ import {
   Tr,
   useToast
 } from '@chakra-ui/react'
-import Docs from '@doc/useIntersectionObserverEffect.mdx'
-import type { Meta } from '@storybook/preact'
 import { useRef } from 'preact/hooks'
 
 import { useIntersectionObserverEffect } from '@/useIntersectionObserverEffect'
+
+import type { Meta } from '@storybook/preact'
+
+import Docs from '@doc/useIntersectionObserverEffect.mdx'
 export const Demo = (): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null)
   const toast = useToast({

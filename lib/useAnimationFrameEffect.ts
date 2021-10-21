@@ -1,5 +1,6 @@
-import type { UseEffect } from '@/shared/types'
 import { useConditionalEffect } from '@/useConditionalEffect'
+
+import type { UseEffect } from '@/shared/types'
 
 type UseAnimationFrameEffectOptions = {
   /**

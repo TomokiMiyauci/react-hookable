@@ -24,14 +24,16 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
-import Docs from '@doc/useIdleEffect.mdx'
-import type { Meta } from '@storybook/preact'
-import type { StateUpdater } from 'preact/hooks'
 import { useCallback, useMemo, useState } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useIdleCallbackEffect } from '@/useIdleCallbackEffect'
 import { useIdleEffect } from '@/useIdleEffect'
+
+import type { Meta } from '@storybook/preact'
+import type { StateUpdater } from 'preact/hooks'
+
+import Docs from '@doc/useIdleEffect.mdx'
 
 const initTimeout = 60000
 

@@ -1,6 +1,6 @@
+import type { Target } from '@/shared/types'
 import type { RefObject } from 'react'
 
-import type { Target } from '@/shared/types'
 
 /**
  * Safe current accessor

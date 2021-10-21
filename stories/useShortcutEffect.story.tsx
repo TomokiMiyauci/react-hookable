@@ -14,12 +14,15 @@ import {
   Tr,
   useToast
 } from '@chakra-ui/react'
-import Docs from '@doc/useShortcutEffect.mdx'
-import type { Meta } from '@storybook/preact'
-import type { FunctionalComponent } from 'preact'
 
 import { useBoolean } from '@/useBoolean'
 import { useShortcutEffect } from '@/useShortcutEffect'
+
+import type { Meta } from '@storybook/preact'
+import type { FunctionalComponent } from 'preact'
+
+
+import Docs from '@doc/useShortcutEffect.mdx'
 
 // eslint-disable-next-line react/prop-types
 const WithPlus: FunctionalComponent = ({ children }) => <>{children} + </>

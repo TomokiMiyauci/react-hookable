@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useState } from 'react'
 
-import type { Target, UseEffect } from '@/shared/types'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
 import { useUpdateEffect } from '@/useUpdateEffect'
+
+import type { Target, UseEffect } from '@/shared/types'
 
 type UseTouchEffect =
   | {
