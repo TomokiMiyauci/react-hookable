@@ -1,3 +1,9 @@
+# [v1.0.0-beta.43](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.42...v1.0.0-beta.43) (2021-10-21)
+
+## ✨ New Features
+- [`5d1cdf2`](https://github.com/TomokiMiyauci/react-hookable/commit/5d1cdf2)   Add &#x60;useSafeState&#x60; for update the state only while mounted 
+- [`f0e1282`](https://github.com/TomokiMiyauci/react-hookable/commit/f0e1282)   Add &#x60;usePermissionQueryEffect&#x60; test case
+
 # [v1.0.0-beta.42](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.41...v1.0.0-beta.42) (2021-10-20)
 
 ## ✨ New Features
