@@ -1,0 +1,24 @@
+# usePermissionQueryEffect
+
+Effect for `navigator.permissions.query` with declarative
+
+## Usage
+
+```tsx
+import { usePermissionQueryEffect } from 'react-hookable'
+usePermissionQueryEffect({
+  permission: 'camera',
+  onGranted: () => {
+    // permission is granted
+  },
+  onPrompt: () => {
+    // permission is prompt
+  },
+  onDenied: () => {
+    // permission is denied
+  },
+  onNotSupported: () => {
+    // Called if permissions are not supported or if permissions query is not supported
+  }
+})
+```

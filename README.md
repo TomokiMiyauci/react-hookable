@@ -12,9 +12,16 @@ Collection of essential React Composition Utilities
 
 ---
 
+## Status
+
+:seedling: beta
+
+When a common interface has been defined, it becomes a public release.
+
 ## Feature
 
 - :sparkles: Consistent interface
+- :page_facing_up: Declarative
 - :memo: Pure TypeScript
 - :seedling: Full support for preact
 - :green_heart: Full support for Deno
@@ -89,6 +96,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 - [`useIntersectionObserverEffect`](docs/useIntersectionObserverEffect.mdx) - Effect for `IntersectionObserver` that disconnect automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintersectionobservereffect)
 - [`useIntervalEffect`](docs/useIntervalEffect.mdx) - Effect for `setInterval` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintervaleffect)
 - [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
+- [`usePermissionQueryEffect`](docs/usePermissionQueryEffect.mdx) - Effect for `navigator.permissions.query` with declarative [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usepermissionqueryeffect)
 - [`useShortcutEffect`](docs/useShortcutEffect.mdx) - Effect for `keydown` as shortcut [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useshortcuteffect)
 - [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
 
@@ -128,6 +136,7 @@ These are highly abstract hooks that enhance the standard hooks in `react` or `p
 - [`useAsyncMemo`](docs/useAsyncMemo.mdx) - Only recompute the memoized `async` value when one of the deps has changed [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useasyncmemo)
 - [`useUpdateEffect`](docs/useUpdateEffect.mdx) - Hooks for effect on update dependency [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useupdateeffect)
 - [`useConditionalEffect`](docs/useConditionalEffect.mdx) - `useEffect` with conditional function [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-useconditionaleffect)
+- [`useSafeState`](docs/useSafeState.mdx) - Update the state only while mounted `useState` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/enhancement-usesafestate)
 
 ## Lifecycle
 
