@@ -4,7 +4,14 @@ import type { UseEffect } from '@/shared/types'
 import type { VFn } from '@/utils/types'
 
 type UseTimeoutEffectOptions = {
+  /**
+   * A function to be executed after delay milliseconds
+   */
   callback: VFn
+
+  /**
+   * The time, in milliseconds (thousandths of a second), the timer should delay
+   */
   ms?: number
 }
 
