@@ -12,9 +12,16 @@ Collection of essential React Composition Utilities
 
 ---
 
+## Status
+
+:seedling: beta
+
+When a common interface has been defined, it becomes a public release.
+
 ## Feature
 
 - :sparkles: Consistent interface
+- :page_facing_up: Declarative
 - :memo: Pure TypeScript
 - :seedling: Full support for preact
 - :green_heart: Full support for Deno
