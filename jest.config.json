@@ -12,7 +12,8 @@
         "^.+\\.(t|j)sx?$": "@swc/jest"
       },
       "moduleNameMapper": {
-        "^@/(.*)$": "<rootDir>/lib/$1"
+        "^@/(.*)$": "<rootDir>/lib/$1",
+        "^@mock/(.*)$": "<rootDir>/tests/mock/$1"
       },
       "setupFilesAfterEnv": ["<rootDir>/tests/browser/setup.ts"]
     },
@@ -24,7 +25,8 @@
         "^.+\\.(t|j)sx?$": "@swc/jest"
       },
       "moduleNameMapper": {
-        "^@/(.*)$": "<rootDir>/lib/$1"
+        "^@/(.*)$": "<rootDir>/lib/$1",
+        "^@mock/(.*)$": "<rootDir>/tests/mock/$1"
       }
     }
   ],
