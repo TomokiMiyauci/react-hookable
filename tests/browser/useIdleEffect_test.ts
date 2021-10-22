@@ -22,10 +22,9 @@ describe('useIdleEffect', () => {
     expect(onActive).not.toHaveBeenCalled()
   })
 
-  const table: (keyof WindowEventMap)[] = userInteractions
-
-  it.each(table)('should call onInteract with default event', (type) => {
+  it('should call onInteract with default event', () => {
     const onInteract = jest.fn()
+    const type = 'mousemove'
     const { unmount } = renderHook(() =>
       useIdleEffect({
         onInteract
