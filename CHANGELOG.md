@@ -1,3 +1,8 @@
+# [v1.0.0-beta.44](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.43...v1.0.0-beta.44) (2021-10-22)
+
+## 🐛 Bug Fixes
+- [`6d5986b`](https://github.com/TomokiMiyauci/react-hookable/commit/6d5986b)   Remove &#x60;useTouchEffect&#x60;, use &#x60;useEventListenerEffect&#x60; instead
+
 # [v1.0.0-beta.43](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.42...v1.0.0-beta.43) (2021-10-21)
 
 ## ✨ New Features
