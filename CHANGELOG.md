@@ -1,3 +1,8 @@
+# [v1.0.0-beta.45](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2021-10-22)
+
+## ✨ New Features
+- [`581993f`](https://github.com/TomokiMiyauci/react-hookable/commit/581993f)   Add &#x60;useFetchEffect&#x60; that fetching abort automatically
+
 # [v1.0.0-beta.44](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.43...v1.0.0-beta.44) (2021-10-22)
 
 ## 🐛 Bug Fixes
