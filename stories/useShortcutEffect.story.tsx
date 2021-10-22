@@ -13,6 +13,7 @@ import { useRef, useMemo } from 'preact/hooks'
 import { useShortcutEffect } from '@/useShortcutEffect'
 import type { UseShortcutEffectOptions, Code } from '@/useShortcutEffect'
 import { deps, condition } from '@story/shared/constants'
+import { flash } from '@story/shared/utils'
 
 import type { ArgTypes } from '@story/shared/types'
 import type { Meta, Story } from '@storybook/preact'
@@ -65,6 +66,7 @@ const Template: Story<UseShortcutEffectOptions['keyMap']> = ({
 }) => {
   const toast = useToast()
   const ref = useRef<HTMLDivElement>(null)
+  const nonRef = useRef<HTMLDivElement>(null)
 
   const bindKeyNumber = useMemo<number>(
     () =>
@@ -93,12 +95,10 @@ const Template: Story<UseShortcutEffectOptions['keyMap']> = ({
           description: 'onShortcut',
           position: 'bottom-right'
         })
-        ref.current?.animate(
-          {
-            color: 'yellow'
-          },
-          200
-        )
+        flash(ref)
+      },
+      onNonShortcut: () => {
+        flash(nonRef)
       }
     },
     [hasBindKey],
@@ -129,6 +129,9 @@ const Template: Story<UseShortcutEffectOptions['keyMap']> = ({
       <Text ref={ref} mt="2">
         onShortcut: toast
       </Text>
+      <Text ref={nonRef} mt="2">
+        onNonShortcut
+      </Text>
     </>
   )
 }
@@ -137,12 +140,25 @@ export const Demo = Template.bind({})
 
 const argTypes: ArgTypes = {
   onShortcut: {
-    description: 'Call on keydown shortcut keys',
+    description: 'Called when keydown a shortcut key',
     control: {
       type: null
     },
     type: {
       required: true
+    },
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '(ev: KeyboardEvent) => void'
+      }
+    }
+  },
+  onNonShortcut: {
+    description: 'Called when keydown not a shortcut key',
+    control: {
+      type: null
     },
     table: {
       category: 'args',

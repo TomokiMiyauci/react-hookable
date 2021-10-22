@@ -95,6 +95,35 @@ describe('useShortcutEffect', () => {
     })
     expect(onShortcut).toHaveBeenCalledTimes(1)
   })
+
+  it('should call onNonShortcut when keydown non shortcut', () => {
+    const onShortcut = jest.fn()
+    const onNonShortcut = jest.fn()
+
+    renderHook(() =>
+      useShortcutEffect({
+        keyMap: {
+          code: 'KeyK'
+        },
+        onShortcut,
+        onNonShortcut
+      })
+    )
+
+    expect(onShortcut).not.toHaveBeenCalled()
+    expect(onNonShortcut).not.toHaveBeenCalled()
+
+    act(() => {
+      window.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          code: 'KeyU'
+        })
+      )
+    })
+    expect(onShortcut).not.toHaveBeenCalled()
+    expect(onNonShortcut).toHaveBeenCalledTimes(1)
+    expect(onNonShortcut).toHaveBeenCalledWith(expect.any(KeyboardEvent))
+  })
 })
 
 describe('validateKeyMap', () => {
