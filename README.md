@@ -90,7 +90,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 
 - [`useAnimationFrameEffect`](docs/useAnimationFrameEffect.mdx) - Effect for `requestAnimationFrame` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useanimationframeeffect)
 - [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
-- [`useFetchEffect`](docs/useFetchEffect.mdx) - Auto aborting `fetch` API effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usefetcheffect)
+- [`useFetchEffect`](docs/useFetchEffect.mdx) - Effect for `fetch` API that abort automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usefetcheffect)
 - [`useIdleCallbackEffect`](docs/useIdleCallbackEffect.mdx) - Effect for `requestIdleCallback` with fallback that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useidlecallbackeffect)
 - [`useIdleEffect`](docs/useIdleEffect.mdx) - Effect for track whether the user is being inactive [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useidleeffect)
 - [`useIntersectionObserverEffect`](docs/useIntersectionObserverEffect.mdx) - Effect for `IntersectionObserver` that disconnect automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintersectionobservereffect)

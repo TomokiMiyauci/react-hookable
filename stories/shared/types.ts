@@ -16,7 +16,7 @@ type TableArgTypePolyfill = {
 }
 
 type Control = {
-  type: 'select' | 'number' | 'boolean' | null
+  type: 'select' | 'number' | 'boolean' | 'text' | 'color' | 'date' | null
   min: number
   max: number
   step: number
