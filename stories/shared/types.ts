@@ -1,7 +1,7 @@
 import type { ArgType } from '@storybook/addons'
 
 type Field = {
-  summary: string
+  summary: string | number
   detail: string
 }
 

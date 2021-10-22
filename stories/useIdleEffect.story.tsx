@@ -1,13 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {
-  Box,
   Button,
-  Code,
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Link,
   Modal,
   ModalBody,
   ModalContent,
@@ -15,150 +9,53 @@ import {
   ModalHeader,
   ModalOverlay,
   Progress,
-  Table,
-  TableCaption,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr
+  Text
 } from '@chakra-ui/react'
-import { useCallback, useMemo, useState } from 'preact/hooks'
+import { useCallback, useMemo, useRef, useState } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useIdleCallbackEffect } from '@/useIdleCallbackEffect'
-import { useIdleEffect } from '@/useIdleEffect'
+import { useIdleEffect, oneMinute, userInteractions } from '@/useIdleEffect'
+import type { UseIdleEffectOptions } from '@/useIdleEffect'
+import { deps, condition } from '@story/shared/constants'
 
-import type { Meta } from '@storybook/preact'
+import type { ArgTypes } from '@story/shared/types'
+import type { Meta, Story } from '@storybook/preact'
 import type { StateUpdater } from 'preact/hooks'
 
 import Docs from '@doc/useIdleEffect.mdx'
 
-const initTimeout = 60000
-
-export const Demo = (): JSX.Element => {
-  const [timeout, _setTimeout] = useState(initTimeout)
+const Template: Story<UseIdleEffectOptions> = ({
+  timeout: ts = oneMinute,
+  events = userInteractions
+}) => {
+  const [timeout, _setTimeout] = useState(ts)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const setTimeout = useCallback(_setTimeout, [timeout])
 
   return (
     <>
-      <Playground timeout={timeout} onChange={setTimeout} />
-      <DocsTable timeout={timeout} onChange={setTimeout} />
+      <Playground events={events} timeout={timeout} onChange={setTimeout} />
     </>
   )
 }
 
-const DocsTable = ({
-  timeout,
-  onChange
-}: {
-  timeout: number
-  onChange: StateUpdater<number>
-}): JSX.Element => {
-  return (
-    <Table>
-      <TableCaption>Args</TableCaption>
-
-      <Thead>
-        <Tr>
-          <Th>Name</Th>
-          <Th>Value</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        <Tr>
-          <Td>options</Td>
-          <Td>
-            <Text mb="2">
-              <Code>UseIdleEffectOptions</Code>
-            </Text>
-
-            <Text>
-              onIdle?: <Code>() ={'>'} void</Code>
-            </Text>
-
-            <Text>
-              onActive?: <Code>() ={'>'} void</Code>
-            </Text>
-
-            <Text>
-              onInteract?: <Code>() ={'>'} void</Code>{' '}
-              <Box display="inline">fire</Box>
-            </Text>
-
-            <Text>
-              timeout?: <Code>number</Code>
-              <Text ml="4">
-                min: <Code>4</Code> max: <Code>2147483647</Code>
-                <Text>
-                  This is a requirement of
-                  <Link
-                    ml="2"
-                    target="_blank"
-                    href="https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#maximum_delay_value"
-                  >
-                    <Code color="blue.500">setTimeout</Code>
-                  </Link>
-                </Text>
-              </Text>
-              <InputGroup my="2">
-                <InputLeftAddon>timeout</InputLeftAddon>
-                <Input
-                  value={timeout}
-                  type="number"
-                  min="4"
-                  max="2147483647"
-                  onChange={({ currentTarget }) =>
-                    onChange(Number(currentTarget.value))
-                  }
-                />
-                <InputRightAddon>ms</InputRightAddon>
-              </InputGroup>
-            </Text>
-
-            <Text>
-              events?: <Code>(keyof WindowEventMap)[]</Code>
-              <Text>
-                {'[mousemove, mousedown, resize, keydown, touchstart, wheel]'}
-              </Text>
-            </Text>
-          </Td>
-        </Tr>
-
-        <Tr>
-          <Td>deps</Td>
-          <Td>
-            <Code>DependencyList</Code>
-          </Td>
-        </Tr>
-
-        <Tr>
-          <Td>condition</Td>
-          <Td>
-            <Code>
-              () ={'>'} Maybe{'<'}boolean{'>'}{' '}
-            </Code>
-          </Td>
-        </Tr>
-      </Tbody>
-    </Table>
-  )
-}
+export const Demo = Template.bind({})
 
 const Playground = ({
   timeout,
-  onChange
+  events
 }: {
   timeout: number
+  events: typeof userInteractions
   onChange: StateUpdater<number>
 }): JSX.Element => {
   const [isIdle, { on, off }] = useBoolean()
   const now = Date.now()
   const [last, setLast] = useState(now)
   const [latest, setLatest] = useState(now)
+  const ref = useRef<HTMLDivElement>(null)
   useIdleCallbackEffect(
     {
       callback: () => {
@@ -182,10 +79,17 @@ const Playground = ({
     {
       onIdle: on,
       timeout,
+      events,
       onInteract: () => {
         if (isIdle) return
 
         handleLogin()
+        ref.current?.animate(
+          {
+            color: 'yellow'
+          },
+          20
+        )
       }
     },
     []
@@ -201,6 +105,8 @@ const Playground = ({
   return (
     <>
       <Progress max={timeout} hasStripe value={ratio} />
+      <Text mt="3">onIdle: dialog</Text>
+      <Text ref={ref}>onInteract: updateState</Text>
 
       <Modal isOpen={isIdle} onClose={() => {}}>
         <ModalOverlay className="backdrop-blur-md" />
@@ -211,14 +117,7 @@ const Playground = ({
           </ModalBody>
 
           <ModalFooter>
-            <Button
-              colorScheme="blue"
-              mr={3}
-              onClick={() => {
-                handleLogin()
-                onChange(initTimeout)
-              }}
-            >
+            <Button colorScheme="blue" mr={3} onClick={handleLogin}>
               Login
             </Button>
           </ModalFooter>
@@ -228,12 +127,83 @@ const Playground = ({
   )
 }
 
+const argTypes: ArgTypes = {
+  onIdle: {
+    description: 'Called the first time the `timeout` period has been exceeded',
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '() => void'
+      }
+    }
+  },
+  onActive: {
+    description: 'Called the first time there is user activity after an Idle',
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '() => void'
+      }
+    }
+  },
+  onInteract: {
+    description: 'Called every time there is user activity',
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '() => void'
+      }
+    }
+  },
+  timeout: {
+    description: 'User activity timeout',
+    control: {
+      type: 'number',
+      min: 2000,
+      max: 2147483647
+    },
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'number | undefined'
+      },
+      defaultValue: {
+        summary: oneMinute
+      }
+    }
+  },
+  events: {
+    description: 'Events that listen to for detected user activity',
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: '(keyof WindowEventMap)[] | undefined'
+      },
+      defaultValue: {
+        summary: userInteractions.join(' | ')
+      }
+    }
+  },
+  deps,
+  condition
+}
+
 export default {
   title: 'effect/useIdleEffect',
-  component: Demo,
+  component: Template,
+  argTypes,
+  args: {
+    timeout: oneMinute,
+    events: userInteractions
+  },
   parameters: {
     docs: {
       page: Docs
     }
   }
-} as Meta<typeof Demo>
+} as Meta<typeof Template>

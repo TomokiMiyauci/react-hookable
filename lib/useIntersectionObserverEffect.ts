@@ -10,7 +10,7 @@ type UseIntersectionObserverEffectOptions = {
   target: Target<Element>
 
   /**
-   * Observe callback
+   * Call on intersect
    */
   callback: IntersectionObserverCallback
 
