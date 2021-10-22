@@ -98,6 +98,7 @@ const Children = ({
   )
 }
 
+// eslint-disable-next-line react/prop-types
 const Template: Story<UseFetchEffectOptions> = ({ input }) => {
   const animate = (ref: RefObject<HTMLDivElement>) =>
     ref.current?.animate(
