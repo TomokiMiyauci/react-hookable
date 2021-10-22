@@ -63,7 +63,6 @@ const Template: Story<UseShortcutEffectOptions['keyMap']> = ({
   option,
   code
 }) => {
-  console.log(code)
   const toast = useToast()
   const ref = useRef<HTMLDivElement>(null)
 
