@@ -1,36 +1,82 @@
-import { Button, HStack, Text } from '@chakra-ui/react'
+import { Button, HStack, Text, Code } from '@chakra-ui/react'
 
 import { useBoolean } from '@/useBoolean'
 
-import type { Meta } from '@storybook/preact'
-import type { FunctionComponent } from 'preact'
+import type { ArgTypes } from '@story/shared/types'
+import type { Meta, Story } from '@storybook/preact'
 
+import Docs from '@doc/useBoolean.mdx'
 
-const Demo: FunctionComponent = () => {
-  const [state, { toggle, on, off }] = useBoolean()
+// eslint-disable-next-line react/prop-types
+const Template: Story<{ initialState: boolean }> = ({ initialState }) => {
+  const [state, { toggle, on, off }] = useBoolean(initialState)
 
   return (
     <>
-      <Text mb="1.5">Value: {String(state)}</Text>
-      <HStack spacing="1.5">
+      <HStack mb="3" spacing="1.5">
         <Button onClick={toggle}>Toggle</Button>
         <Button onClick={on}>On</Button>
         <Button onClick={off}>Off</Button>
       </HStack>
+      <Text mb="1.5">
+        state: <Code>{String(state)}</Code>
+      </Text>
     </>
   )
 }
-import Docs from '@doc/useBoolean.mdx'
 
-const meta: Meta<typeof Demo> = {
+export const Demo = Template.bind({})
+
+const argTypes: ArgTypes = {
+  initialState: {
+    description:
+      'The initial value (or a function that returns the initial value)',
+    control: {
+      type: 'boolean'
+    },
+    table: {
+      category: 'args',
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean | (() => boolean)'
+      }
+    }
+  },
+  state: {
+    description: 'Stateful state',
+    table: {
+      category: 'returns',
+      subcategory: '[0]',
+      type: {
+        summary: 'boolean'
+      }
+    }
+  },
+  stateUpdater: {
+    description: 'Functions to update state',
+    table: {
+      category: 'returns',
+      subcategory: '[1]',
+      type: {
+        summary: 'StateUpdater',
+        detail: 'type StateUpdater = { on: VFn; off: VFn; toggle: VFn }'
+      }
+    }
+  }
+}
+
+export default {
   title: 'state/useBoolean',
-  component: Demo,
+  component: Template,
+  argTypes,
+  args: {
+    initialState: false
+  },
   parameters: {
     docs: {
       page: Docs
     }
   }
-}
-
-export default meta
-export { Demo }
+} as Meta<typeof Template>

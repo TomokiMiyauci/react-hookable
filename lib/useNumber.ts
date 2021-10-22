@@ -3,6 +3,11 @@ import { useReducer } from 'react'
 import type { Reducer } from 'react'
 
 type ActionTypesOfUseNumber = 'increment' | 'decrement' | 'set'
+type StateUpdater = {
+  inc: (delta?: number) => void
+  dec: (delta?: number) => void
+  set: (value: number) => void
+}
 
 const reducer: Reducer<
   number,
@@ -22,7 +27,7 @@ const reducer: Reducer<
 }
 /**
  * Hooks for basic number counter
- * @param initialState - default:`0`
+ * @param initialState - The initial value
  * @returns A stateful value, and a named functions to update it
  *
  * @example
@@ -45,15 +50,11 @@ const reducer: Reducer<
  * @beta
  */
 const useNumber = (
+  /**
+   * @defaultValue 0
+   */
   initialState = 0
-): [
-  number,
-  {
-    inc: (delta?: number) => void
-    dec: (delta?: number) => void
-    set: (value: number) => void
-  }
-] => {
+): [number, StateUpdater] => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return [
@@ -80,4 +81,4 @@ const useNumber = (
 }
 
 export { reducer, useNumber }
-export type { ActionTypesOfUseNumber }
+export type { ActionTypesOfUseNumber, StateUpdater }
