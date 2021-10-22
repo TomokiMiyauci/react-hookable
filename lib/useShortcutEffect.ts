@@ -52,9 +52,14 @@ type UseShortcutEffectOptions = {
   keyMap: Partial<Record<MetaKey, true> & { code: Code }>
 
   /**
-   * Call on keydown shortcut keys
+   * Called when keydown a shortcut key
    */
   onShortcut: (ev: KeyboardEvent) => void
+
+  /**
+   * Called when keydown not a shortcut key
+   */
+  onNonShortcut?: (ev: KeyboardEvent) => void
 
   /**
    * Target of attaching event listener
@@ -91,7 +96,7 @@ type UseShortcutEffectOptions = {
  * @beta
  */
 const useShortcutEffect: UseEffect<UseShortcutEffectOptions> = (
-  { keyMap, onShortcut, target = () => window, options },
+  { keyMap, onShortcut, onNonShortcut, target = () => window, options },
   deps,
   condition
 ) => {
@@ -117,8 +122,11 @@ const useShortcutEffect: UseEffect<UseShortcutEffectOptions> = (
           },
           ev
         )
-        if (!isValidKeyMap) return
-        onShortcut(ev)
+        if (!isValidKeyMap) {
+          onNonShortcut?.(ev)
+        } else {
+          onShortcut(ev)
+        }
       },
       options
     },

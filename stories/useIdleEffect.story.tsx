@@ -60,6 +60,11 @@ const Playground = ({
     {
       callback: () => {
         setLatest(Date.now)
+      },
+      fallback: () => {
+        const id = requestAnimationFrame(() => setLatest(Date.now))
+
+        return () => cancelAnimationFrame(id)
       }
     },
     [latest],

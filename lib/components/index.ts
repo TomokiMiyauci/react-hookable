@@ -1,1 +1,3 @@
-export * as UseSwipe from '@/components/UseSwipe'
+import UseSwipe from '@/components/UseSwipe'
+
+export { UseSwipe }
