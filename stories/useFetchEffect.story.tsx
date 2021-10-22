@@ -1,4 +1,5 @@
 import { Box, Button, Code, Text, useToast } from '@chakra-ui/react'
+import { useCallback, useRef } from 'preact/hooks'
 
 import { useBoolean } from '@/useBoolean'
 import { useFetchEffect } from '@/useFetchEffect'
@@ -8,10 +9,9 @@ import { deps, condition } from '@story/shared/constants'
 import { VFn } from '@/utils/types'
 import type { ArgTypes } from '@story/shared/types'
 import type { Meta, Story } from '@storybook/preact'
+import type { RefObject } from 'preact'
 
 import Docs from '@doc/useFetchEffect.mdx'
-import { useCallback, useRef } from 'preact/hooks'
-import type { RefObject } from 'preact'
 
 const Children = ({
   url,

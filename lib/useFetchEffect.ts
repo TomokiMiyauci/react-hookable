@@ -74,7 +74,6 @@ const useFetchEffect: UseEffect<UseFetchEffectOptions> = (
 
       res
         .catch((e: Error) => {
-          console.log(e)
           if (e.name === 'AbortError') {
             return onAbort?.(e)
           } else {
