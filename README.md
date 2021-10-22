@@ -95,7 +95,6 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 - [`useIdleEffect`](docs/useIdleEffect.mdx) - Effect for track whether the user is being inactive [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useidleeffect)
 - [`useIntersectionObserverEffect`](docs/useIntersectionObserverEffect.mdx) - Effect for `IntersectionObserver` that disconnect automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintersectionobservereffect)
 - [`useIntervalEffect`](docs/useIntervalEffect.mdx) - Effect for `setInterval` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintervaleffect)
-- [`useTouchEffect`](docs/useTouchEffect.mdx) - `TouchEvents` effect [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect)
 - [`usePermissionQueryEffect`](docs/usePermissionQueryEffect.mdx) - Effect for `navigator.permissions.query` with declarative [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usepermissionqueryeffect)
 - [`useShortcutEffect`](docs/useShortcutEffect.mdx) - Effect for `keydown` as shortcut [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useshortcuteffect)
 - [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)

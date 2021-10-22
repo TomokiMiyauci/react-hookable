@@ -49,7 +49,7 @@ type UseTouchEffect =
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/effect-usetoucheffect
- * @beta
+ * @deprecated 1.0.0-beta.44
  */
 const useTouchEffect: UseEffect<UseTouchEffect> = (
   {
