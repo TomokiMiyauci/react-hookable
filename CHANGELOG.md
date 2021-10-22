@@ -1,3 +1,8 @@
+# [v1.0.0-beta.46](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.45...v1.0.0-beta.46) (2021-10-22)
+
+## 🐛 Bug Fixes
+- [`5f5ae00`](https://github.com/TomokiMiyauci/react-hookable/commit/5f5ae00)   Fix export format as named export
+
 # [v1.0.0-beta.45](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2021-10-22)
 
 ## ✨ New Features
