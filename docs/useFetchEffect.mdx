@@ -1,6 +1,6 @@
 # useFetchEffect
 
-Auto aborting `fetch` API effect
+Effect for `fetch` API that abort automatically when unmount
 
 ## Usage
 
@@ -10,10 +10,11 @@ useFetchEffect(
   {
     input: 'URL',
     onResolve: (res) => {},
-    onAbort: () => {},
-    onReject: () => {},
+    onAbort: (e) => {},
+    onReject: (e) => {},
     onFinally: () => {}
   },
-  []
+  deps,
+  condition
 )
 ```
