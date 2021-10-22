@@ -42,6 +42,9 @@ type UseSwipeEffectState = {
 }
 
 type UseSwipeEffectDispatch = {
+  /**
+   * Reset all state
+   */
   reset: VFn
 }
 

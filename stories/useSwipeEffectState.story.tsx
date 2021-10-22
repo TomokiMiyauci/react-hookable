@@ -1,31 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Code, HStack, Text } from '@chakra-ui/react'
+import { Alert, AlertIcon, Code, Text, Divider } from '@chakra-ui/react'
 import classnames from 'clsx'
 import { useMemo, useRef } from 'preact/hooks'
 
-import { useBoolean } from '@/useBoolean'
 import { useSwipeEffectState } from '@/useSwipeEffectState'
+import { deps, condition } from '@story/shared/constants'
+import { flash } from '@story/shared/utils'
 
+import type { ArgTypes } from '@story/shared/types'
 import type { Meta } from '@storybook/preact'
 import type { FunctionalComponent } from 'preact'
 
 import Docs from '@doc/useSwipeEffectState.mdx'
 export const Demo: FunctionalComponent = () => {
   const ref = useRef<SVGCircleElement>(null)
+  const swipeStartRef = useRef<HTMLDivElement>(null)
+  const swipeRef = useRef<HTMLDivElement>(null)
+  const swipeEndRef = useRef<HTMLDivElement>(null)
   const svg = useRef<SVGSVGElement>(null)
-  const [use, { on, off }] = useBoolean()
   const [
     { isSwiping, direction, lengthX, lengthY, coordsStart, coordsEnd },
     { reset }
   ] = useSwipeEffectState(
     {
       target: ref,
+      onSwipeStart: () => flash(swipeStartRef),
+      onSwipe: () => flash(swipeRef),
       onSwipeEnd: () => {
         reset()
+        flash(swipeEndRef)
       }
     },
-    [use],
-    () => use
+    []
   )
 
   const width = useMemo(() => {
@@ -54,12 +60,18 @@ export const Demo: FunctionalComponent = () => {
 
   return (
     <>
+      <Alert mb="2">
+        <AlertIcon />
+        <Text>
+          <Code mr="2">TouchEvent</Code> only occurs in mobile environments
+        </Text>
+      </Alert>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
         ref={svg}
         viewBox="0 0 100 100"
-        className="max-w-lg"
+        className="max-w-xs"
       >
         <rect
           className="fill-current text-gray-50"
@@ -89,21 +101,20 @@ export const Demo: FunctionalComponent = () => {
           cy={50 + (cy ?? 0)}
           r="3"
           className={classnames(
-            'fill-current',
-            { 'transition-all duration-300': !isSwiping },
-            use ? 'text-blue-300 active:text-blue-400' : 'text-gray-300'
+            'fill-current text-blue-300 active:text-blue-400',
+            { 'transition-all duration-300': !isSwiping }
           )}
         ></circle>
       </svg>
-      <HStack space="x-2" mb="2">
-        <Button onClick={on}>use</Button>
-        <Button onClick={off}>disuse</Button>
-
-        <span>
-          using: <Code>{String(use)}</Code>
-        </span>
-      </HStack>
-      <Text>
+      <Text ref={swipeStartRef} mt="3">
+        onSwipeStart
+      </Text>
+      <Text ref={swipeRef}>onSwipe: updateState</Text>
+      <Text ref={swipeEndRef}>
+        onSwipeEnd: <Code>reset</Code>
+      </Text>
+      <Divider my="1" />
+      <Text mt="2">
         isSwiping: <Code>{String(isSwiping)}</Code>
       </Text>
       <Text>direction: {direction}</Text>
@@ -115,9 +126,166 @@ export const Demo: FunctionalComponent = () => {
   )
 }
 
+const argTypes: ArgTypes = {
+  target: {
+    description: 'Bind target of event',
+    type: {
+      required: true
+    },
+    table: {
+      category: 'args',
+      type: {
+        summary: 'Target<Window | Document | HTMLElement | SVGElement>',
+        detail:
+          'type Target<T extends EventTarget> = T | (() => T) | RefObject<T>'
+      },
+      control: {
+        type: null
+      }
+    }
+  },
+
+  onSwipeStart: {
+    description: 'Call on swipe start',
+    table: {
+      category: 'args',
+      type: {
+        summary: '(ev: TouchEvent) => void'
+      },
+      control: {
+        type: null
+      }
+    }
+  },
+  onSwipe: {
+    description: 'Keeps being called while swiping',
+    table: {
+      category: 'args',
+      type: {
+        summary: '(ev: TouchEvent) => void'
+      },
+      control: {
+        type: null
+      }
+    }
+  },
+
+  onSwipeEnd: {
+    description: 'Call on swipe end',
+    table: {
+      category: 'args',
+      type: {
+        summary: '(ev: TouchEvent) => void'
+      },
+      control: {
+        type: null
+      }
+    }
+  },
+  deps,
+  condition,
+
+  direction: {
+    description: 'Swipe direction',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'LEFT | RIGHT | TOP | BOTTOM | NONE'
+      },
+      defaultValue: {
+        summary: 'NONE'
+      }
+    }
+  },
+
+  isSwiping: {
+    description: 'Whether are swiping or not',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'Boolean'
+      },
+      defaultValue: {
+        summary: 'false'
+      }
+    }
+  },
+
+  lengthX: {
+    description: 'The length of the X-axis you are swiping',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'number'
+      },
+      defaultValue: {
+        summary: 0
+      }
+    }
+  },
+
+  lengthY: {
+    description: 'The length of the Y-axis you are swiping',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'number'
+      },
+      defaultValue: {
+        summary: 0
+      }
+    }
+  },
+
+  coordsStart: {
+    description: 'Starting point of the swipe',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'Position',
+        detail: '{ x: number, y: number }'
+      },
+      defaultValue: {
+        summary: '{ x: 0, y: 0 }'
+      }
+    }
+  },
+
+  coordsEnd: {
+    description: 'End point of swipe',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'Position',
+        detail: '{ x: number, y: number }'
+      },
+      defaultValue: {
+        summary: '{ x: 0, y: 0 }'
+      }
+    }
+  },
+  reset: {
+    description: 'Reset all state',
+    table: {
+      category: 'returns',
+      subcategory: '[1]{ stateUpdaters }',
+      type: {
+        summary: '() => void'
+      }
+    }
+  }
+}
+
 export default {
   title: 'effectstate/useSwipeEffectState',
   component: Demo,
+  argTypes,
   parameters: {
     docs: {
       page: Docs
