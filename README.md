@@ -97,6 +97,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 - [`useIntervalEffect`](docs/useIntervalEffect.mdx) - Effect for `setInterval` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useintervaleffect)
 - [`usePermissionQueryEffect`](docs/usePermissionQueryEffect.mdx) - Effect for `navigator.permissions.query` with declarative [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usepermissionqueryeffect)
 - [`useShortcutEffect`](docs/useShortcutEffect.mdx) - Effect for `keydown` as shortcut [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useshortcuteffect)
+- [`useTransitionEffect`](docs/useTransitionEffect.mdx) - Effect for transition [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetransitioneffect)
 - [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
 
 ## Effect State
