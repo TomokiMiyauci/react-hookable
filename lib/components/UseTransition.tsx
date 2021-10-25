@@ -1,7 +1,7 @@
-import { useRef, useEffect, useLayoutEffect, useMemo } from 'react'
+import { useRef, useMemo } from 'react'
 
 import { cleanClassName } from '@/shared'
-import { useEventListenerEffect } from '@/useEventListenerEffect'
+import { useTransitionTimingEffect } from '@/useTransitionTimingEffect'
 
 import type { RefObject } from 'react'
 
@@ -15,7 +15,7 @@ type TransitionProps<T extends HTMLElement | SVGElement> = {
   leave?: string
   leaveFrom?: string
   leaveTo?: string
-  children: ({ ref, show }: { ref: RefObject<T>; show: boolean }) => unknown
+  children: ({ ref }: { ref: RefObject<T> }) => unknown
   show: boolean
 }
 
@@ -24,30 +24,48 @@ const UseTransition = <T extends HTMLElement | SVGElement>({
   enter,
   enterFrom,
   enterTo,
-  show
+  leave,
+  leaveFrom,
+  leaveTo
 }: TransitionProps<T>): JSX.Element => {
   const ref = useRef<T>(null)
 
   const _enter = useClassMemo(enter)
   const _enterTo = useClassMemo(enterTo)
   const _enterFrom = useClassMemo(enterFrom)
+  const _leave = useClassMemo(leave)
+  const _leaveTo = useClassMemo(leaveTo)
+  const _leaveFrom = useClassMemo(leaveFrom)
 
-  useEventListenerEffect(
-    {
-      target: ref,
-      type: 'transitionend',
-      listener: () => ref.current?.classList.remove(..._enterTo, ..._enter)
+  useTransitionTimingEffect({
+    target: ref,
+    show: undefined,
+    onBeforeEnter: () => {
+      ref.current?.classList.add(..._enterFrom)
     },
-    [show]
-  )
+    onEnter: () => {
+      ref.current?.classList.remove(..._enterFrom)
+      ref.current?.classList.add(..._enterTo, ..._enter)
+    },
+    onAfterEnter: () => {
+      ref.current?.classList.remove(..._enterTo, ..._enter)
+    },
+    onBeforeLeave: () => {
+      ref.current?.classList.add(..._leaveFrom)
+    },
+    onLeave: () => {
+      ref.current?.classList.remove(..._leaveFrom)
+      ref.current?.classList.add(..._leaveTo, ..._leave)
+    },
+    onAfterLeave: () => {
+      ref.current?.classList.remove(..._leaveTo, ..._leave)
+      if (ref.current) {
+        ref.current.style.display = 'none'
+      }
+    }
+  })
 
-  useLayoutEffect(() => ref.current?.classList.add(..._enterFrom), [show])
-  useEffect(() => {
-    ref.current?.classList.remove(..._enterFrom)
-    ref.current?.classList.add(..._enterTo, ..._enter)
-  }, [show, _enter, _enterFrom, _enterTo])
-
-  return <>{children({ ref, show })}</>
+  return <>{children({ ref })}</>
 }
 
 export default UseTransition
