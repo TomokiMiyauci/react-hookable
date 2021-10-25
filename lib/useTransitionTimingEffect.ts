@@ -47,7 +47,7 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
         onEnd: onAfterEnter
       },
       [show],
-      () => !show
+      () => typeof show === 'undefined' || show
     )
 
     useTransitionStart(
@@ -58,7 +58,7 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
         onEnd: onAfterLeave
       },
       [show],
-      () => show
+      () => show === false
     )
   }
 

@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
 
-import { cleanClassName, takeTarget } from '@/shared'
+import { cleanSplittedClassName, takeTarget } from '@/shared'
 import { useTransitionTimingEffect } from '@/useTransitionTimingEffect'
 
 import type { Target, UseEffect } from '@/shared/types'
 
 const useClassMemo = (className?: string): string[] =>
-  useMemo(() => cleanClassName(className ?? ''), [className])
+  useMemo<string[]>(() => cleanSplittedClassName(className ?? ''), [className])
 
 const addClassList = (
   target: Target<HTMLElement | SVGElement>,
@@ -35,6 +35,7 @@ type TransitionClassName = Record<Transition, string>
 
 type UseTransitionEffectOptions = {
   target: Target<HTMLElement | SVGElement>
+  show?: boolean
 } & Partial<TransitionClassName>
 
 /**
@@ -54,7 +55,8 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   leave,
   leaveFrom,
   leaveTo,
-  target
+  target,
+  show
 }) => {
   const _enter = useClassMemo(enter)
   const _enterTo = useClassMemo(enterTo)
@@ -63,32 +65,57 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   const _leaveTo = useClassMemo(leaveTo)
   const _leaveFrom = useClassMemo(leaveFrom)
 
-  useTransitionTimingEffect({
-    target,
-    show: undefined,
-    onBeforeEnter: () => addClassList(target, ..._enterFrom),
+  const cleanUp = (): void => {
+    removeClassList(
+      target,
+      ..._enter,
+      ..._enterTo,
+      ..._enterFrom,
+      ..._leave,
+      ..._leaveTo,
+      ..._leaveFrom
+    )
+  }
 
-    onEnter: () => {
-      removeClassList(target, ..._enterFrom)
-      addClassList(target, ..._enterTo, ..._enter)
-    },
-    onAfterEnter: () => removeClassList(target, ..._enterTo, ..._enter),
+  useTransitionTimingEffect(
+    {
+      target,
+      show,
+      onBeforeEnter: () => {
+        cleanUp()
+        const ref = takeTarget(target)
+        if (ref && ref.style.display === 'none') {
+          ref.style.display = ''
+        }
+        addClassList(target, ..._enterFrom)
+      },
 
-    onBeforeLeave: () => addClassList(target, ..._leaveFrom),
+      onEnter: () => {
+        removeClassList(target, ..._enterFrom)
+        addClassList(target, ..._enterTo, ..._enter)
+      },
+      onAfterEnter: () => removeClassList(target, ..._enterTo, ..._enter),
 
-    onLeave: () => {
-      removeClassList(target, ..._leaveFrom)
-      addClassList(target, ..._leaveTo, ..._leave)
-    },
+      onBeforeLeave: () => {
+        cleanUp()
+        addClassList(target, ..._leaveFrom)
+      },
 
-    onAfterLeave: () => {
-      removeClassList(target, ..._leaveTo, ..._leave)
-      const ref = takeTarget(target)
-      if (ref) {
-        ref.style.display = 'none'
+      onLeave: () => {
+        removeClassList(target, ..._leaveFrom)
+        addClassList(target, ..._leaveTo, ..._leave)
+      },
+
+      onAfterLeave: () => {
+        removeClassList(target, ..._leaveTo, ..._leave)
+        const ref = takeTarget(target)
+        if (ref) {
+          ref.style.display = 'none'
+        }
       }
-    }
-  })
+    },
+    []
+  )
 }
 
 export { useTransitionEffect }

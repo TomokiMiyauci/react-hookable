@@ -1,7 +1,8 @@
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect, useEffect } from 'react'
 
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
+import { isBrowser } from '@/utils'
 
 import type { UseEffect, Target } from '@/shared/types'
 import type { VFn } from '@/utils/types'
@@ -21,7 +22,12 @@ const useTransitionStart: UseEffect<UseTransitionTimingEffectOptions> = (
   deps,
   condition
 ) => {
-  useConditionalEffect(() => onStart?.(), deps, condition, useLayoutEffect)
+  useConditionalEffect(
+    () => onStart?.(),
+    deps,
+    condition,
+    isBrowser ? useLayoutEffect : useEffect
+  )
 
   useConditionalEffect(() => onMiddle?.(), deps, condition)
 
