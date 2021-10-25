@@ -3,15 +3,14 @@ import { useLayoutEffect } from 'react'
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
 
-import type { UseEffect } from '@/shared/types'
+import type { UseEffect, Target } from '@/shared/types'
 import type { VFn } from '@/utils/types'
-import type { RefObject } from 'react'
 
 type UseTransitionTimingEffectOptions = {
   onStart?: VFn
   onMiddle?: VFn
   onEnd?: VFn
-  target: RefObject<HTMLElement | SVGElement>
+  target: Target<HTMLElement | SVGElement>
 }
 
 /**

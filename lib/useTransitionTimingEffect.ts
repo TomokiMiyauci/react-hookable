@@ -1,8 +1,7 @@
 import { useTransitionStart } from '@/_/useTransitionStart'
 
-import type { UseEffect } from '@/shared/types'
+import type { Target, UseEffect } from '@/shared/types'
 import type { VFn } from '@/utils/types'
-import type { RefObject } from 'react'
 
 type Timing =
   | 'onBeforeEnter'
@@ -15,7 +14,7 @@ type Timing =
 type TransitionTiming = Record<Timing, VFn>
 
 type UseTransitionTimingEffectOptions = {
-  target: RefObject<HTMLElement | SVGElement>
+  target: Target<HTMLElement | SVGElement>
   show?: boolean
 } & Partial<TransitionTiming>
 
