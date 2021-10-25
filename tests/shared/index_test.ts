@@ -1,6 +1,6 @@
 import { createRef, MutableRefObject } from 'react'
 
-import { takeCurrent, takeTarget } from '@/shared'
+import { takeCurrent, takeTarget, cleanSplittedClassName } from '@/shared'
 
 import { Target } from '@/shared/types'
 describe('takeCurrent', () => {
@@ -27,5 +27,20 @@ describe('takeTarget', () => {
   ]
   it.each(table)('should take target safety', (target, expected) => {
     expect(takeTarget(target)).toEqual(expected)
+  })
+})
+
+describe('cleanSplittedClassName', () => {
+  const table: [string, string[]][] = [
+    ['aaa', ['aaa']],
+    ['aaa bbb', ['aaa', 'bbb']],
+    ['aaa bbb ', ['aaa', 'bbb']],
+    [' aaa  bbb ', ['aaa', 'bbb']],
+    ['   a   b   c   d  ', ['a', 'b', 'c', 'd']],
+    [' a a b b ', ['a', 'b']]
+  ]
+
+  it.each(table)('cleanSplittedClassName(%s) => %s', (className, expected) => {
+    expect(cleanSplittedClassName(className)).toEqual(expected)
   })
 })

@@ -3,4 +3,6 @@
  */
 const isBrowser = typeof window !== 'undefined'
 
-export { isBrowser }
+const duplicate = <T>(value: T[]): T[] => Array.from(new Set(value))
+
+export { isBrowser, duplicate }
