@@ -92,4 +92,14 @@ describe('useConditionalEffect', () => {
     rerender({ a: true })
     expect(effect).toHaveBeenCalledTimes(2)
   })
+
+  it('should switch effect hook', () => {
+    const effect = jest.fn()
+    const effectHook = jest.fn()
+    renderHook(() =>
+      useConditionalEffect(effect, undefined, undefined, effectHook)
+    )
+
+    expect(effectHook).toHaveBeenCalledTimes(1)
+  })
 })
