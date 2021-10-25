@@ -1,4 +1,5 @@
 import { useTransitionStart } from '@/_/useTransitionStart'
+import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 
 import type { Target, UseEffect } from '@/shared/types'
 import type { VFn } from '@/utils/types'
@@ -39,6 +40,7 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
     onAfterLeave,
     show
   }) => {
+    const { isFirstMount } = useIsFirstMountRef()
     useTransitionStart(
       {
         target,
@@ -58,7 +60,7 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
         onEnd: onAfterLeave
       },
       [show],
-      () => show === false
+      () => !isFirstMount && show === false
     )
   }
 

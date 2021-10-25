@@ -1,7 +1,10 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect, useLayoutEffect } from 'react'
 
 import { cleanSplittedClassName, takeTarget } from '@/shared'
+import { useConditionalEffect } from '@/useConditionalEffect'
+import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useTransitionTimingEffect } from '@/useTransitionTimingEffect'
+import { isBrowser } from '@/utils'
 
 import type { Target, UseEffect } from '@/shared/types'
 
@@ -76,6 +79,19 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
       ..._leaveFrom
     )
   }
+
+  const { isFirstMount } = useIsFirstMountRef()
+  useConditionalEffect(
+    () => {
+      const ref = takeTarget(target)
+      if (ref) {
+        ref.style.display = 'none'
+      }
+    },
+    [],
+    () => isFirstMount && show === false,
+    isBrowser ? useLayoutEffect : useEffect
+  )
 
   useTransitionTimingEffect(
     {
