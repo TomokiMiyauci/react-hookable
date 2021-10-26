@@ -37,7 +37,9 @@ describe('cleanSplittedClassName', () => {
     ['aaa bbb ', ['aaa', 'bbb']],
     [' aaa  bbb ', ['aaa', 'bbb']],
     ['   a   b   c   d  ', ['a', 'b', 'c', 'd']],
-    [' a a b b ', ['a', 'b']]
+    [' a a b b ', ['a', 'b']],
+    ['', []],
+    ['   ', []]
   ]
 
   it.each(table)('cleanSplittedClassName(%s) => %s', (className, expected) => {

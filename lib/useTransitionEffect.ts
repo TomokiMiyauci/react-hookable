@@ -1,6 +1,10 @@
-import { useMemo, useEffect, useLayoutEffect } from 'react'
+import { useMemo, useRef, useEffect, useLayoutEffect } from 'react'
 
-import { cleanSplittedClassName, takeTarget } from '@/shared'
+import {
+  cleanSplittedClassName,
+  takeTarget,
+  useUniversalEffect
+} from '@/shared'
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useTransitionTimingEffect } from '@/useTransitionTimingEffect'
@@ -14,7 +18,11 @@ const useClassMemo = (className?: string): string[] =>
 const addClassList = (
   target: Target<HTMLElement | SVGElement>,
   ...tokens: string[]
-): void => takeTarget(target)?.classList.add(...tokens)
+): void => {
+  if (tokens.length) {
+    takeTarget(target)?.classList.add(...tokens)
+  }
+}
 
 const removeClassList = (
   target: Target<HTMLElement | SVGElement>,
@@ -42,10 +50,25 @@ type UseTransitionEffectOptions = {
 } & Partial<TransitionClassName>
 
 /**
- *
+ * Effect for transition
+ * @param options - transition options
+ * @param deps - If present, effect will only activate if the values in the list change
+ * @param condition - The conditional function that effect or not. If return `true` effect, otherwise not.
  * @example
  * ```tsx
- *
+ * useTransitionEffect(
+ *   {
+ *     target: ref,
+ *     enterFrom,
+ *     enter,
+ *     enterTo,
+ *     leaveFrom,
+ *     leave,
+ *     leaveTo
+ *   },
+ *   deps,
+ *   condition
+ * )
  * ```
  *
  * @see https://react-hookable.vercel.app/?path=/story/effect-usetransitioneffect
@@ -68,6 +91,14 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   const _leaveTo = useClassMemo(leaveTo)
   const _leaveFrom = useClassMemo(leaveFrom)
 
+  const classNameToken = useRef<string[]>([])
+  useUniversalEffect(() => {
+    const ref = takeTarget(target)
+
+    if (!ref) return
+    classNameToken.current = cleanSplittedClassName(ref.classList.value)
+  }, [])
+
   const cleanUp = (): void => {
     removeClassList(
       target,
@@ -78,6 +109,9 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
       ..._leaveTo,
       ..._leaveFrom
     )
+    if (classNameToken.current.length) {
+      addClassList(target, ...classNameToken.current)
+    }
   }
 
   const { isFirstMount } = useIsFirstMountRef()
@@ -96,7 +130,7 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   useTransitionTimingEffect(
     {
       target,
-      show,
+      entered: show,
       onBeforeEnter: () => {
         cleanUp()
         const ref = takeTarget(target)
@@ -108,9 +142,13 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
 
       onEnter: () => {
         removeClassList(target, ..._enterFrom)
+        addClassList(target, ...classNameToken.current)
         addClassList(target, ..._enterTo, ..._enter)
       },
-      onAfterEnter: () => removeClassList(target, ..._enterTo, ..._enter),
+      onAfterEnter: () => {
+        removeClassList(target, ..._enterTo, ..._enter)
+        addClassList(target, ...classNameToken.current)
+      },
 
       onBeforeLeave: () => {
         cleanUp()
@@ -119,11 +157,14 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
 
       onLeave: () => {
         removeClassList(target, ..._leaveFrom)
+        addClassList(target, ...classNameToken.current)
         addClassList(target, ..._leaveTo, ..._leave)
       },
 
       onAfterLeave: () => {
         removeClassList(target, ..._leaveTo, ..._leave)
+        addClassList(target, ...classNameToken.current)
+
         const ref = takeTarget(target)
         if (ref) {
           ref.style.display = 'none'

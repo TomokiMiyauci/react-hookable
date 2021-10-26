@@ -1,4 +1,6 @@
-import { duplicate } from '@/utils'
+import { useEffect, useLayoutEffect } from 'react'
+
+import { duplicate, isBrowser } from '@/utils'
 
 import type { Target } from '@/shared/types'
 import type { RefObject } from 'react'
@@ -50,13 +52,14 @@ const takeTarget = <T extends EventTarget>(target: Target<T>): T | null => {
  * @returns Clean `className` array
  */
 const cleanSplittedClassName = (className: string): string[] => {
-  const splittedClassName =
-    className
-      ?.trim()
-      .split(' ')
-      .filter(({ length }) => length) ?? []
+  const splittedClassName = className
+    .trim()
+    .split(' ')
+    .filter(({ length }) => length)
 
   return duplicate(splittedClassName)
 }
 
-export { takeCurrent, takeTarget, cleanSplittedClassName }
+const useUniversalEffect = isBrowser ? useLayoutEffect : useEffect
+
+export { takeCurrent, takeTarget, cleanSplittedClassName, useUniversalEffect }

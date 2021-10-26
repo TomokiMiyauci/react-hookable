@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect } from 'react'
+import { useRef, useLayoutEffect, useEffect } from 'react'
 
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useEventListenerEffect } from '@/useEventListenerEffect'
@@ -22,6 +22,8 @@ const useTransitionStart: UseEffect<UseTransitionTimingEffectOptions> = (
   deps,
   condition
 ) => {
+  const has = useRef<boolean>(false)
+
   useConditionalEffect(
     () => onStart?.(),
     deps,
@@ -29,13 +31,26 @@ const useTransitionStart: UseEffect<UseTransitionTimingEffectOptions> = (
     isBrowser ? useLayoutEffect : useEffect
   )
 
+  const safeCall = (callback?: VFn): void => {
+    if (has.current) return
+    try {
+      callback?.()
+    } finally {
+      has.current = true
+    }
+  }
+
+  useEffect(() => {
+    has.current = false
+  }, deps)
+
   useConditionalEffect(() => onMiddle?.(), deps, condition)
 
   useEventListenerEffect(
     {
       target,
       type: 'transitionend',
-      listener: () => onEnd?.()
+      listener: () => safeCall(onEnd)
     },
     deps,
     condition

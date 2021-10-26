@@ -46,7 +46,35 @@ describe('useTransitionEffect', () => {
 
     const { getByTestId } = render(<Test />)
 
-    expect(getByTestId(testId)).toHaveClass(`${enter} ${enterTo}`)
+    expect(getByTestId(testId)).toHaveClass(enter, enterTo)
+  })
+
+  it('should merge className and transition className', () => {
+    const testId = 'target'
+    const Test = (): JSX.Element => {
+      const target = useRef<HTMLDivElement>(null)
+      useTransitionEffect({
+        target,
+        enterFrom,
+        enter,
+        enterTo
+      })
+      return (
+        <div
+          className="enter enterFrom enterTo"
+          data-testid={testId}
+          ref={target}
+        >
+          test
+        </div>
+      )
+    }
+
+    const { getByTestId } = render(<Test />)
+
+    fireEvent(getByTestId(testId), new Event('transitionend'))
+
+    expect(getByTestId(testId)).toHaveClass(enterFrom, enterTo, enter)
   })
 
   it('should have enter className when mount', () => {

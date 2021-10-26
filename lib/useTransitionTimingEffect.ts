@@ -16,7 +16,7 @@ type TransitionTiming = Record<Timing, VFn>
 
 type UseTransitionTimingEffectOptions = {
   target: Target<HTMLElement | SVGElement>
-  show?: boolean
+  entered?: boolean
 } & Partial<TransitionTiming>
 
 /**
@@ -38,9 +38,10 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
     onBeforeLeave,
     onLeave,
     onAfterLeave,
-    show
+    entered = false
   }) => {
     const { isFirstMount } = useIsFirstMountRef()
+
     useTransitionStart(
       {
         target,
@@ -48,8 +49,8 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
         onMiddle: onEnter,
         onEnd: onAfterEnter
       },
-      [show],
-      () => typeof show === 'undefined' || show
+      [entered],
+      () => !entered
     )
 
     useTransitionStart(
@@ -59,8 +60,8 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
         onMiddle: onLeave,
         onEnd: onAfterLeave
       },
-      [show],
-      () => !isFirstMount && show === false
+      [entered],
+      () => !isFirstMount && entered
     )
   }
 
