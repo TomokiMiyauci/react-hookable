@@ -8,26 +8,28 @@ import {
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
 import { useTransitionTimingEffect } from '@/useTransitionTimingEffect'
-import { isBrowser } from '@/utils'
+import { isBrowser, without } from '@/utils'
 
 import type { Target, UseEffect } from '@/shared/types'
+import type { VFn } from '@/utils/types'
+import type { MutableRefObject } from 'react'
 
-const useClassMemo = (className?: string): string[] =>
+const useCleanClassList = (className?: string): string[] =>
   useMemo<string[]>(() => cleanSplittedClassName(className ?? ''), [className])
 
-const addClassList = (
-  target: Target<HTMLElement | SVGElement>,
-  ...tokens: string[]
-): void => {
-  if (tokens.length) {
-    takeTarget(target)?.classList.add(...tokens)
-  }
-}
+const useClassListRef = (
+  target: Target<HTMLElement | SVGElement>
+): MutableRefObject<string[]> => {
+  const classNameRef = useRef<string[]>([])
 
-const removeClassList = (
-  target: Target<HTMLElement | SVGElement>,
-  ...tokens: string[]
-): void => takeTarget(target)?.classList.remove(...tokens)
+  useUniversalEffect(() => {
+    classNameRef.current = cleanSplittedClassName(
+      takeTarget(target)?.classList.value ?? ''
+    )
+  }, [target])
+
+  return classNameRef
+}
 
 type Enter = 'enter'
 type Leave = 'leave'
@@ -84,35 +86,15 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   target,
   show
 }) => {
-  const _enter = useClassMemo(enter)
-  const _enterTo = useClassMemo(enterTo)
-  const _enterFrom = useClassMemo(enterFrom)
-  const _leave = useClassMemo(leave)
-  const _leaveTo = useClassMemo(leaveTo)
-  const _leaveFrom = useClassMemo(leaveFrom)
+  const _enter = useCleanClassList(enter)
+  const _enterTo = useCleanClassList(enterTo)
+  const _enterFrom = useCleanClassList(enterFrom)
+  const _leave = useCleanClassList(leave)
+  const _leaveTo = useCleanClassList(leaveTo)
+  const _leaveFrom = useCleanClassList(leaveFrom)
 
-  const classNameToken = useRef<string[]>([])
-  useUniversalEffect(() => {
-    const ref = takeTarget(target)
-
-    if (!ref) return
-    classNameToken.current = cleanSplittedClassName(ref.classList.value)
-  }, [])
-
-  const cleanUp = (): void => {
-    removeClassList(
-      target,
-      ..._enter,
-      ..._enterTo,
-      ..._enterFrom,
-      ..._leave,
-      ..._leaveTo,
-      ..._leaveFrom
-    )
-    if (classNameToken.current.length) {
-      addClassList(target, ...classNameToken.current)
-    }
-  }
+  const cleanUp: VFn = () =>
+    [_enter, _enterTo, _enterFrom, _leave, _leaveFrom, _leaveTo].forEach(remove)
 
   const { isFirstMount } = useIsFirstMountRef()
   useConditionalEffect(
@@ -127,43 +109,56 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
     isBrowser ? useLayoutEffect : useEffect
   )
 
+  const classNameRef = useClassListRef(target)
+
+  const add = (classList: string[]): void => {
+    const originalClass = without(classList, classNameRef.current)
+
+    takeTarget(target)?.classList.add(...originalClass)
+  }
+
+  const remove = (className: string[]): void => {
+    const originalClass = without(className, classNameRef.current)
+
+    takeTarget(target)?.classList.remove(...originalClass)
+  }
+
   useTransitionTimingEffect(
     {
       target,
       entered: show,
       onBeforeEnter: () => {
-        cleanUp()
         const ref = takeTarget(target)
         if (ref && ref.style.display === 'none') {
           ref.style.display = ''
         }
-        addClassList(target, ..._enterFrom)
+        add(_enterFrom)
       },
 
       onEnter: () => {
-        removeClassList(target, ..._enterFrom)
-        addClassList(target, ...classNameToken.current)
-        addClassList(target, ..._enterTo, ..._enter)
+        remove(_enterFrom)
+        add(_enterTo)
+        add(_enter)
       },
       onAfterEnter: () => {
-        removeClassList(target, ..._enterTo, ..._enter)
-        addClassList(target, ...classNameToken.current)
+        remove(_enterTo)
+        remove(_enter)
       },
 
       onBeforeLeave: () => {
         cleanUp()
-        addClassList(target, ..._leaveFrom)
+        add(_leaveFrom)
       },
 
       onLeave: () => {
-        removeClassList(target, ..._leaveFrom)
-        addClassList(target, ...classNameToken.current)
-        addClassList(target, ..._leaveTo, ..._leave)
+        remove(_leaveFrom)
+        add(_leaveTo)
+        add(_leave)
       },
 
       onAfterLeave: () => {
-        removeClassList(target, ..._leaveTo, ..._leave)
-        addClassList(target, ...classNameToken.current)
+        remove(_leaveTo)
+        remove(_leave)
 
         const ref = takeTarget(target)
         if (ref) {

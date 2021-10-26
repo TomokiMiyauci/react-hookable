@@ -22,9 +22,12 @@ export const Demo = (): JSX.Element => {
   const target = useRef<HTMLDivElement>(null)
   useTransitionEffect({
     target,
-    enterFrom: 'opacity-0 bg-teal-900 transform scale-0',
-    enter: 'transition duration-1000 delay-300'
+    enterFrom:
+      'opacity-0 bg-teal-900 transform scale-0 translate-x-full translate-y-full rotate-180',
+    enter: 'transition duration-500 delay-300',
+    enterTo: 'transform -translate-y-20 -translate-x-20 -rotate-45 scale-150'
   })
+
   return (
     <>
       <Box
@@ -33,7 +36,7 @@ export const Demo = (): JSX.Element => {
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
-        shadow="sm"
+        className="transition shadow hover:shadow-xl duration-300"
       >
         <Image loading="lazy" src={property.imageUrl} alt={property.imageAlt} />
 
