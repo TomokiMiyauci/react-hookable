@@ -1,3 +1,8 @@
+# [v1.0.0-beta.49](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2021-10-26)
+
+## 🐛 Bug Fixes
+- [`f6e64e7`](https://github.com/TomokiMiyauci/react-hookable/commit/f6e64e7)   Merge className and transition classNames
+
 # [v1.0.0-beta.48](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2021-10-25)
 
 ## ✨ New Features
