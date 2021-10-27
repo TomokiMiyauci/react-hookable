@@ -2,12 +2,16 @@
 to: stories/<%= name %>.story.tsx
 ---
 import { Button } from '@chakra-ui/react'
-import Docs from '@doc/<%= name %>.mdx'
-import type { Meta } from '@storybook/preact'
 import { useState } from 'preact/hooks'
 
 import { <%= name %> } from '@/<%= name %>'
-export const Demo = (): JSX.Element => {
+
+import type { ArgTypes } from '@story/shared/types'
+import type { Meta, Story } from '@storybook/preact'
+
+import Docs from '@doc/<%= name %>.mdx'
+
+const Template: Story = (): JSX.Element => {
   const [, setState] = useState(false)
   <%= name %>()
   return (
@@ -17,12 +21,17 @@ export const Demo = (): JSX.Element => {
   )
 }
 
+export const Demo = Template.bind({})
+
+const argTypes: ArgTypes = {}
+
 export default {
   title: '<%= category %>/<%= name %>',
-  component: Demo,
+  component: Template,
+  argTypes,
   parameters: {
     docs: {
       page: Docs
     }
   }
-} as Meta<typeof Demo>
+} as Meta<typeof Template>

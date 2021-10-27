@@ -1,6 +1,9 @@
+import { useEffect, useLayoutEffect } from 'react'
+
+import { uniqShallow, isBrowser } from '@/utils'
+
 import type { Target } from '@/shared/types'
 import type { RefObject } from 'react'
-
 
 /**
  * Safe current accessor
@@ -43,4 +46,20 @@ const takeTarget = <T extends EventTarget>(target: Target<T>): T | null => {
   return typeof current === 'function' ? current() : current
 }
 
-export { takeCurrent, takeTarget }
+/**
+ * Split `className` and remove duplicate
+ * @param className - Any className
+ * @returns Clean `className` array
+ */
+const cleanSplittedClassName = (className: string): string[] => {
+  const splittedClassName = className
+    .trim()
+    .split(' ')
+    .filter(({ length }) => length)
+
+  return uniqShallow(splittedClassName)
+}
+
+const useUniversalEffect = isBrowser ? useLayoutEffect : useEffect
+
+export { takeCurrent, takeTarget, cleanSplittedClassName, useUniversalEffect }

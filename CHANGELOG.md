@@ -1,3 +1,19 @@
+# [v1.0.0-beta.50](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2021-10-27)
+
+## 🐛 Bug Fixes
+- [`41de025`](https://github.com/TomokiMiyauci/react-hookable/commit/41de025)   Merge base className
+
+# [v1.0.0-beta.49](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2021-10-26)
+
+## 🐛 Bug Fixes
+- [`f6e64e7`](https://github.com/TomokiMiyauci/react-hookable/commit/f6e64e7)   Merge className and transition classNames
+
+# [v1.0.0-beta.48](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2021-10-25)
+
+## ✨ New Features
+- [`368c69e`](https://github.com/TomokiMiyauci/react-hookable/commit/368c69e)   Add effect hook interface to &#x60;useConditionalEffect&#x60; 
+- [`0b628a4`](https://github.com/TomokiMiyauci/react-hookable/commit/0b628a4)   Publish &#x60;useTransitionEffect&#x60;
+
 # [v1.0.0-beta.47](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.46...v1.0.0-beta.47) (2021-10-22)
 
 ## ✨ New Features

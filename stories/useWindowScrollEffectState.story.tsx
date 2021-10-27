@@ -1,112 +1,20 @@
-import {
-  Box,
-  Code,
-  Table,
-  TableCaption,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr
-} from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 
 import { useWindowScrollEffectState } from '@/useWindowScrollEffectState'
+import { deps, condition } from '@story/shared/constants'
 
+import type { ArgTypes } from '@story/shared/types'
 import type { Meta } from '@storybook/preact'
 
 import Docs from '@doc/useWindowScrollEffectState.mdx'
-
 
 export const Demo = (): JSX.Element => {
   const [{ scrollY, scrollX }] = useWindowScrollEffectState({}, [])
   return (
     <>
-      <div className="h-[200vh] w-[200vw]">
-        <Table maxW="3xl">
-          <TableCaption>Args</TableCaption>
+      <div className="h-[200vh] w-[200vw]"></div>
 
-          <Thead>
-            <Tr>
-              <Th>Name</Th>
-              <Th>Value</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr>
-              <Td>options</Td>
-              <Td>
-                <Text mb="2">
-                  <Code>UseWindowScrollEffectStateOptions</Code>
-                </Text>
-
-                <Text>
-                  options?: <Code>AddEventListenerOptions</Code> |{' '}
-                  <Code>boolean</Code>
-                </Text>
-              </Td>
-            </Tr>
-
-            <Tr>
-              <Td>deps</Td>
-              <Td>
-                <Code>DependencyList</Code>
-              </Td>
-            </Tr>
-
-            <Tr>
-              <Td>condition</Td>
-              <Td>
-                <Code>
-                  () ={'>'} Maybe{'<'}boolean{'>'}{' '}
-                </Code>
-              </Td>
-            </Tr>
-          </Tbody>
-        </Table>
-
-        <Table maxW="3xl">
-          <TableCaption>Return</TableCaption>
-
-          <Thead>
-            <Tr>
-              <Th>Index</Th>
-              <Th>Value</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr>
-              <Td>[0]</Td>
-              <Td>
-                <Text mb="2">
-                  <Code>WindowState</Code>
-                </Text>
-
-                <Text>
-                  <Text>
-                    scrollX: <Code>number</Code> {scrollX.toFixed(0)}
-                  </Text>
-
-                  <Text>
-                    scrollY: <Code>number</Code> {scrollY.toFixed(0)}
-                  </Text>
-                </Text>
-              </Td>
-            </Tr>
-
-            <Tr>
-              <Td>[1]</Td>
-              <Td>
-                <Code>WindowStateUpdater</Code>
-                <Text>{'{}'}</Text>
-              </Td>
-            </Tr>
-          </Tbody>
-        </Table>
-      </div>
-
-      <Box p="2" position="fixed" bottom="0.5" right="0.5">
-        <Text>scroll value</Text>
+      <Box p="2" position="fixed" top="0.5" left="0.5">
         <Text>scrollX: {scrollX.toFixed(0)}</Text>
         <Text>scrollY: {scrollY.toFixed(0)}</Text>
       </Box>
@@ -114,9 +22,57 @@ export const Demo = (): JSX.Element => {
   )
 }
 
+const argTypes: ArgTypes = {
+  options: {
+    description: 'EventListener options',
+    table: {
+      category: 'args',
+      subcategory: '[0]{ options }',
+      type: {
+        summary: 'AddEventListenerOptions | boolean'
+      }
+    }
+  },
+  deps,
+  condition,
+  scrollX: {
+    description: '`window.scrollX`',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'number'
+      },
+      defaultValue: {
+        summary: 0
+      }
+    }
+  },
+  scrollY: {
+    description: '`window.scrollY`',
+    table: {
+      category: 'returns',
+      subcategory: '[0]{ states }',
+      type: {
+        summary: 'number'
+      },
+      defaultValue: {
+        summary: 0
+      }
+    }
+  },
+  '...': {
+    table: {
+      category: 'returns',
+      subcategory: '[1]{ stateUpdaters }'
+    }
+  }
+}
+
 export default {
   title: 'effectstate/useWindowScrollEffectState',
   component: Demo,
+  argTypes,
   parameters: {
     docs: {
       page: Docs
