@@ -1,3 +1,8 @@
+# [v1.0.0-beta.50](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2021-10-27)
+
+## 🐛 Bug Fixes
+- [`41de025`](https://github.com/TomokiMiyauci/react-hookable/commit/41de025)   Merge base className
+
 # [v1.0.0-beta.49](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2021-10-26)
 
 ## 🐛 Bug Fixes
