@@ -94,7 +94,9 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   const _leaveFrom = useCleanClassList(leaveFrom)
 
   const cleanUp: VFn = () =>
-    [_enter, _enterTo, _enterFrom, _leave, _leaveFrom, _leaveTo].forEach(remove)
+    [_enter, _enterTo, _enterFrom, _leave, _leaveFrom, _leaveTo].forEach(
+      removeClassList
+    )
 
   const { isFirstMount } = useIsFirstMountRef()
   useConditionalEffect(
@@ -111,13 +113,13 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
 
   const classNameRef = useClassListRef(target)
 
-  const add = (classList: string[]): void => {
+  const addClassList = (classList: string[]): void => {
     const originalClass = without(classList, classNameRef.current)
 
     takeTarget(target)?.classList.add(...originalClass)
   }
 
-  const remove = (className: string[]): void => {
+  const removeClassList = (className: string[]): void => {
     const originalClass = without(className, classNameRef.current)
 
     takeTarget(target)?.classList.remove(...originalClass)
@@ -128,37 +130,38 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
       target,
       entered: show,
       onBeforeEnter: () => {
+        cleanUp()
         const ref = takeTarget(target)
         if (ref && ref.style.display === 'none') {
           ref.style.display = ''
         }
-        add(_enterFrom)
+        addClassList(_enterFrom)
       },
 
       onEnter: () => {
-        remove(_enterFrom)
-        add(_enterTo)
-        add(_enter)
+        removeClassList(_enterFrom)
+        addClassList(_enterTo)
+        addClassList(_enter)
       },
       onAfterEnter: () => {
-        remove(_enterTo)
-        remove(_enter)
+        removeClassList(_enterTo)
+        removeClassList(_enter)
       },
 
       onBeforeLeave: () => {
         cleanUp()
-        add(_leaveFrom)
+        addClassList(_leaveFrom)
       },
 
       onLeave: () => {
-        remove(_leaveFrom)
-        add(_leaveTo)
-        add(_leave)
+        removeClassList(_leaveFrom)
+        addClassList(_leaveTo)
+        addClassList(_leave)
       },
 
       onAfterLeave: () => {
-        remove(_leaveTo)
-        remove(_leave)
+        removeClassList(_leaveTo)
+        removeClassList(_leave)
 
         const ref = takeTarget(target)
         if (ref) {
