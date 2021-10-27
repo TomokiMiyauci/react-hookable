@@ -115,7 +115,10 @@
     "utility"
   ],
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --fix",
+    "*.{ts,tsx,js}": [
+      "eslint --fix",
+      "tsc --noEmit"
+    ],
     "*.{json,md,mdx}": "prettier -w"
   }
 }
