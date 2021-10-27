@@ -15,7 +15,7 @@ const Template: Story = (): JSX.Element => {
     title: 'useTransitionTimingEffect',
     position: 'bottom-right'
   })
-  const target = useRef<HTMLDivElement>(null)
+  const target = useRef<HTMLButtonElement>(null)
   useTransitionTimingEffect(
     {
       target,
