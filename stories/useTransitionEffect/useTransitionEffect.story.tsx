@@ -3,8 +3,9 @@ import { Box, Image, Badge } from '@chakra-ui/react'
 import { useRef } from 'preact/hooks'
 
 import { useTransitionEffect } from '@/useTransitionEffect'
+import { title, argTypes } from '@story/useTransitionEffect/docs'
 
-import type { Meta } from '@storybook/preact'
+import type { Meta, Story } from '@storybook/preact'
 
 const property = {
   imageUrl: 'https://bit.ly/2Z4KKcF',
@@ -18,7 +19,8 @@ const property = {
 }
 
 import Docs from '@doc/useTransitionEffect.mdx'
-export const Demo = (): JSX.Element => {
+
+const Template: Story = () => {
   const target = useRef<HTMLDivElement>(null)
   useTransitionEffect({
     target,
@@ -93,12 +95,15 @@ export const Demo = (): JSX.Element => {
   )
 }
 
+export const Demo = Template.bind({})
+
 export default {
-  title: 'effect/useTransitionEffect',
-  component: Demo,
+  title,
+  component: Template,
+  argTypes,
   parameters: {
     docs: {
       page: Docs
     }
   }
-} as Meta<typeof Demo>
+} as Meta<typeof Template>
