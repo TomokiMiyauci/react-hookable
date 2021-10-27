@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react'
 
-import { duplicate, isBrowser } from '@/utils'
+import { uniqShallow, isBrowser } from '@/utils'
 
 import type { Target } from '@/shared/types'
 import type { RefObject } from 'react'
@@ -57,7 +57,7 @@ const cleanSplittedClassName = (className: string): string[] => {
     .split(' ')
     .filter(({ length }) => length)
 
-  return duplicate(splittedClassName)
+  return uniqShallow(splittedClassName)
 }
 
 const useUniversalEffect = isBrowser ? useLayoutEffect : useEffect
