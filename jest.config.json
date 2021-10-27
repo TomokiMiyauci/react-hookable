@@ -4,9 +4,9 @@
       "displayName": "browser",
       "testEnvironment": "jsdom",
       "testMatch": [
-        "<rootDir>/tests/browser/**/*_test.[tj]s?(x)",
-        "<rootDir>/tests/shared/**/*_test.[tj]s?(x)",
-        "<rootDir>/tests/utils/**/*_test.[tj]s?(x)"
+        "<rootDir>/tests/(browser|shared)/**/*_test.[tj]s?(x)",
+        "<rootDir>/tests/utils/browser/**/*_test.[tj]s?(x)",
+        "<rootDir>/tests/utils/*_test.[tj]s?(x)"
       ],
       "transform": {
         "^.+\\.(t|j)sx?$": "@swc/jest"
@@ -20,7 +20,10 @@
     {
       "displayName": "server",
       "testEnvironment": "node",
-      "testMatch": ["<rootDir>/tests/server/**/*_test.[tj]s?(x)"],
+      "testMatch": [
+        "<rootDir>/tests/server/**/*_test.[tj]s?(x)",
+        "<rootDir>/tests/utils/server/**/*_test.[tj]s?(x)"
+      ],
       "transform": {
         "^.+\\.(t|j)sx?$": "@swc/jest"
       },
