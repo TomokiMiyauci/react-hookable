@@ -34,4 +34,4 @@ type ArgTypePolyfill = {
 type ExtendedArgType = ArgType & Partial<ArgTypePolyfill>
 type ArgTypes = Record<string, ExtendedArgType>
 
-export type { ExtendedArgType, ArgTypes }
+export type { ExtendedArgType, ArgTypes, TableArgTypePolyfill }
