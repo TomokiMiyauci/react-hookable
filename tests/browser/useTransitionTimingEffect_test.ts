@@ -98,7 +98,7 @@ describe('useTransitionTimingEffect', () => {
         }),
       {
         initialProps: {
-          entered: false
+          entered: true
         }
       }
     )
@@ -111,7 +111,7 @@ describe('useTransitionTimingEffect', () => {
       dispatchEvent(new Event('transitionend'))
     })
 
-    rerender({ entered: true })
+    rerender({ entered: false })
 
     expect(onBeforeLeave).toHaveBeenCalledTimes(1)
     expect(onLeave).toHaveBeenCalledTimes(1)

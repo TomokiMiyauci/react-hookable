@@ -1,6 +1,11 @@
 import { createRef, MutableRefObject } from 'react'
 
-import { takeCurrent, takeTarget, cleanSplittedClassName } from '@/shared'
+import {
+  takeCurrent,
+  takeTarget,
+  cleanSplittedClassName,
+  onTakeTarget
+} from '@/shared'
 
 import { Target } from '@/shared/types'
 describe('takeCurrent', () => {
@@ -44,5 +49,22 @@ describe('cleanSplittedClassName', () => {
 
   it.each(table)('cleanSplittedClassName(%s) => %s', (className, expected) => {
     expect(cleanSplittedClassName(className)).toEqual(expected)
+  })
+})
+
+describe('onTakeTarget', () => {
+  it('should call fn when target is not empty', () => {
+    const el = document.createElement('el')
+    const fn = jest.fn()
+    onTakeTarget(el, fn)
+    expect(fn).toHaveBeenCalledTimes(1)
+    expect(fn).toHaveBeenCalledWith(el)
+  })
+
+  it('should not call fn when target is empty', () => {
+    const el = createRef<EventTarget>()
+    const fn = jest.fn()
+    onTakeTarget(el, fn)
+    expect(fn).not.toHaveBeenCalled()
   })
 })

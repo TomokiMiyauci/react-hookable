@@ -38,7 +38,7 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
     onBeforeLeave,
     onLeave,
     onAfterLeave,
-    entered = false
+    entered
   }) => {
     const { isFirstMount } = useIsFirstMountRef()
 
@@ -50,7 +50,7 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
         onEnd: onAfterEnter
       },
       [entered],
-      () => !entered
+      () => typeof entered === 'undefined' || entered
     )
 
     useTransitionStart(
@@ -61,7 +61,7 @@ const useTransitionTimingEffect: UseEffect<UseTransitionTimingEffectOptions> =
         onEnd: onAfterLeave
       },
       [entered],
-      () => !isFirstMount && entered
+      () => !isFirstMount && !entered
     )
   }
 

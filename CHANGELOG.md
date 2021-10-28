@@ -1,3 +1,13 @@
+# [v1.0.0-beta.52](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2021-10-28)
+
+## ✨ New Features
+- [`ae1d4d8`](https://github.com/TomokiMiyauci/react-hookable/commit/ae1d4d8)   Add &#x60;useTransitionEffect&#x60; to keepLayout option
+
+# [v1.0.0-beta.51](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.50...v1.0.0-beta.51) (2021-10-27)
+
+## 🐛 Bug Fixes
+- [`b39ff5f`](https://github.com/TomokiMiyauci/react-hookable/commit/b39ff5f)   Clean up when start transition
+
 # [v1.0.0-beta.50](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2021-10-27)
 
 ## 🐛 Bug Fixes

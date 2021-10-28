@@ -47,6 +47,23 @@ const takeTarget = <T extends EventTarget>(target: Target<T>): T | null => {
 }
 
 /**
+ * Called when target is not `undefined`
+ * @param target - Any target
+ * @param onTake - Called when success to take out target inner event target
+ * @returns void
+ *
+ * @internal
+ */
+const onTakeTarget = <T extends EventTarget>(
+  target: Target<T>,
+  onTake: (el: T) => void
+): void => {
+  const el = takeTarget(target)
+  if (!el) return
+  onTake(el)
+}
+
+/**
  * Split `className` and remove duplicate
  * @param className - Any className
  * @returns Clean `className` array
@@ -62,4 +79,10 @@ const cleanSplittedClassName = (className: string): string[] => {
 
 const useUniversalEffect = isBrowser ? useLayoutEffect : useEffect
 
-export { takeCurrent, takeTarget, cleanSplittedClassName, useUniversalEffect }
+export {
+  takeCurrent,
+  takeTarget,
+  cleanSplittedClassName,
+  useUniversalEffect,
+  onTakeTarget
+}
