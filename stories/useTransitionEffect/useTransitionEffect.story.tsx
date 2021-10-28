@@ -1,5 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons'
-import { Box, Image, Button, Badge, Flex } from '@chakra-ui/react'
+import { Box, Image, Button, Badge, Flex, Text } from '@chakra-ui/react'
 import { forwardRef } from 'preact/compat'
 import { useRef, useState } from 'preact/hooks'
 
@@ -31,7 +31,7 @@ const Sample = forwardRef<HTMLDivElement>((_, ref) => {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      className="transition shadow hover:shadow-xl duration-300"
+      className="shadow hover:shadow-xl"
     >
       <Image loading="lazy" src={property.imageUrl} alt={property.imageAlt} />
 
@@ -94,7 +94,8 @@ const Template: Story = () => {
     enterFrom:
       'opacity-0 bg-teal-900 transform scale-0 translate-x-full translate-y-full rotate-180',
     enter: 'transition duration-[10000ms] delay-300',
-    enterTo: 'transform -translate-y-20 -translate-x-20 -rotate-45 scale-150'
+    enterTo: 'transform -translate-y-20 -translate-x-20 -rotate-45 scale-150',
+    entered: 'transition duration-300'
   })
 
   return (
@@ -114,9 +115,11 @@ export const Control = (): JSX.Element => {
     show,
     enterFrom: 'opacity-0 bg-teal-900 transform scale-y-0 translate-y-full',
     enter: 'transition duration-500 delay-300',
-    enterTo: 'transform -translate-y-10',
+    enterTo: 'transform -translate-y-10 duration-1000',
+    entered: 'transition duration-500',
     leave: 'transition duration-500',
-    leaveTo: 'opacity-0 scale-x-0 transform'
+    leaveTo: 'opacity-0 scale-x-0 transform',
+    keepLayout: true
   })
 
   return (
@@ -124,6 +127,7 @@ export const Control = (): JSX.Element => {
       <Button mb="3" onClick={toggle}>
         {show ? 'HIDDEN' : 'SHOW'}
       </Button>
+
       <Sample ref={target} />
     </>
   )
@@ -150,10 +154,12 @@ export const AdvancedControl = (): JSX.Element => {
     {
       target,
       show: state,
-      enterFrom: 'opacity-0 bg-teal-900 transform scale-0',
+      enterFrom: 'opacity-0 bg-teal-900 transform scale-0 rotate-180',
       enter: 'transition duration-1000 delay-300',
+      entered: 'transition-all duration-300',
       leave: 'transition duration-500',
-      leaveTo: 'opacity-0 scale-x-0 transform'
+      leaveTo: 'opacity-0 scale-x-0 transform',
+      keepLayout: true
     },
     []
   )
@@ -164,14 +170,18 @@ export const AdvancedControl = (): JSX.Element => {
       show: state,
       enterFrom: 'opacity-0 bg-teal-900 transform scale-0',
       enter: 'transition duration-1000 delay-700',
+      entered: 'transition-shadow duration-300',
       leave: 'transition duration-500',
-      leaveTo: 'opacity-0 scale-x-0 transform'
+      leaveTo: 'opacity-0 scale-x-0 transform',
+      keepLayout: true
     },
     []
   )
 
   return (
     <>
+      <Text textAlign="center">scroll down</Text>
+
       <Box my="96" overflow="scroll" h="6xl">
         <Box mt="72" p="8" borderStyle="dashed" borderWidth="4px" ref={ref}>
           <Flex experimental_spaceX="4">

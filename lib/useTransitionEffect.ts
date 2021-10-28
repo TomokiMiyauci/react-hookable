@@ -3,7 +3,8 @@ import { useMemo, useRef, useEffect, useLayoutEffect } from 'react'
 import {
   cleanSplittedClassName,
   takeTarget,
-  useUniversalEffect
+  useUniversalEffect,
+  onTakeTarget
 } from '@/shared'
 import { useConditionalEffect } from '@/useConditionalEffect'
 import { useIsFirstMountRef } from '@/useIsFirstMountRef'
@@ -40,6 +41,7 @@ type Transition =
   | Enter
   | `${Enter}${From}`
   | `${Enter}${To}`
+  | `${Enter}ed`
   | Leave
   | `${Leave}${From}`
   | `${Leave}${To}`
@@ -49,6 +51,13 @@ type TransitionClassName = Record<Transition, string>
 type UseTransitionEffectOptions = {
   target: Target<HTMLElement | SVGElement>
   show?: boolean
+
+  /**
+   * Whether to apply `display: none;` or `visibility: hidden;` to invisible
+   * If `false`, `display:none;` will be applied
+   * @defaultValue `false`
+   */
+  keepLayout?: boolean
 } & Partial<TransitionClassName>
 
 /**
@@ -80,38 +89,50 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   enter,
   enterFrom,
   enterTo,
+  entered,
   leave,
   leaveFrom,
   leaveTo,
   target,
-  show
+  show,
+  keepLayout = false
 }) => {
   const _enter = useCleanClassList(enter)
   const _enterTo = useCleanClassList(enterTo)
   const _enterFrom = useCleanClassList(enterFrom)
+  const _entered = useCleanClassList(entered)
   const _leave = useCleanClassList(leave)
   const _leaveTo = useCleanClassList(leaveTo)
   const _leaveFrom = useCleanClassList(leaveFrom)
+  const classNameRef = useClassListRef(target)
+  const { isFirstMount } = useIsFirstMountRef()
 
   const cleanUp: VFn = () =>
-    [_enter, _enterTo, _enterFrom, _leave, _leaveFrom, _leaveTo].forEach(
-      removeClassList
-    )
+    [
+      _enter,
+      _enterTo,
+      _enterFrom,
+      _entered,
+      _leave,
+      _leaveFrom,
+      _leaveTo
+    ].forEach(removeClassList)
 
-  const { isFirstMount } = useIsFirstMountRef()
-  useConditionalEffect(
-    () => {
-      const ref = takeTarget(target)
-      if (ref) {
-        ref.style.display = 'none'
+  const hide: VFn = () =>
+    onTakeTarget(target, (el) => {
+      if (keepLayout) {
+        el.style.visibility = 'hidden'
+      } else {
+        el.style.display = 'none'
       }
-    },
+    })
+
+  useConditionalEffect(
+    hide,
     [],
     () => isFirstMount && show === false,
     isBrowser ? useLayoutEffect : useEffect
   )
-
-  const classNameRef = useClassListRef(target)
 
   const addClassList = (classList: string[]): void => {
     const originalClass = without(classList, classNameRef.current)
@@ -131,11 +152,19 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
       entered: show,
       onBeforeEnter: () => {
         cleanUp()
-        const ref = takeTarget(target)
-        if (ref && ref.style.display === 'none') {
-          ref.style.display = ''
-        }
         addClassList(_enterFrom)
+
+        onTakeTarget(target, (el) => {
+          if (keepLayout) {
+            if (el.style.visibility === 'hidden') {
+              el.style.visibility = 'visible'
+            }
+          } else {
+            if (el.style.display === 'none') {
+              el.style.display = ''
+            }
+          }
+        })
       },
 
       onEnter: () => {
@@ -146,6 +175,7 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
       onAfterEnter: () => {
         removeClassList(_enterTo)
         removeClassList(_enter)
+        addClassList(_entered)
       },
 
       onBeforeLeave: () => {
@@ -163,10 +193,7 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
         removeClassList(_leaveTo)
         removeClassList(_leave)
 
-        const ref = takeTarget(target)
-        if (ref) {
-          ref.style.display = 'none'
-        }
+        hide()
       }
     },
     []
