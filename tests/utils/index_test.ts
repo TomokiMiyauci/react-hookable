@@ -1,4 +1,4 @@
-import { uniqShallow, without } from '@/utils'
+import { uniqShallow, without, takeFn } from '@/utils'
 
 describe('uniqShallow', () => {
   const table: [unknown[], unknown[]][] = [
@@ -31,5 +31,19 @@ describe('without', () => {
   ]
   it.each(table)('without(%s, %s) => %s', (a, b, expected) => {
     expect(without(a, b)).toEqual(expected)
+  })
+})
+
+describe('takeFn', () => {
+  const table: [unknown, unknown][] = [
+    ['', ''],
+    [() => '', ''],
+    [{}, {}],
+    [() => 1, 1],
+    [0, 0]
+  ]
+
+  it.each(table)('', (value, expected) => {
+    expect(takeFn(value)).toEqual(expected)
   })
 })
