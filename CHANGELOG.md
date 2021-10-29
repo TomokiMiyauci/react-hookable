@@ -1,3 +1,8 @@
+# [v1.0.0-beta.56](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2021-10-29)
+
+## ✨ New Features
+- [`a124389`](https://github.com/TomokiMiyauci/react-hookable/commit/a124389)   Add &#x60;useClickOutsideEffect&#x60; for detect click outside
+
 # [v1.0.0-beta.55](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.54...v1.0.0-beta.55) (2021-10-29)
 
 ## 🐛 Bug Fixes
