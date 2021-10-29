@@ -41,7 +41,7 @@ const DialogComponent = ({
   useTransitionEffect(
     {
       target: dialog,
-      show: isShow,
+      show,
       enterFrom: 'transform translate-y-full',
       enter: 'transition duration-500',
       leaveTo: 'transform translate-y-full',
@@ -62,36 +62,40 @@ const DialogComponent = ({
   )
 
   return (
-    <Portal>
-      <Box
-        inset="0"
-        cursor="pointer"
-        position="fixed"
-        p="20"
-        mx="auto"
-        className="md:p-40 backdrop-blur-md bg-opacity-10 backdrop-filter bg-gray-50"
-        ref={target}
-      >
-        <Box
-          position="absolute"
-          top="10%"
-          left="50%"
-          fontSize="4xl"
-          color="gray.300"
-          className="transform -translate-x-1/2 -translate-y-1/2"
-        >
-          outside
-        </Box>
-        <Box
-          fontSize="4xl"
-          color="gray.300"
-          className="border transition duration-300 cursor-auto h-full md:max-h-lg mx-auto max-w-2xl bg-gray-50 rounded-md shadow hover:shadow-md grid place-content-center"
-          ref={dialog}
-        >
-          {children}
-        </Box>
-      </Box>
-    </Portal>
+    <>
+      {isShow && (
+        <Portal>
+          <Box
+            inset="0"
+            cursor="pointer"
+            position="fixed"
+            p="20"
+            mx="auto"
+            className="md:p-40 backdrop-blur-md bg-opacity-10 backdrop-filter bg-gray-50"
+            ref={target}
+          >
+            <Box
+              position="absolute"
+              top="10%"
+              left="50%"
+              fontSize="4xl"
+              color="gray.300"
+              className="transform -translate-x-1/2 -translate-y-1/2"
+            >
+              outside
+            </Box>
+            <Box
+              fontSize="4xl"
+              color="gray.300"
+              className="border duration-300 cursor-auto h-full md:max-h-lg mx-auto max-w-2xl bg-gray-50 rounded-md shadow hover:shadow-md grid place-content-center"
+              ref={dialog}
+            >
+              {children}
+            </Box>
+          </Box>
+        </Portal>
+      )}
+    </>
   )
 }
 
