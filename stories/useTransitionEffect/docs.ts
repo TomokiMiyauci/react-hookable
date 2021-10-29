@@ -74,7 +74,8 @@ const argTypes: ArgTypes = {
   },
 
   entered: {
-    description: 'Classes to add to the transitioning element once the transition is done. These classes will persist until leave',
+    description:
+      'Classes to add to the transitioning element once the transition is done. These classes will persist until leave',
     table: {
       category,
       subcategory: subcategory0,
@@ -122,7 +123,7 @@ const argTypes: ArgTypes = {
 
   keepLayout: {
     description:
-      'Whether to apply `display: none;` or `visibility: hidden;` to invisible',
+      'Whether to apply `display: none;` or `visibility: hidden;` to invisible. If `false`, `display:none;` will be applied',
 
     table: {
       category,
@@ -137,7 +138,18 @@ const argTypes: ArgTypes = {
   },
 
   deps,
-  condition
+  condition,
+
+  isShow: {
+    description: 'Reactive state of isShow adjusted rendering timing',
+    table: {
+      category: 'returns',
+      subcategory: '{ states }',
+      type: {
+        summary: 'boolean'
+      }
+    }
+  }
 }
 
 export { title, argTypes }

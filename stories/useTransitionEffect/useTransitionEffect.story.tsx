@@ -1,5 +1,15 @@
 import { StarIcon } from '@chakra-ui/icons'
-import { Box, Image, Button, Badge, Flex, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Image,
+  Button,
+  Badge,
+  Flex,
+  Text,
+  Code,
+  Alert,
+  AlertIcon
+} from '@chakra-ui/react'
 import { forwardRef } from 'preact/compat'
 import { useRef, useState } from 'preact/hooks'
 
@@ -93,7 +103,7 @@ const Template: Story = () => {
     target,
     enterFrom:
       'opacity-0 bg-teal-900 transform scale-0 translate-x-full translate-y-full rotate-180',
-    enter: 'transition duration-[10000ms] delay-300',
+    enter: 'transition duration-[3000ms]',
     enterTo: 'transform -translate-y-20 -translate-x-20 -rotate-45 scale-150',
     entered: 'transition duration-300'
   })
@@ -190,6 +200,44 @@ export const AdvancedControl = (): JSX.Element => {
           </Flex>
         </Box>
       </Box>
+    </>
+  )
+}
+
+export const ReturnState = (): JSX.Element => {
+  const target = useRef<HTMLDivElement>(null)
+
+  const [state, { toggle }] = useBoolean(false)
+  const { isShow } = useTransitionEffect(
+    {
+      target,
+      show: state,
+      enterFrom: 'opacity-0 bg-teal-900 transform scale-0 rotate-180',
+      enter: 'transition duration-1000 delay-300',
+      entered: 'transition-all duration-300',
+      leave: 'transition duration-500',
+      leaveTo: 'opacity-0 scale-x-0 transform',
+      keepLayout: true
+    },
+    []
+  )
+
+  return (
+    <>
+      <Alert>
+        <AlertIcon />
+        <Text>
+          Provides a state with adjusted rendering timing. This can be used to
+          control the rendering of the DOM.
+        </Text>
+      </Alert>
+      <Button my="3" onClick={toggle}>
+        TOGGLE
+      </Button>
+      <Text mb="3">
+        isShow: <Code>{String(isShow)}</Code>
+      </Text>
+      {isShow && <Sample ref={target} />}
     </>
   )
 }
