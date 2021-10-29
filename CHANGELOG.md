@@ -1,3 +1,8 @@
+# [v1.0.0-beta.55](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.54...v1.0.0-beta.55) (2021-10-29)
+
+## 🐛 Bug Fixes
+- [`bd3b801`](https://github.com/TomokiMiyauci/react-hookable/commit/bd3b801)   Fix bundle dependency
+
 # [v1.0.0-beta.54](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.53...v1.0.0-beta.54) (2021-10-29)
 
 ## ✨ New Features
