@@ -1,3 +1,8 @@
+# [v1.0.0-beta.53](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2021-10-29)
+
+## ✨ New Features
+- [`6b5f8de`](https://github.com/TomokiMiyauci/react-hookable/commit/6b5f8de)   Add &#x60;useTransitionEffect&#x60; to reactive state
+
 # [v1.0.0-beta.52](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2021-10-28)
 
 ## ✨ New Features
