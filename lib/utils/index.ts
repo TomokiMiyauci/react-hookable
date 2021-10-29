@@ -1,3 +1,5 @@
+import type { MaybeFn } from '@/utils/types'
+
 /**
  * Check client-side or server-side
  *
@@ -35,4 +37,11 @@ const without = <T>(a: T[], b: T[]): T[] => {
   }, [] as T[])
 }
 
-export { isBrowser, uniqShallow, without }
+/**
+ * Return if function, return value, otherwise return as is
+ * @internal
+ */
+const takeFn = <T>(maybeFn: MaybeFn<T>): T =>
+  typeof maybeFn === 'function' ? (maybeFn as () => T)() : maybeFn
+
+export { isBrowser, uniqShallow, without, takeFn }
