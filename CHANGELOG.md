@@ -1,3 +1,8 @@
+# [v1.0.0-beta.54](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.53...v1.0.0-beta.54) (2021-10-29)
+
+## ✨ New Features
+- [`241bd3e`](https://github.com/TomokiMiyauci/react-hookable/commit/241bd3e)   Add &#x60;Portal&#x60; component for &#x60;createPortal&#x60; for JSX
+
 # [v1.0.0-beta.53](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2021-10-29)
 
 ## ✨ New Features
