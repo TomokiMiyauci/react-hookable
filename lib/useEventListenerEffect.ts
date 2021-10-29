@@ -163,4 +163,4 @@ const useEventListenerEffect = <
 }
 
 export { useEventListenerEffect }
-export type { UseEventListenerEffectOptions }
+export type { UseEventListenerEffectOptions, EventListenerParameters }
