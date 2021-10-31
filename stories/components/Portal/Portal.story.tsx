@@ -5,7 +5,7 @@ import { argTypes } from '@story/components/Portal/docs'
 
 import type { Meta } from '@storybook/preact'
 
-import Docs from '@doc/useAnimationFrameEffect.mdx'
+import Docs from '@doc/components/Portal.mdx'
 
 export const Demo = (): JSX.Element => {
   return (
