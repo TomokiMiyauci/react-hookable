@@ -100,4 +100,55 @@ describe('useTransitionEffect', () => {
 
     expect(getByTestId(testId)).not.toHaveClass()
   })
+
+  it('should have display: none style default', () => {
+    const testId = 'target'
+    const Test = (): JSX.Element => {
+      const target = useRef<HTMLDivElement>(null)
+      useTransitionEffect({
+        target,
+        show: false
+      })
+      return (
+        <div data-testid={testId} ref={target}>
+          test
+        </div>
+      )
+    }
+
+    const { getByTestId } = render(<Test />)
+
+    expect(getByTestId(testId)).toHaveStyle({
+      display: 'none'
+    })
+    expect(getByTestId(testId)).not.toHaveStyle({
+      visibility: undefined
+    })
+  })
+
+  it('should switch default invisible style', () => {
+    const testId = 'target'
+    const Test = (): JSX.Element => {
+      const target = useRef<HTMLDivElement>(null)
+      useTransitionEffect({
+        target,
+        show: false,
+        keepLayout: true
+      })
+      return (
+        <div data-testid={testId} ref={target}>
+          test
+        </div>
+      )
+    }
+
+    const { getByTestId } = render(<Test />)
+
+    expect(getByTestId(testId)).toHaveStyle({
+      visibility: 'hidden'
+    })
+    expect(getByTestId(testId)).not.toHaveStyle({
+      display: undefined
+    })
+  })
 })
