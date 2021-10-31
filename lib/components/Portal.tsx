@@ -20,7 +20,7 @@ type PortalProps = {
 /**
  * Portal is used to transport any component or element to the end of `document.body`
  * @param props - Portal props
- * @return `JSX.Element`
+ * @returns `JSX.Element`
  *
  * @example
  * ```tsx
