@@ -1,3 +1,8 @@
+# [v1.0.0-beta.58](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.57...v1.0.0-beta.58) (2021-10-31)
+
+## ✨ New Features
+- [`9dbacc5`](https://github.com/TomokiMiyauci/react-hookable/commit/9dbacc5)   Bind ref &#x60;UseClickOutside&#x60; under top of element automatically
+
 # [v1.0.0-beta.57](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.56...v1.0.0-beta.57) (2021-10-31)
 
 ## ✨ New Features
