@@ -1,3 +1,8 @@
+# [v1.0.0-beta.57](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.56...v1.0.0-beta.57) (2021-10-31)
+
+## ✨ New Features
+- [`9a2afc6`](https://github.com/TomokiMiyauci/react-hookable/commit/9a2afc6)   Add &#x60;UseClickOutside&#x60; component
+
 # [v1.0.0-beta.56](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2021-10-29)
 
 ## ✨ New Features
