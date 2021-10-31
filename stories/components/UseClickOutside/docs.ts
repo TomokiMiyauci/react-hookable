@@ -11,7 +11,7 @@ const argTypes: ArgTypes = {
     table: {
       category: 'props',
       type: {
-        summary: '({ ref }) => JSX.Element'
+        summary: 'JSX.Element | ({ ref }) => JSX.Element'
       }
     },
     control: {

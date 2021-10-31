@@ -1,17 +1,64 @@
-# UseSwipe
+# UseClickOutside
 
 Click outside for component
 
 ## Usage
 
+Automatically attaches to the root element
+
 ```tsx
 import { UseClickOutside } from 'react-hookable'
 
 render(
-  <UseClickOutside<HTMLDivElement> onClickOutside={() => {
+  <UseClickOutside onClickOutside={() => {
     // call on click outside
   }}>
-    {({ ref }) => <div ref={ref} />}
-  </UseSwipe>
-)``
+    <div />}
+  </UseClickOutside>
+)
+```
+
+### Callback ref
+
+To change the `ref` to bind to, you can specify a function that returns JSX.
+
+The default type of ref is `RefObject<HTMLElment | SVGElement>`.
+You can override this with a more detailed type.
+
+```tsx
+import { UseClickOutside } from 'react-hookable'
+
+render(
+  <UseClickOutside<HTMLDivElement>
+    onClickOutside={() => {
+      // call on click outside
+    }}
+  >
+    {({ ref }) => (
+      <div>
+        <div ref={ref} />
+      </div>
+    )}
+  </UseClickOutside>
+)
+```
+
+### Forwarding ref
+
+When splitting `UseClickOutside` children into components, `ref` forwarding is required.
+
+```tsx
+import { UseClickOutside } from 'react-hookable'
+
+const Child = forwardRef((props, ref) => <div ref={ref} />)
+
+render(
+  <UseClickOutside
+    onClickOutside={() => {
+      // call on click outside
+    }}
+  >
+    <Child />
+  </UseClickOutside>
+)
 ```

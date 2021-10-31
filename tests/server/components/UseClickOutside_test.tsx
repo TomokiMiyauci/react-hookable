@@ -7,7 +7,7 @@ describe('UseClickOutside', () => {
     expect(() =>
       renderToStaticMarkup(
         <UseClickOutside onClickOutside={jest.fn()}>
-          {() => <></>}
+          <div />
         </UseClickOutside>
       )
     ).not.toThrow()
