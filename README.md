@@ -149,6 +149,7 @@ Component lifecycle
 ## Components
 
 - [`UseSwipe`](docs/components/UseSwipe.mdx) - Reactive swipe state wrapper [![tag][demo]](https://react-hookable.vercel.app/?path=/story/component-useswipe)
+- [`UseClickOutside`](docs/components/UseClickOutside.mdx) - Click outside for component [![tag][demo]](https://react-hookable.vercel.app/?path=/story/component-useclickoutside)
 - [`Portal`](docs/components/Portal.mdx) - Portal is used to transport any component or element to the end of `document.body` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/component-portal)
 
 ## Contributing

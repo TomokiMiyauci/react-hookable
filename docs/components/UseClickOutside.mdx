@@ -1,0 +1,17 @@
+# UseSwipe
+
+Click outside for component
+
+## Usage
+
+```tsx
+import { UseClickOutside } from 'react-hookable'
+
+render(
+  <UseClickOutside<HTMLDivElement> onClickOutside={() => {
+    // call on click outside
+  }}>
+    {({ ref }) => <div ref={ref} />}
+  </UseSwipe>
+)``
+```
