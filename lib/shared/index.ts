@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react'
 
-import { uniqShallow, isBrowser } from '@/utils'
+import { uniqShallow, isBrowser, takeFn } from '@/utils'
 
 import type { Target } from '@/shared/types'
 import type { RefObject } from 'react'
@@ -43,7 +43,7 @@ const takeCurrent = <T extends Record<PropertyKey, any>>(
 const takeTarget = <T extends EventTarget>(target: Target<T>): T | null => {
   const current = takeCurrent(target)
 
-  return typeof current === 'function' ? current() : current
+  return takeFn(current)
 }
 
 /**

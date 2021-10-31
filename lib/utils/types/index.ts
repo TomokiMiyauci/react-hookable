@@ -9,6 +9,11 @@ type VFn = () => void
 type Maybe<T> = T | undefined
 
 /**
+ * Union types of function
+ */
+type MaybeFn<T> = T | (() => T)
+
+/**
  * Utility for record value to union typeof `undefined`
  */
 type MaybeRecord<T extends Record<PropertyKey, unknown>> = {
@@ -55,6 +60,10 @@ type Optional<T extends Record<PropertyKey, unknown>, U extends keyof T> = {
   [k in U]?: T[k]
 }
 
+type CapitalCase<T extends string> = T extends `${infer F}${infer R}`
+  ? `${Uppercase<F>}${R}`
+  : T
+
 export type {
   AnyFn,
   ClearOptions,
@@ -63,5 +72,7 @@ export type {
   MaybeRecord,
   Optional,
   Rename,
-  VFn
+  VFn,
+  MaybeFn,
+  CapitalCase
 }

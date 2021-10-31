@@ -1,3 +1,33 @@
+# [v1.0.0-beta.58](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.57...v1.0.0-beta.58) (2021-10-31)
+
+## ✨ New Features
+- [`9dbacc5`](https://github.com/TomokiMiyauci/react-hookable/commit/9dbacc5)   Bind ref &#x60;UseClickOutside&#x60; under top of element automatically
+
+# [v1.0.0-beta.57](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.56...v1.0.0-beta.57) (2021-10-31)
+
+## ✨ New Features
+- [`9a2afc6`](https://github.com/TomokiMiyauci/react-hookable/commit/9a2afc6)   Add &#x60;UseClickOutside&#x60; component
+
+# [v1.0.0-beta.56](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2021-10-29)
+
+## ✨ New Features
+- [`a124389`](https://github.com/TomokiMiyauci/react-hookable/commit/a124389)   Add &#x60;useClickOutsideEffect&#x60; for detect click outside
+
+# [v1.0.0-beta.55](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.54...v1.0.0-beta.55) (2021-10-29)
+
+## 🐛 Bug Fixes
+- [`bd3b801`](https://github.com/TomokiMiyauci/react-hookable/commit/bd3b801)   Fix bundle dependency
+
+# [v1.0.0-beta.54](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.53...v1.0.0-beta.54) (2021-10-29)
+
+## ✨ New Features
+- [`241bd3e`](https://github.com/TomokiMiyauci/react-hookable/commit/241bd3e)   Add &#x60;Portal&#x60; component for &#x60;createPortal&#x60; for JSX
+
+# [v1.0.0-beta.53](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2021-10-29)
+
+## ✨ New Features
+- [`6b5f8de`](https://github.com/TomokiMiyauci/react-hookable/commit/6b5f8de)   Add &#x60;useTransitionEffect&#x60; to reactive state
+
 # [v1.0.0-beta.52](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2021-10-28)
 
 ## ✨ New Features

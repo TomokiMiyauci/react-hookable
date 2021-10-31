@@ -1,4 +1,4 @@
-import { useMemo, useRef, useEffect, useLayoutEffect } from 'react'
+import { useMemo, useRef, useEffect, useLayoutEffect, useState } from 'react'
 
 import {
   cleanSplittedClassName,
@@ -12,7 +12,7 @@ import { useTransitionTimingEffect } from '@/useTransitionTimingEffect'
 import { isBrowser, without } from '@/utils'
 
 import type { Target, UseEffect } from '@/shared/types'
-import type { VFn } from '@/utils/types'
+import type { VFn, Maybe } from '@/utils/types'
 import type { MutableRefObject } from 'react'
 
 const useCleanClassList = (className?: string): string[] =>
@@ -45,6 +45,10 @@ type Transition =
   | Leave
   | `${Leave}${From}`
   | `${Leave}${To}`
+
+type TransitionState = 'isShow'
+
+type TransitionReturn = Record<TransitionState, boolean>
 
 type TransitionClassName = Record<Transition, string>
 
@@ -85,7 +89,10 @@ type UseTransitionEffectOptions = {
  * @see https://react-hookable.vercel.app/?path=/story/effect-usetransitioneffect
  * @beta
  */
-const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
+const useTransitionEffect: UseEffect<
+  UseTransitionEffectOptions,
+  TransitionReturn
+> = ({
   enter,
   enterFrom,
   enterTo,
@@ -106,6 +113,8 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
   const _leaveFrom = useCleanClassList(leaveFrom)
   const classNameRef = useClassListRef(target)
   const { isFirstMount } = useIsFirstMountRef()
+  const [_control, setControl] = useState<Maybe<boolean>>(show)
+  const [isShow, setShow] = useState<boolean>(show ?? false)
 
   const cleanUp: VFn = () =>
     [
@@ -146,10 +155,17 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
     takeTarget(target)?.classList.remove(...originalClass)
   }
 
+  useEffect(() => {
+    setControl(show)
+    if (show) {
+      setShow(show)
+    }
+  }, [show])
+
   useTransitionTimingEffect(
     {
       target,
-      entered: show,
+      entered: _control,
       onBeforeEnter: () => {
         cleanUp()
         addClassList(_enterFrom)
@@ -172,6 +188,7 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
         addClassList(_enterTo)
         addClassList(_enter)
       },
+
       onAfterEnter: () => {
         removeClassList(_enterTo)
         removeClassList(_enter)
@@ -194,10 +211,13 @@ const useTransitionEffect: UseEffect<UseTransitionEffectOptions> = ({
         removeClassList(_leave)
 
         hide()
+        setShow(false)
       }
     },
     []
   )
+
+  return { isShow }
 }
 
 export { useTransitionEffect }

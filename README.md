@@ -89,6 +89,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 ```
 
 - [`useAnimationFrameEffect`](docs/useAnimationFrameEffect.mdx) - Effect for `requestAnimationFrame` that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useanimationframeeffect)
+- [`useClickOutsideEffect`](docs/useClickOutsideEffect.mdx) - Effect for click outside of target [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useclickoutsideeffect)
 - [`useEventListenerEffect`](docs/useEventListenerEffect.mdx) - `EventListener` effect that clean up automatically [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useeventlistenereffect)
 - [`useFetchEffect`](docs/useFetchEffect.mdx) - Effect for `fetch` API that abort automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usefetcheffect)
 - [`useIdleCallbackEffect`](docs/useIdleCallbackEffect.mdx) - Effect for `requestIdleCallback` with fallback that clear automatically when unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useidlecallbackeffect)
@@ -148,6 +149,8 @@ Component lifecycle
 ## Components
 
 - [`UseSwipe`](docs/components/UseSwipe.mdx) - Reactive swipe state wrapper [![tag][demo]](https://react-hookable.vercel.app/?path=/story/component-useswipe)
+- [`UseClickOutside`](docs/components/UseClickOutside.mdx) - Click outside for component [![tag][demo]](https://react-hookable.vercel.app/?path=/story/component-useclickoutside)
+- [`Portal`](docs/components/Portal.mdx) - Portal is used to transport any component or element to the end of `document.body` [![tag][demo]](https://react-hookable.vercel.app/?path=/story/component-portal)
 
 ## Contributing
 
