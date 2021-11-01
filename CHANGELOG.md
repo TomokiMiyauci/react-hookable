@@ -1,3 +1,8 @@
+# [v1.0.0-beta.59](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.58...v1.0.0-beta.59) (2021-11-01)
+
+## 🐛 Bug Fixes
+- [`4a278aa`](https://github.com/TomokiMiyauci/react-hookable/commit/4a278aa)   Switch setTimeout instead of transitionend event
+
 # [v1.0.0-beta.58](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.57...v1.0.0-beta.58) (2021-10-31)
 
 ## ✨ New Features
