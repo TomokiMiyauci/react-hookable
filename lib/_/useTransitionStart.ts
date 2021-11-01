@@ -1,11 +1,26 @@
-import { useRef, useLayoutEffect, useEffect } from 'react'
+import { useLayoutEffect, useEffect } from 'react'
 
+import { onTakeTarget } from '@/shared'
 import { useConditionalEffect } from '@/useConditionalEffect'
-import { useEventListenerEffect } from '@/useEventListenerEffect'
 import { isBrowser } from '@/utils'
 
 import type { UseEffect, Target } from '@/shared/types'
 import type { VFn } from '@/utils/types'
+
+const getMs = (value: string): string => {
+  const regExpExecArray = /(?<num>.*)s$/.exec(value)
+  if (!regExpExecArray || !regExpExecArray.groups) return ''
+  return regExpExecArray.groups.num
+}
+
+const str2NumOrZero = (value: string): number => {
+  const number = Number(value)
+  return isNaN(number) ? 0 : number
+}
+
+const x1000 = (value: number): number => value * 1000
+
+const cleanTime = (value: string): number => x1000(str2NumOrZero(getMs(value)))
 
 type UseTransitionTimingEffectOptions = {
   onStart?: VFn
@@ -22,40 +37,36 @@ const useTransitionStart: UseEffect<UseTransitionTimingEffectOptions> = (
   deps,
   condition
 ) => {
-  const has = useRef<boolean>(false)
-
   useConditionalEffect(
-    () => onStart?.(),
+    () => {
+      onStart?.()
+    },
     deps,
     condition,
     isBrowser ? useLayoutEffect : useEffect
   )
 
-  const safeCall = (callback?: VFn): void => {
-    if (has.current) return
-    try {
-      callback?.()
-    } finally {
-      has.current = true
-    }
-  }
+  useConditionalEffect(
+    () => {
+      onMiddle?.()
 
-  useEffect(() => {
-    has.current = false
-  }, deps)
+      return onTakeTarget(target, (el) => {
+        const { transitionDuration, transitionDelay } = getComputedStyle(el)
 
-  useConditionalEffect(() => onMiddle?.(), deps, condition)
+        const duration = cleanTime(transitionDuration)
+        const delay = cleanTime(transitionDelay)
 
-  useEventListenerEffect(
-    {
-      target,
-      type: 'transitionend',
-      listener: () => safeCall(onEnd)
+        const id = setTimeout(() => {
+          onEnd?.()
+        }, duration + delay)
+
+        return () => clearTimeout(id)
+      })
     },
     deps,
     condition
   )
 }
 
-export { useTransitionStart }
+export { useTransitionStart, getMs, str2NumOrZero, x1000, cleanTime }
 export type { UseTransitionTimingEffectOptions }

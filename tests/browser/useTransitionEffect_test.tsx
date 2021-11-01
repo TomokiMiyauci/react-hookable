@@ -78,6 +78,7 @@ describe('useTransitionEffect', () => {
   })
 
   it('should have enter className when mount', () => {
+    jest.useFakeTimers()
     const testId = 'target'
     const Test = (): JSX.Element => {
       const target = useRef<HTMLDivElement>(null)
@@ -96,7 +97,7 @@ describe('useTransitionEffect', () => {
 
     const { getByTestId } = render(<Test />)
 
-    fireEvent(getByTestId(testId), new Event('transitionend'))
+    jest.runAllTimers()
 
     expect(getByTestId(testId)).not.toHaveClass()
   })

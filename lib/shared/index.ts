@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import { uniqShallow, isBrowser, takeFn } from '@/utils'
 
 import type { Target } from '@/shared/types'
+import type { Maybe } from '@/utils/types'
 import type { RefObject } from 'react'
 
 /**
@@ -54,13 +55,13 @@ const takeTarget = <T extends EventTarget>(target: Target<T>): T | null => {
  *
  * @internal
  */
-const onTakeTarget = <T extends EventTarget>(
+const onTakeTarget = <T extends EventTarget, U>(
   target: Target<T>,
-  onTake: (el: T) => void
-): void => {
+  onTake: (el: T) => U
+): Maybe<U> => {
   const el = takeTarget(target)
   if (!el) return
-  onTake(el)
+  return onTake(el)
 }
 
 /**
