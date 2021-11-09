@@ -1,0 +1,25 @@
+# useWebSocket
+
+Effect for WebSocket with automatically close connection when unmounted
+
+## Usage
+
+```tsx
+import { useWebSocket } from 'react-hookable'
+
+useWebSocket(
+  {
+    url: 'ws://localhost:1234',
+    data: JSON.stringify({ type: 'channel' }),
+    onMessage: ({ data }) => {
+      // from message
+    },
+    onOpen,
+    onError,
+    onClose
+  },
+  deps,
+  condition,
+  effectHook
+)
+```

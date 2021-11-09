@@ -100,6 +100,7 @@ useMyEffect(effect, deps, () => Maybe<boolean>) // void
 - [`useShortcutEffect`](docs/useShortcutEffect.mdx) - Effect for `keydown` as shortcut [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-useshortcuteffect)
 - [`useTransitionEffect`](docs/useTransitionEffect.mdx) - Effect for transition [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetransitioneffect)
 - [`useTimeoutEffect`](docs/useTimeoutEffect.mdx) - `Timeout` effect what timer clear automatically on unmount [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usetimeouteffect)
+- [`useWebSocket`](docs/useWebSocket.mdx) - Effect for WebSocket with automatically close connection when unmounted [![tag][demo]](https://react-hookable.vercel.app/?path=/story/effect-usewebsocket)
 
 ## Effect State
 
