@@ -1,3 +1,8 @@
+# [v1.0.0-beta.60](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.59...v1.0.0-beta.60) (2021-11-09)
+
+## ✨ New Features
+- [`a2f320b`](https://github.com/TomokiMiyauci/react-hookable/commit/a2f320b)   Add &#x60;useWebSocket&#x60; as effect hooks
+
 # [v1.0.0-beta.59](https://github.com/TomokiMiyauci/react-hookable/compare/v1.0.0-beta.58...v1.0.0-beta.59) (2021-11-01)
 
 ## 🐛 Bug Fixes
